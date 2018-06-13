@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 
 const app = express();
 
@@ -9,5 +9,5 @@ app.use('/api/test', (req, res, next) => {
 });
 
 app.listen(port, () => {
-  console.log("Express Server Listening on Port 5000!");
+  console.log('Express Server Listening on Port 5000!');
 });
