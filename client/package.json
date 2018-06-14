@@ -8,12 +8,14 @@
     }
   },
   "dependencies": {
+    "bootstrap": "^4.1.1",
     "emotion": "^9.2.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-emotion": "^9.2.3",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "reactstrap": "^6.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
