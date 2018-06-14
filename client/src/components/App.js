@@ -1,17 +1,31 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Header from './Header';
 import Footer from "./Footer";
 
+import Home from './Routes/Home';
+import Auth from './Routes/Auth';
+import UserDashboard from './Routes/UserDashboard';
+import NotFound from './Routes/NotFound';
+
 const App = () => {
   return (
-    <div>
-      <Header />
+    <Router>
+      <div>
+        <Header />
 
-      <h2>Bears Team 18</h2>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/sign-in" component={Auth} />
+          <Route path="/user-profile" component={UserDashboard} />
 
-      <Footer />
-    </div>
+          <Route component={NotFound} />
+        </Switch>
+
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
