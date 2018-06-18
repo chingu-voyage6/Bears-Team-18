@@ -16,6 +16,8 @@ passport.use(
         } else {
           new User({
             githubId: profile.id,
+            permission: 'standard',
+            signUpComplete: false,
             displayName: profile.username,
             profileIconUrl: profile.avatar_url,
             email: profile.email,
