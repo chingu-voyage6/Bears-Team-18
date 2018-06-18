@@ -39,6 +39,7 @@ const Header = props => {
           className={`${classes.headerLink} darkLink`}
           href="https://medium.com/chingu"
           target="_blank"
+          rel="noopener noreferrer"
         >
           Blog
         </a>
