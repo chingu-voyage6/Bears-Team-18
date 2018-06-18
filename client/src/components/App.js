@@ -7,10 +7,10 @@ import { withStyles } from '@material-ui/core/styles';
 import Header from './Header';
 import Footer from './Footer';
 
-import Home from './Routes/Home';
-import Auth from './Routes/Auth';
-import UserDashboard from './Routes/UserDashboard';
-import NotFound from './Routes/NotFound';
+import Home from './Routes/Home/';
+import Auth from './Routes/Auth/';
+import UserDashboard from './Routes/UserDashboard/';
+import NotFound from './Routes/NotFound/';
 
 const styles = {
   '@global': {
@@ -55,6 +55,8 @@ const styles = {
         },
       },
     },
+
+    img: { maxWidth: '100%' },
   },
 };
 

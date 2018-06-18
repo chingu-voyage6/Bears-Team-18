@@ -2,31 +2,50 @@ import React from 'react';
 
 import { withStyles } from '@material-ui/core/styles';
 
+import staticAssets from './static';
+
 const styles = {
   homeContainer: {
     textAlign: 'center',
     lineHeight: 1.6,
   },
-  homeIntro: {
-    height: 'calc(100vh - 64px)',
-  },
   whiteSection: {
     padding: '32px 0',
+  },
+  darkSection: {
+    backgroundColor: '#707399',
+    color: 'white',
+  },
+  darkWrapper: {
+    padding: '10px 0 25px 0',
   },
   sectionTitle: {
     fontSize: '2.5em',
     margin: '0',
     padding: '15px 0',
   },
-  processWrapper: {
+  widget: {
+    width: '25%',
+  },
+  widgetWrapper: {
     display: 'flex',
     justifyContent: 'space-around',
     flexWrap: 'wrap',
     margin: '25px 0',
   },
-
-  darkSection: {
-    backgroundColor: '#707399',
+  widgetTitle: {
+    fontSize: '2.5em',
+    fontWeight: '400',
+    textTransform: 'uppercase',
+    margin: '0 0 12px 0',
+  },
+  widgetDescription: {
+    fontSize: '1.6em',
+    width: '65%',
+    margin: '0 auto',
+  },
+  homeIntro: {
+    height: 'calc(100vh - 64px)',
   },
   bottomTitle: {
     fontSize: '5em',
@@ -39,9 +58,33 @@ const styles = {
     margin: '0 auto',
     paddingBottom: '25px',
   },
+
+  '@media screen and (max-width: 908px)': {
+    widget: {
+      width: '50%',
+      margin: '15px 0',
+    },
+  },
+  '@media screen and (max-width: 600px)': {
+    widget: { width: '100%' },
+    widgetWrapper: { margin: '0' },
+    darkWrapper: { padding: '25px 0' },
+  },
 };
 
 const Home = props => {
+  function renderStatic(content, classes) {
+    return content.map(item => {
+      return (
+        <div key={item.title} className={classes.widget}>
+          <img src={item.image} alt="" />
+          <h3 className={classes.widgetTitle}>{item.title}</h3>
+          <p className={classes.widgetDescription}>{item.description}</p>
+        </div>
+      );
+    });
+  }
+
   const { classes } = props;
 
   return (
@@ -54,11 +97,8 @@ const Home = props => {
         <h2 className={`${classes.sectionTitle} secondaryColor`}>
           CHINGU PROCESS
         </h2>
-        <div className={classes.processWrapper}>
-          <div className={classes.process}>Process 1</div>
-          <div className={classes.process}>Process 2</div>
-          <div className={classes.process}>Process 3</div>
-          <div className={classes.process}>Process 4</div>
+        <div className={classes.widgetWrapper}>
+          {renderStatic(staticAssets.process, classes)}
         </div>
       </section>
 
@@ -66,10 +106,8 @@ const Home = props => {
         <h2 className={`${classes.sectionTitle} primaryBackground`}>
           CURRENT COHORTS
         </h2>
-        <div className={classes.cohortWrapper}>
-          <div className={classes.cohort}>Cohort 1</div>
-          <div className={classes.cohort}>Cohort 2</div>
-          <div className={classes.cohort}>Cohort 3</div>
+        <div className={`${classes.widgetWrapper} ${classes.darkWrapper}`}>
+          {renderStatic(staticAssets.cohorts, classes)}
         </div>
       </section>
 
@@ -83,10 +121,8 @@ const Home = props => {
         <h2 className={`${classes.sectionTitle} primaryBackground`}>
           FEATURED PROJECTS
         </h2>
-        <div className={classes.projectWrapper}>
-          <div className={classes.project}>Project 1</div>
-          <div className={classes.project}>Project 2</div>
-          <div className={classes.project}>Project 3</div>
+        <div className={`${classes.widgetWrapper} ${classes.darkWrapper}`}>
+          {renderStatic(staticAssets.projects, classes)}
         </div>
       </section>
 
