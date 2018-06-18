@@ -7,7 +7,6 @@ import staticAssets from './static';
 const styles = {
   homeContainer: {
     textAlign: 'center',
-    lineHeight: 1.6,
   },
   whiteSection: {
     padding: '32px 0',

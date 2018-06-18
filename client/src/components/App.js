@@ -9,6 +9,7 @@ import Footer from './Footer';
 
 import Home from './Routes/Home/';
 import Auth from './Routes/Auth/';
+import PrivacyPolicy from './Routes/PrivacyPolicy/';
 import UserDashboard from './Routes/UserDashboard/';
 import NotFound from './Routes/NotFound/';
 
@@ -17,6 +18,7 @@ const styles = {
     body: {
       margin: 0,
       padding: 0,
+      lineHeight: 1.6,
       fontSize: '62.5%',
       fontFamily: 'Raleway, Arial, sans-serif',
 
@@ -69,6 +71,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/sign-in" component={Auth} />
+          <Route path="/privacy-policy" component={PrivacyPolicy} />
           <Route path="/user-profile" component={UserDashboard} />
 
           <Route component={NotFound} />
