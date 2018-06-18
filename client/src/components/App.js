@@ -17,7 +17,7 @@ const styles = {
       margin: 0,
       padding: 0,
       fontSize: '62.5%',
-      fontFamily: 'Roboto, Arial, Helvetica, sans-serif',
+      fontFamily: 'Raleway, Arial, sans-serif',
 
       '& .primaryColor': {
         color: '#0f143a',
@@ -33,6 +33,25 @@ const styles = {
       '& .secondaryBackground': {
         color: 'white',
         backgroundColor: '#15df89',
+      },
+
+      '& .lightLink': {
+        color: '#0f143a',
+        textDecoration: 'none',
+        fontSize: '1.6em',
+
+        '&:hover': {
+          color: 'red',
+        },
+      },
+      '& .darkLink': {
+        color: 'white',
+        textDecoration: 'none',
+        fontSize: '1.6em',
+
+        '&:hover': {
+          color: '#15df89',
+        },
       },
     },
   },

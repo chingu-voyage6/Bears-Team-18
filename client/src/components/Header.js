@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 
 const styles = {
   headerContainer: {
@@ -11,6 +11,17 @@ const styles = {
     height: '64px',
     padding: '0 25px',
   },
+  titleLink: {
+    color: 'white',
+    textDecoration: 'none',
+  },
+  headerTitle: {
+    fontSize: '3.2em',
+  },
+  headerLink: {
+    margin: '0 15px',
+    fontSize: '1.6em',
+  },
 };
 
 const Header = props => {
@@ -18,11 +29,22 @@ const Header = props => {
 
   return (
     <header className={`${classes.headerContainer} primaryBackground`}>
-      <h1>Header</h1>
+      <Link className={classes.titleLink} to="/">
+        <h1 className={classes.headerTitle}>CHINGU</h1>
+      </Link>
 
-      <Button className={`secondaryBackground`} variant="raised">
-        Example Btn
-      </Button>
+      <div>
+        <a
+          className={`${classes.headerLink} darkLink`}
+          href="https://medium.com/chingu"
+          target="_blank"
+        >
+          Blog
+        </a>
+        <Link className={`${classes.headerLink} darkLink`} to="/sign-in">
+          Log In
+        </Link>
+      </div>
     </header>
   );
 };
