@@ -6,13 +6,13 @@ const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const { makeExecutableSchema } = require('graphql-tools');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const logger = require('./config/logger');
+const logger = require('./services/logger');
 const typeDefs = require('./graphql/schema');
 const passport = require('passport');
 const queryString = require('querystring');
-const { signUserToken, verifyUserToken } = require('./lib/crypt');
+const { signUserToken, verifyUserToken } = require('./services/crypt');
 const User = require('./mongoose/user');
-require('./config/passport');
+require('./services/passport');
 
 const app = express();
 
