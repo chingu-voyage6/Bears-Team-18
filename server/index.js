@@ -73,7 +73,13 @@ app.use(async (req, res, next) => {
   }
 });
 
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+app.use(
+  '/graphql',
+  bodyParser.json(),
+  graphqlExpress(req => {
+    return { schema, context: { user: req.user } };
+  })
+);
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
