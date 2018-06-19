@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 
+import mainbg from '../../../images/homepage/main-bg.png';
 import staticAssets from './static';
 
 const styles = {
@@ -46,6 +47,7 @@ const styles = {
   },
   homeIntro: {
     height: 'calc(100vh - 64px)',
+    backgroundImage: `url(${mainbg})`,
   },
   bottomTitle: {
     fontSize: '5em',
@@ -90,7 +92,7 @@ const Home = props => {
   return (
     <div className={classes.homeContainer}>
       <section className={`${classes.homeIntro} primaryBackground`}>
-        <div>hello</div>
+        <span>hello</span>
       </section>
 
       <section className={classes.whiteSection}>

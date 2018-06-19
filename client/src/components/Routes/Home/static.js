@@ -76,7 +76,7 @@ const projects = [
   },
 ];
 
-module.exports = {
+export default {
   images,
   process,
   cohorts,

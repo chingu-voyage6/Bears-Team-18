@@ -103,7 +103,7 @@ const programFAQ = [
   },
 ];
 
-module.exports = {
+export default {
   companyFAQ,
   programFAQ,
 };

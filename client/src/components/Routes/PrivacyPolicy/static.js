@@ -44,6 +44,6 @@ const privacyPolicy = [
   },
 ];
 
-module.exports = {
+export default {
   privacyPolicy,
 };
