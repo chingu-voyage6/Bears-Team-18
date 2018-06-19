@@ -23,7 +23,7 @@ const styles = {
     color: 'white',
   },
   sectionTitle: {
-    fontSize: '2.5em',
+    fontSize: '2.6em',
     margin: '0',
     padding: '15px 0',
   },
@@ -47,6 +47,8 @@ const styles = {
     width: '65%',
     margin: '0 auto',
   },
+  defaultImg: { width: '200px' },
+  lgImg: { width: '300px' },
   homeIntro: {
     height: 'calc(100vh - 64px)',
     background: `url(${mainbg}) bottom right / 1000px 705px no-repeat`,
@@ -126,11 +128,15 @@ const styles = {
 };
 
 const Home = props => {
-  function renderStatic(content, classes) {
+  function renderStatic(content, classes, imgSize) {
+    let imgClass;
+
+    imgClass = imgSize === 'default' ? classes.defaultImg : classes.lgImg;
+
     return content.map(item => {
       return (
         <div key={item.title} className={classes.widget}>
-          <img src={item.image} alt="" />
+          <img className={imgClass} src={item.image} alt="" />
           <h3 className={classes.widgetTitle}>{item.title}</h3>
           <p className={classes.widgetDescription}>{item.description}</p>
         </div>
@@ -161,7 +167,7 @@ const Home = props => {
           CHINGU PROCESS
         </h2>
         <div className={classes.widgetWrapper}>
-          {renderStatic(staticAssets.process, classes)}
+          {renderStatic(staticAssets.process, classes, 'default')}
         </div>
       </section>
 
@@ -169,8 +175,8 @@ const Home = props => {
         <h2 className={`${classes.sectionTitle} primaryBackground`}>
           CURRENT COHORTS
         </h2>
-        <div className={`${classes.widgetWrapper} ${classes.darkWrapper}`}>
-          {renderStatic(staticAssets.cohorts, classes)}
+        <div className={classes.widgetWrapper}>
+          {renderStatic(staticAssets.cohorts, classes, 'default')}
         </div>
       </section>
 
@@ -184,8 +190,8 @@ const Home = props => {
         <h2 className={`${classes.sectionTitle} primaryBackground`}>
           FEATURED PROJECTS
         </h2>
-        <div className={`${classes.widgetWrapper} ${classes.darkWrapper}`}>
-          {renderStatic(staticAssets.projects, classes)}
+        <div className={classes.widgetWrapper}>
+          {renderStatic(staticAssets.projects, classes, 'large')}
         </div>
       </section>
 
