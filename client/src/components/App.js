@@ -7,16 +7,19 @@ import { withStyles } from '@material-ui/core/styles';
 import Header from './Header';
 import Footer from './Footer';
 
-import Home from './Routes/Home';
-import Auth from './Routes/Auth';
-import UserDashboard from './Routes/UserDashboard';
-import NotFound from './Routes/NotFound';
+import Home from './Routes/Home/';
+import Auth from './Routes/Auth/';
+import FAQ from './Routes/FAQ/';
+import PrivacyPolicy from './Routes/PrivacyPolicy/';
+import UserDashboard from './Routes/UserDashboard/';
+import NotFound from './Routes/NotFound/';
 
 const styles = {
   '@global': {
     body: {
       margin: 0,
       padding: 0,
+      lineHeight: 1.6,
       fontSize: '62.5%',
       fontFamily: 'Raleway, Arial, sans-serif',
 
@@ -55,6 +58,8 @@ const styles = {
         },
       },
     },
+
+    img: { maxWidth: '100%' },
   },
 };
 
@@ -67,7 +72,9 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/sign-in" component={Auth} />
-          <Route path="/user-profile" component={UserDashboard} />
+          <Route path="/faq" component={FAQ} />
+          <Route path="/privacy-policy" component={PrivacyPolicy} />
+          <Route path="/user-dashboard" component={UserDashboard} />
 
           <Route component={NotFound} />
         </Switch>
