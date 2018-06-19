@@ -13,6 +13,7 @@ import FAQ from './Routes/FAQ/';
 import PrivacyPolicy from './Routes/PrivacyPolicy/';
 import UserDashboard from './Routes/UserDashboard/';
 import NotFound from './Routes/NotFound/';
+import ScrollToTop from './ScrollToTop';
 
 const styles = {
   '@global': {
@@ -66,7 +67,7 @@ const styles = {
 const App = () => {
   return (
     <Router>
-      <div>
+      <ScrollToTop>
         <Header />
 
         <Switch>
@@ -80,7 +81,7 @@ const App = () => {
         </Switch>
 
         <Footer />
-      </div>
+      </ScrollToTop>
     </Router>
   );
 };
