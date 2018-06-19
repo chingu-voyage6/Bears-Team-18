@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+import Icon from '../../Icon';
+import { ARROW_DOWN } from '../../IconList';
 
 import mainbg from '../../../images/homepage/main-bg.png';
 import staticAssets from './static';
@@ -47,7 +51,27 @@ const styles = {
   },
   homeIntro: {
     height: 'calc(100vh - 64px)',
-    backgroundImage: `url(${mainbg})`,
+    background: `url(${mainbg}) bottom right / 1000px 705px no-repeat`,
+  },
+  titleWrapper: {
+    paddingTop: '80px',
+  },
+  introTitle: {
+    margin: '0',
+    fontWeight: '400',
+    fontSize: '5em',
+    textAlign: 'left',
+    paddingLeft: '100px',
+  },
+  scrollBtn: {
+    display: 'none',
+    position: 'absolute',
+    bottom: '0',
+    marginBottom: '25px',
+
+    '&:hover': {
+      backgroundColor: '#15df89',
+    },
   },
   bottomTitle: {
     fontSize: '5em',
@@ -61,11 +85,29 @@ const styles = {
     paddingBottom: '25px',
   },
 
+  '@media screen and (max-width: 1000px)': {
+    homeIntro: {
+      backgroundSize: '767px 541px',
+    },
+  },
   '@media screen and (max-width: 908px)': {
     widget: {
       width: '50%',
       margin: '15px 0',
     },
+  },
+  '@media screen and (max-width: 767px)': {
+    homeIntro: {
+      display: 'flex',
+      justifyContent: 'center',
+      background: 'none',
+    },
+    titleWrapper: { paddingTop: '25px' },
+    introTitle: {
+      padding: '0',
+      fontSize: '4em',
+    },
+    scrollBtn: { display: 'flex' },
   },
   '@media screen and (max-width: 600px)': {
     widget: { width: '100%' },
@@ -92,7 +134,17 @@ const Home = props => {
   return (
     <div className={classes.homeContainer}>
       <section className={`${classes.homeIntro} primaryBackground`}>
-        <span>hello</span>
+        <div className={classes.titleWrapper}>
+          <h2 className={classes.introTitle}>CODE MORE</h2>
+          <h2 className={classes.introTitle}>LEARN MORE</h2>
+          <h2 className={classes.introTitle}>BUILD MORE</h2>
+        </div>
+        <Button
+          className={`${classes.scrollBtn} secondaryBackground`}
+          variant="fab"
+        >
+          <Icon icon={ARROW_DOWN} />
+        </Button>
       </section>
 
       <section className={classes.whiteSection}>
