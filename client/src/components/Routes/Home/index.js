@@ -31,7 +31,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-around',
     flexWrap: 'wrap',
-    margin: '25px 0',
+    padding: '25px 0',
   },
   widgetTitle: {
     fontSize: '2.5em',
@@ -67,7 +67,7 @@ const styles = {
   },
   '@media screen and (max-width: 600px)': {
     widget: { width: '100%' },
-    widgetWrapper: { margin: '0' },
+    widgetWrapper: { padding: '0' },
     darkWrapper: { padding: '25px 0' },
   },
 };
