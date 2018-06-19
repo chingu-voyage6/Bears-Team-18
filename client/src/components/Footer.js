@@ -51,6 +51,7 @@ const styles = {
   },
   footerLink: {
     margin: '10px 0 25px 0',
+    fontSize: '1.6em',
   },
   lastLink: {
     padding: '0',

@@ -24,17 +24,13 @@ const styles = {
       fontSize: '62.5%',
       fontFamily: 'Raleway, Arial, sans-serif',
 
-      '& .primaryColor': {
-        color: '#0f143a',
-      },
+      '& .primaryColor': { color: '#0f143a' },
       '& .primaryBackground': {
         color: 'white',
         backgroundColor: '#0f143a',
       },
 
-      '& .secondaryColor': {
-        color: '#15df89',
-      },
+      '& .secondaryColor': { color: '#15df89' },
       '& .secondaryBackground': {
         color: 'white',
         backgroundColor: '#15df89',
@@ -43,21 +39,14 @@ const styles = {
       '& .lightLink': {
         color: '#0f143a',
         textDecoration: 'none',
-        fontSize: '1.6em',
-
-        '&:hover': {
-          color: 'red',
-        },
+        '&:hover': { color: 'red' },
       },
       '& .darkLink': {
         color: 'white',
         textDecoration: 'none',
-        fontSize: '1.6em',
-
-        '&:hover': {
-          color: '#15df89',
-        },
+        '&:hover': { color: '#15df89' },
       },
+      '& .textDecorationNone': { textDecoration: 'none' },
     },
 
     img: { maxWidth: '100%' },

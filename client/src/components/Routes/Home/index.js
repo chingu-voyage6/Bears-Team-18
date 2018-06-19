@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -21,9 +22,6 @@ const styles = {
     backgroundColor: '#707399',
     color: 'white',
   },
-  darkWrapper: {
-    padding: '10px 0 25px 0',
-  },
   sectionTitle: {
     fontSize: '2.5em',
     margin: '0',
@@ -34,9 +32,9 @@ const styles = {
   },
   widgetWrapper: {
     display: 'flex',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     flexWrap: 'wrap',
-    padding: '25px 0',
+    padding: '40px 0',
   },
   widgetTitle: {
     fontSize: '2.5em',
@@ -84,6 +82,17 @@ const styles = {
     margin: '0 auto',
     paddingBottom: '25px',
   },
+  registerBtn: {
+    backgroundColor: '#15df89',
+    color: 'white',
+    fontWeight: '700',
+    padding: '15px 50px',
+    margin: '15px 0 25px 0',
+
+    '&:hover': {
+      backgroundColor: '#15df89',
+    },
+  },
 
   '@media screen and (max-width: 1000px)': {
     homeIntro: {
@@ -95,6 +104,7 @@ const styles = {
       width: '50%',
       margin: '15px 0',
     },
+    widgetWrapper: { padding: '15px 0' },
   },
   '@media screen and (max-width: 767px)': {
     homeIntro: {
@@ -112,7 +122,6 @@ const styles = {
   '@media screen and (max-width: 600px)': {
     widget: { width: '100%' },
     widgetWrapper: { padding: '0' },
-    darkWrapper: { padding: '25px 0' },
   },
 };
 
@@ -187,6 +196,12 @@ const Home = props => {
           We connect motivated learners with shared goals to learn, help and
           build together.
         </p>
+
+        <Link to="/sign-in" className="textDecorationNone">
+          <Button className={classes.registerBtn} variant="raised" size="large">
+            Register
+          </Button>
+        </Link>
       </section>
     </div>
   );
