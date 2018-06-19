@@ -139,7 +139,7 @@ const Footer = props => {
           >
             Privacy Policy
           </Link>
-          <Link className={`${classes.footerLink} darkLink`} to="/">
+          <Link className={`${classes.footerLink} darkLink`} to="/faq">
             FAQ
           </Link>
         </div>

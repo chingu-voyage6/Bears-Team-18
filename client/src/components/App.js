@@ -9,6 +9,7 @@ import Footer from './Footer';
 
 import Home from './Routes/Home/';
 import Auth from './Routes/Auth/';
+import FAQ from './Routes/FAQ/';
 import PrivacyPolicy from './Routes/PrivacyPolicy/';
 import UserDashboard from './Routes/UserDashboard/';
 import NotFound from './Routes/NotFound/';
@@ -71,8 +72,9 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/sign-in" component={Auth} />
+          <Route path="/faq" component={FAQ} />
           <Route path="/privacy-policy" component={PrivacyPolicy} />
-          <Route path="/user-profile" component={UserDashboard} />
+          <Route path="/user-dashboard" component={UserDashboard} />
 
           <Route component={NotFound} />
         </Switch>
