@@ -85,7 +85,8 @@ const styles = {
   registerBtn: {
     backgroundColor: '#15df89',
     color: 'white',
-    fontWeight: '700',
+    fontSize: '2em',
+    fontWeight: '500',
     padding: '15px 50px',
     margin: '15px 0 25px 0',
 
@@ -212,7 +213,11 @@ const Home = props => {
         </p>
 
         <Link to="/sign-in" className="textDecorationNone">
-          <Button className={classes.registerBtn} variant="raised" size="large">
+          <Button
+            className={classes.registerBtn}
+            variant="contained"
+            size="large"
+          >
             Register
           </Button>
         </Link>

@@ -127,7 +127,7 @@ const Footer = props => {
 
           <Button
             className={classes.patreonBtn}
-            variant="raised"
+            variant="contained"
             href="https://www.patreon.com/chingucollabs"
             target="_blank"
             rel="noopener noreferrer"

@@ -12,6 +12,9 @@ import { ARROW_DOWN } from '../../IconList';
 import staticAssets from './static';
 
 const styles = {
+  faqContainer: {
+    paddingBottom: '25px',
+  },
   faqSection: {
     maxWidth: '750px',
     margin: '0 auto',
@@ -68,7 +71,7 @@ const FAQ = props => {
   const { classes } = props;
 
   return (
-    <div>
+    <div className={classes.faqContainer}>
       <div className={classes.faqSection}>
         <h2 className={classes.faqTitle}>Company FAQs</h2>
         {renderFAQContent(staticAssets.companyFAQ, classes)}
