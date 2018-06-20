@@ -65,8 +65,6 @@ const styles = {
   },
   scrollBtn: {
     display: 'none',
-    position: 'absolute',
-    bottom: '0',
     marginBottom: '25px',
 
     '&:hover': {
@@ -111,10 +109,12 @@ const styles = {
   '@media screen and (max-width: 767px)': {
     homeIntro: {
       display: 'flex',
-      justifyContent: 'center',
+      flexDirection: 'column',
+      alignItems: 'center',
+      margin: '0 auto',
       background: 'none',
     },
-    titleWrapper: { paddingTop: '25px' },
+    titleWrapper: { paddingTop: '25px', marginBottom: 'auto' },
     introTitle: {
       padding: '0',
       fontSize: '4em',
@@ -128,6 +128,13 @@ const styles = {
 };
 
 const Home = props => {
+  function triggerComponentScroll(component) {
+    document.getElementById(component).scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }
+
   function renderStatic(content, classes, imgSize) {
     let imgClass;
 
@@ -155,6 +162,7 @@ const Home = props => {
           <h2 className={classes.introTitle}>BUILD MORE</h2>
         </div>
         <Button
+          onClick={() => triggerComponentScroll('process')}
           className={`${classes.scrollBtn} secondaryBackground`}
           variant="fab"
         >
@@ -162,7 +170,7 @@ const Home = props => {
         </Button>
       </section>
 
-      <section className={classes.whiteSection}>
+      <section id="process" className={classes.whiteSection}>
         <h2 className={`${classes.sectionTitle} secondaryColor`}>
           CHINGU PROCESS
         </h2>

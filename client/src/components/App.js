@@ -17,10 +17,14 @@ import ScrollToTop from './ScrollToTop';
 
 const styles = {
   '@global': {
+    html: {
+      position: 'relative',
+      minHeight: '100%',
+    },
     body: {
-      margin: 0,
-      padding: 0,
-      lineHeight: 1.6,
+      margin: '0 0 300px',
+      padding: '0',
+      lineHeight: '1.6',
       fontSize: '62.5%',
       fontFamily: 'Raleway, Arial, sans-serif',
 
@@ -50,6 +54,10 @@ const styles = {
     },
 
     img: { maxWidth: '100%' },
+
+    '@media screen and (max-width: 768px)': {
+      body: { margin: '0 0 831px' },
+    },
   },
 };
 
