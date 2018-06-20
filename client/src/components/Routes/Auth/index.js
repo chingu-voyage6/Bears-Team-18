@@ -10,7 +10,7 @@ import { GITHUB } from '../../IconList';
 const styles = {
   authContainer: {
     maxWidth: '600px',
-    margin: '25px auto',
+    margin: '40px auto',
     padding: '15px 0',
     border: '1px solid #ddd',
     backgroundColor: '#FAFAFA',
@@ -47,15 +47,17 @@ const styles = {
     fontWeight: '700',
     textDecoration: 'none',
   },
+  divider: { padding: '20px 0' },
 
   '@media screen and (max-width: 768px)': {
     authContainer: {
       backgroundColor: 'white',
-      width: '100%',
+      maxWidth: '100%',
       border: 'none',
       boxShadow: 'none',
       margin: '0',
     },
+    divider: { padding: '10px 0' },
   },
 };
 
@@ -63,32 +65,35 @@ const Auth = props => {
   const { classes } = props;
 
   return (
-    <div className={classes.authContainer}>
-      <h2 className={classes.authTitle}>Log In with Github</h2>
+    <div>
+      <div className={classes.authContainer}>
+        <h2 className={classes.authTitle}>Log In with Github</h2>
 
-      <Button className={classes.githubBtn} variant="raised" size="large">
-        <Icon icon={GITHUB} size="28" />
-        <span className={classes.btnText}>Log In / Register</span>
-      </Button>
+        <Button className={classes.githubBtn} variant="raised" size="large">
+          <Icon icon={GITHUB} size="28" />
+          <span className={classes.btnText}>Log In / Register</span>
+        </Button>
 
-      <div className={classes.warnText}>
-        <strong>Not registered with Github?</strong>
-        <p>
-          Chingu requires all members to have a Github account to collaborate
-          with others to build amazing projects. If not already registered,
-          please visit{' '}
-          <a
-            className={classes.githubLink}
-            href="https://github.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Github
-          </a>{' '}
-          to register an account to become eligible to start your coding
-          journey.
-        </p>
+        <div className={classes.warnText}>
+          <strong>Not registered with Github?</strong>
+          <p>
+            Chingu requires all members to have a Github account to collaborate
+            with others to build amazing projects. If not already registered,
+            please visit{' '}
+            <a
+              className={classes.githubLink}
+              href="https://github.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Github
+            </a>{' '}
+            to register an account to become eligible to start your coding
+            journey.
+          </p>
+        </div>
       </div>
+      <div className={classes.divider} />
     </div>
   );
 };

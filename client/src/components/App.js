@@ -11,6 +11,7 @@ import Home from './Routes/Home/';
 import Auth from './Routes/Auth/';
 import FAQ from './Routes/FAQ/';
 import PrivacyPolicy from './Routes/PrivacyPolicy/';
+import TokenConfig from './Routes/TokenConfig/';
 import UserDashboard from './Routes/UserDashboard/';
 import NotFound from './Routes/NotFound/';
 import ScrollToTop from './ScrollToTop';
@@ -69,9 +70,10 @@ const App = () => {
 
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/sign-in" component={Auth} />
+          <Route path="/login" component={Auth} />
           <Route path="/faq" component={FAQ} />
           <Route path="/privacy-policy" component={PrivacyPolicy} />
+          <Route path="/token" component={TokenConfig} />
           <Route path="/user-dashboard" component={UserDashboard} />
 
           <Route component={NotFound} />
