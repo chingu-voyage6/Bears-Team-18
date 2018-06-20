@@ -11,76 +11,75 @@ import Home from './Routes/Home/';
 import Auth from './Routes/Auth/';
 import FAQ from './Routes/FAQ/';
 import PrivacyPolicy from './Routes/PrivacyPolicy/';
+import TokenConfig from './Routes/TokenConfig/';
 import UserDashboard from './Routes/UserDashboard/';
-import NotFound from './Routes/NotFound/';
+import ErrorPage from './Routes/Error/';
+import ScrollToTop from './ScrollToTop';
 
 const styles = {
   '@global': {
+    html: {
+      position: 'relative',
+      minHeight: '100%',
+    },
     body: {
-      margin: 0,
-      padding: 0,
-      lineHeight: 1.6,
+      margin: '0 0 300px',
+      padding: '0',
+      lineHeight: '1.6',
       fontSize: '62.5%',
       fontFamily: 'Raleway, Arial, sans-serif',
 
-      '& .primaryColor': {
-        color: '#0f143a',
-      },
+      '& .primaryColor': { color: '#0f143a' },
       '& .primaryBackground': {
         color: 'white',
         backgroundColor: '#0f143a',
       },
 
-      '& .secondaryColor': {
-        color: '#15df89',
-      },
+      '& .secondaryColor': { color: '#15df89' },
       '& .secondaryBackground': {
         color: 'white',
         backgroundColor: '#15df89',
       },
 
-      '& .lightLink': {
-        color: '#0f143a',
-        textDecoration: 'none',
-        fontSize: '1.6em',
-
-        '&:hover': {
-          color: 'red',
-        },
-      },
       '& .darkLink': {
         color: 'white',
         textDecoration: 'none',
-        fontSize: '1.6em',
-
-        '&:hover': {
-          color: '#15df89',
-        },
+        '&:hover': { color: '#15df89' },
       },
+      '& .textDecorationNone': { textDecoration: 'none' },
     },
 
     img: { maxWidth: '100%' },
+
+    '@media screen and (max-width: 768px)': {
+      body: { margin: '0 0 831px' },
+    },
   },
 };
 
-const App = () => {
+const App = props => {
   return (
     <Router>
-      <div>
+      <ScrollToTop>
         <Header />
 
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/sign-in" component={Auth} />
+          <Route path="/login" component={Auth} />
           <Route path="/faq" component={FAQ} />
           <Route path="/privacy-policy" component={PrivacyPolicy} />
+          <Route path="/token" component={TokenConfig} />
           <Route path="/user-dashboard" component={UserDashboard} />
 
-          <Route component={NotFound} />
+          <Route
+            render={routeProps => (
+              <ErrorPage {...routeProps} title="404 Error - URL Not Found" />
+            )}
+          />
         </Switch>
 
         <Footer />
-      </div>
+      </ScrollToTop>
     </Router>
   );
 };

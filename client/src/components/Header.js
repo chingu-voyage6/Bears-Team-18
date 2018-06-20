@@ -43,7 +43,7 @@ const Header = props => {
         >
           Blog
         </a>
-        <Link className={`${classes.headerLink} darkLink`} to="/sign-in">
+        <Link className={`${classes.headerLink} darkLink`} to="/login">
           Log In
         </Link>
       </div>
