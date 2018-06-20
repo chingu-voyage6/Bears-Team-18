@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
+  username: String,
+  password: String,
   githubId: String,
   permission: String,
   signUpComplete: Boolean,
