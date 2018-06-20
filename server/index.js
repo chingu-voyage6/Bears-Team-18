@@ -12,16 +12,12 @@ const passport = require('passport');
 const queryString = require('querystring');
 const { signUserToken, verifyUserToken } = require('./services/crypt');
 const User = require('./mongoose/user');
+const authMiddleware = require('./services/auth-middleware');
+const authRouter = require('./routes/auth');
 require('./services/passport');
+require('./services/db-service');
 
 const app = express();
-
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    logger.silly('Database Connected');
-  })
-  .catch(err => logger.error(`Database Error ${err}`));
 
 const port = process.env.PORT ? process.env.PORT : 5000;
 
@@ -31,47 +27,13 @@ process.env.NODE_ENV === 'production'
 
 const schema = makeExecutableSchema({ typeDefs });
 
+app.use(bodyParser.json());
+
 app.use(passport.initialize());
 
-app.get(
-  '/auth/github',
-  passport.authenticate('github', {
-    scope: 'user',
-  })
-);
+app.use(authMiddleware);
 
-app.get(
-  '/auth/github/callback',
-  passport.authenticate('github', { session: false }),
-  async (req, res) => {
-    const token = await signUserToken(req.user.id);
-    const query = queryString.stringify({
-      token,
-    });
-    res.redirect('/path-to-component?' + query);
-  }
-);
-
-app.use(async (req, res, next) => {
-  let token = req.headers.authorization;
-  if (token) {
-    try {
-      let userId = await verifyUserToken(token);
-      let user = await User.findById(userId);
-      if (user) {
-        req.user = user;
-        next();
-      } else {
-        next();
-      }
-    } catch (e) {
-      console.log(e);
-      logger.error(e);
-    }
-  } else {
-    next();
-  }
-});
+app.use('/auth', authRouter);
 
 app.use(
   '/graphql',
