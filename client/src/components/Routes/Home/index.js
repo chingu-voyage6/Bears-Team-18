@@ -212,7 +212,7 @@ const Home = props => {
           build together.
         </p>
 
-        <Link to="/sign-in" className="textDecorationNone">
+        <Link to="/login" className="textDecorationNone">
           <Button
             className={classes.registerBtn}
             variant="contained"

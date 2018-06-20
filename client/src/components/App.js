@@ -13,7 +13,7 @@ import FAQ from './Routes/FAQ/';
 import PrivacyPolicy from './Routes/PrivacyPolicy/';
 import TokenConfig from './Routes/TokenConfig/';
 import UserDashboard from './Routes/UserDashboard/';
-import NotFound from './Routes/NotFound/';
+import ErrorPage from './Routes/Error/';
 import ScrollToTop from './ScrollToTop';
 
 const styles = {
@@ -41,11 +41,6 @@ const styles = {
         backgroundColor: '#15df89',
       },
 
-      '& .lightLink': {
-        color: '#0f143a',
-        textDecoration: 'none',
-        '&:hover': { color: 'red' },
-      },
       '& .darkLink': {
         color: 'white',
         textDecoration: 'none',
@@ -62,7 +57,7 @@ const styles = {
   },
 };
 
-const App = () => {
+const App = props => {
   return (
     <Router>
       <ScrollToTop>
@@ -76,7 +71,11 @@ const App = () => {
           <Route path="/token" component={TokenConfig} />
           <Route path="/user-dashboard" component={UserDashboard} />
 
-          <Route component={NotFound} />
+          <Route
+            render={routeProps => (
+              <ErrorPage {...routeProps} title="404 Error - URL Not Found" />
+            )}
+          />
         </Switch>
 
         <Footer />
