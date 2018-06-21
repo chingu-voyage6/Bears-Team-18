@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 
 import Icon from './Icon';
 import { GITHUB, MEDIUM, TWITTER, YOUTUBE, PATREON } from './IconList';
@@ -11,6 +12,12 @@ import { GITHUB, MEDIUM, TWITTER, YOUTUBE, PATREON } from './IconList';
 const styles = {
   footerContainer: {
     display: 'flex',
+    position: 'absolute',
+    left: '0',
+    bottom: '0',
+    height: '300px',
+    width: '100%',
+    overflow: 'hidden',
   },
   footerSection: {
     width: '33%',
@@ -27,10 +34,14 @@ const styles = {
     marginBottom: '25px',
   },
   iconContainer: {
-    margin: '25px 0',
+    margin: '20px 0',
   },
-  iconLink: {
-    margin: '0 7px',
+  iconBtn: {
+    margin: '0 5px',
+
+    '&:hover': {
+      backgroundColor: '#15df89',
+    },
   },
   patreonBtn: {
     backgroundColor: '#F96854',
@@ -51,6 +62,7 @@ const styles = {
   },
   footerLink: {
     margin: '10px 0 25px 0',
+    fontSize: '1.6em',
   },
   lastLink: {
     padding: '0',
@@ -59,13 +71,11 @@ const styles = {
   '@media screen and (max-width: 768px)': {
     footerContainer: {
       flexDirection: 'column',
+      height: '831px',
     },
     footerSection: {
       width: '100%',
       padding: '30px 0 0 0',
-    },
-    lastLink: {
-      paddingBottom: '30px',
     },
   },
 };
@@ -81,43 +91,43 @@ const Footer = props => {
         <div className={classes.sectionContent}>
           <div>admin@chingu.io</div>
           <div className={classes.iconContainer}>
-            <a
-              className={classes.iconLink}
+            <IconButton
+              className={classes.iconBtn}
               href="https://medium.com/chingu"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Icon icon={MEDIUM} size="32" />
-            </a>
-            <a
-              className={classes.iconLink}
+              <Icon icon={MEDIUM} />
+            </IconButton>
+            <IconButton
+              className={classes.iconBtn}
               href="https://www.youtube.com/channel/UCS7zmJXbe7FgTC3sHlUf4jw"
               target="_blank"
               rel="noopener noreferrer"
             >
               <Icon icon={YOUTUBE} size="32" />
-            </a>
-            <a
-              className={classes.iconLink}
+            </IconButton>
+            <IconButton
+              className={classes.iconBtn}
               href="https://github.com/Chingu-cohorts"
               target="_blank"
               rel="noopener noreferrer"
             >
               <Icon icon={GITHUB} size="32" />
-            </a>
-            <a
-              className={classes.iconLink}
+            </IconButton>
+            <IconButton
+              className={classes.iconBtn}
               href="https://twitter.com/ChinguCollabs"
               target="_blank"
               rel="noopener noreferrer"
             >
               <Icon icon={TWITTER} size="32" />
-            </a>
+            </IconButton>
           </div>
 
           <Button
             className={classes.patreonBtn}
-            variant="raised"
+            variant="contained"
             href="https://www.patreon.com/chingucollabs"
             target="_blank"
             rel="noopener noreferrer"
@@ -127,6 +137,7 @@ const Footer = props => {
           </Button>
         </div>
       </div>
+
       <div className={classes.footerSection}>
         <h3 className={classes.footerTitle}>COMPANY</h3>
         <div className={classes.linkContainer}>
@@ -144,6 +155,7 @@ const Footer = props => {
           </Link>
         </div>
       </div>
+
       <div className={classes.footerSection}>
         <h3 className={classes.footerTitle}>VOYAGES</h3>
         <div className={classes.linkContainer}>
@@ -153,10 +165,7 @@ const Footer = props => {
           <Link className={`${classes.footerLink} darkLink`} to="/">
             Upcoming Voyages
           </Link>
-          <Link
-            className={`${classes.footerLink} ${classes.lastLink} darkLink`}
-            to="/"
-          >
+          <Link className={`${classes.footerLink} darkLink`} to="/">
             How to Join
           </Link>
         </div>

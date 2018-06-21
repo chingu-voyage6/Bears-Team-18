@@ -45,7 +45,8 @@ const cohorts = [
   {
     title: 'Data Science',
     image: images['cohort-02'],
-    description: 'Data Science Cohorts are in development.',
+    description:
+      'Data Science Cohorts are in development. Register to stay posted on all upcoming features and programs.',
   },
   {
     title: 'Roaming Designer',
@@ -76,7 +77,7 @@ const projects = [
   },
 ];
 
-module.exports = {
+export default {
   images,
   process,
   cohorts,
