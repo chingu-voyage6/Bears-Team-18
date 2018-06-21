@@ -51,8 +51,10 @@ router.get(
     const token = await signUserToken(req.user.id);
     const query = queryString.stringify({
       token,
+      signUpComplete: req.user.signUpComplete,
     });
-    res.redirect('/path-to-component?' + query);
+    res.redirect(`http://localhost:3000/token?${query}`);
   }
 );
+
 module.exports = router;
