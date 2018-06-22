@@ -1,3 +1,7 @@
+const { verifyUserToken } = require('../services/crypt');
+const User = require('../mongoose/user');
+const logger = require('../services/logger');
+
 async function auth(req, res, next) {
   let token = req.headers.authorization;
   if (token) {
