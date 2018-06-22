@@ -1,5 +1,4 @@
-const { config } = require('dotenv');
-config();
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
@@ -33,17 +32,17 @@ app.use(passport.initialize());
 
 app.use(authMiddleware);
 
-app.use('/auth', authRouter);
+app.use('/api/auth', authRouter);
 
 app.use(
-  '/graphql',
+  '/api/graphql',
   bodyParser.json(),
   graphqlExpress(req => {
     return { schema, context: { user: req.user } };
   })
 );
 
-app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+app.use('/api/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 app.use('/api/test', (req, res, next) => {
   console.log(req.user);
