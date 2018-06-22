@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const { makeExecutableSchema } = require('graphql-tools');
+const resolvers = require('./graphql/resolvers');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const logger = require('./services/logger');
@@ -24,7 +25,7 @@ process.env.NODE_ENV === 'production'
   ? app.use(morgan('combined'))
   : app.use(morgan('dev'));
 
-const schema = makeExecutableSchema({ typeDefs });
+const schema = makeExecutableSchema({ typeDefs, resolvers });
 
 app.use(bodyParser.json());
 
@@ -42,7 +43,7 @@ app.use(
   })
 );
 
-app.use('/api/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+app.use('/api/graphiql', graphiqlExpress({ endpointURL: '/api/graphql' }));
 
 app.use('/api/test', (req, res, next) => {
   console.log(req.user);
