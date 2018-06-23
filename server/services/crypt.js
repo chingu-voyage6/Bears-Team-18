@@ -1,6 +1,7 @@
 const crypt = {};
 const { sign, verify } = require('jsonwebtoken');
-
+const { hash, compare } = require('bcrypt');
+const { InvalidUsernameOrPassword } = require('../lib/errors');
 crypt.signUserToken = userId => {
   let data = { id: userId };
   return new Promise((resolve, reject) => {
@@ -46,6 +47,50 @@ crypt.verifyUserToken = userToken => {
   });
 };
 
+crypt.encryptPassword = async password => {
+  try {
+    return await crypt.asyncHash(password);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+crypt.asyncHash = password => {
+  const saltRounds = 10;
+  return new Promise((resolve, reject) => {
+    hash(password, saltRounds, (err, hash) => {
+      err ? reject(err) : resolve(hash);
+    });
+  });
+};
+
+crypt.compare = async (userDoc, password) => {
+  try {
+    let compare = await crypt.asyncCompare(userDoc, password);
+    if (compare) {
+      return true;
+    } else {
+      throw new InvalidUsernameOrPassword();
+    }
+  } catch (e) {
+    throw e;
+  }
+};
+crypt.asyncCompare = (userDoc, password) => {
+  return new Promise((resolve, reject) => {
+    compare(password, userDoc.password, (err, check) => {
+      if (err) {
+        reject(err);
+      } else if (check) {
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    });
+  });
+};
+
 module.exports = crypt;
 module.exports.signUserToken = crypt.signUserToken;
 module.exports.verifyUserToken = crypt.verifyUserToken;
+module.exports.encryptPassword = crypt.encryptPassword;
