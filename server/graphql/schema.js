@@ -1,12 +1,14 @@
 module.exports = `  
-type ToDo { 
-  _id: ID!
-  item: String!
+type User { 
+  permission: String
+  signUpComplete: Boolean
+  displayName: String
+  profileIconUrl: String
+  email: String
+  location: String
  }
 type Query { 
-  todos: [ToDo]
-  todo(_id: ID!): ToDo
+  user: User,
+  users: [User]
 }
-type Mutation {
-  addToDo(item: String!) : ToDo
-}`
+`;

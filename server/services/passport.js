@@ -7,7 +7,7 @@ passport.use(
     {
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL: 'http://localhost:5000/auth/github/callback',
+      callbackURL: 'http://localhost:5000/api/auth/github/callback',
     },
     function(accessToken, refreshToken, profile, cb) {
       User.findOne({ githubId: profile.id }).then(user => {
@@ -16,6 +16,8 @@ passport.use(
         } else {
           new User({
             githubId: profile.id,
+            permission: 'standard',
+            signUpComplete: false,
             displayName: profile.username,
             profileIconUrl: profile.avatar_url,
             email: profile.email,

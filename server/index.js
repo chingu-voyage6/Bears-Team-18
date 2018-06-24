@@ -1,27 +1,19 @@
-const { config } = require('dotenv');
-config();
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const { makeExecutableSchema } = require('graphql-tools');
+const resolvers = require('./graphql/resolvers');
 const morgan = require('morgan');
-const mongoose = require('mongoose');
 const logger = require('./services/logger');
 const typeDefs = require('./graphql/schema');
 const passport = require('passport');
-const queryString = require('querystring');
-const { signUserToken, verifyUserToken } = require('./services/crypt');
-const User = require('./mongoose/user');
+const authMiddleware = require('./services/auth-middleware');
+const authRouter = require('./routes/auth');
 require('./services/passport');
+require('./services/db-service');
 
 const app = express();
-
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    logger.silly('Database Connected');
-  })
-  .catch(err => logger.error(`Database Error ${err}`));
 
 const port = process.env.PORT ? process.env.PORT : 5000;
 
@@ -29,53 +21,25 @@ process.env.NODE_ENV === 'production'
   ? app.use(morgan('combined'))
   : app.use(morgan('dev'));
 
-const schema = makeExecutableSchema({ typeDefs });
+const schema = makeExecutableSchema({ typeDefs, resolvers });
+
+app.use(bodyParser.json());
 
 app.use(passport.initialize());
 
-app.get(
-  '/auth/github',
-  passport.authenticate('github', {
-    scope: 'user',
+app.use(authMiddleware);
+
+app.use('/api/auth', authRouter);
+
+app.use(
+  '/api/graphql',
+  bodyParser.json(),
+  graphqlExpress(req => {
+    return { schema, context: { user: req.user } };
   })
 );
 
-app.get(
-  '/auth/github/callback',
-  passport.authenticate('github', { session: false }),
-  async (req, res) => {
-    const token = await signUserToken(req.user.id);
-    const query = queryString.stringify({
-      token,
-    });
-    res.redirect('/path-to-component?' + query);
-  }
-);
-
-app.use(async (req, res, next) => {
-  let token = req.headers.authorization;
-  if (token) {
-    try {
-      let userId = await verifyUserToken(token);
-      let user = await User.findById(userId);
-      if (user) {
-        req.user = user;
-        next();
-      } else {
-        next();
-      }
-    } catch (e) {
-      console.log(e);
-      logger.error(e);
-    }
-  } else {
-    next();
-  }
-});
-
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
-
-app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+app.use('/api/graphiql', graphiqlExpress({ endpointURL: '/api/graphql' }));
 
 app.use('/api/test', (req, res, next) => {
   console.log(req.user);
