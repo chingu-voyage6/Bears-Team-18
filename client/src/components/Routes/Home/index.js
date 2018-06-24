@@ -96,7 +96,7 @@ const styles = {
     homeIntro: {
       background: `url(${
         staticAssets.images['main-bg-xl']
-      }) bottom right / calc(100vw - 450px) no-repeat`,
+      }) bottom right / auto 85% no-repeat`,
     },
   },
   '@media screen and (min-width: 1280px) and (max-width: 1919px)': {
