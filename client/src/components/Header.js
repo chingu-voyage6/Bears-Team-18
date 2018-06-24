@@ -23,6 +23,11 @@ const styles = {
     margin: '0 15px',
     fontSize: '1.6em',
   },
+
+  '@media screen and (max-width: 767px)': {
+    headerContainer: { padding: '0 15px' },
+    headerLink: { margin: '0 10px' },
+  },
 };
 
 const Header = props => {

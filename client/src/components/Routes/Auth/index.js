@@ -22,6 +22,7 @@ const styles = {
   },
   githubBtn: {
     backgroundColor: 'black',
+    width: '250px',
     color: 'white',
     display: 'flex',
     margin: '0 auto',
@@ -69,7 +70,12 @@ const Auth = props => {
       <div className={classes.authContainer}>
         <h2 className={classes.authTitle}>Log In with Github</h2>
 
-        <Button className={classes.githubBtn} variant="raised" size="large">
+        <Button
+          href="/api/auth/github"
+          className={classes.githubBtn}
+          variant="raised"
+          size="large"
+        >
           <Icon icon={GITHUB} size="28" />
           <span className={classes.btnText}>Log In / Register</span>
         </Button>

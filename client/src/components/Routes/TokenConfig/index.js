@@ -6,11 +6,10 @@ class TokenConfig extends Component {
   constructor(props) {
     super(props);
 
-    console.log(this.props);
-
     if (this.props.location.search !== '') {
       let token = this.props.location.search.replace('?token=', '');
       localStorage.setItem('AUTH_TOKEN', token);
+
       this.props.history.push('/user-dashboard');
       return;
     }
@@ -24,6 +23,8 @@ class TokenConfig extends Component {
         style={{
           display: 'flex',
           justifyContent: 'center',
+          alignItems: 'center',
+          padding: '125px 0',
         }}
       >
         <CircularProgress />
