@@ -8,7 +8,6 @@ import Button from '@material-ui/core/Button';
 import Icon from '../../Icon';
 import { ARROW_DOWN } from '../../IconList';
 
-import mainbg from '../../../images/homepage/main-bg.png';
 import staticAssets from './static';
 
 const styles = {
@@ -51,7 +50,6 @@ const styles = {
   lgImg: { width: '300px' },
   homeIntro: {
     height: 'calc(100vh - 64px)',
-    background: `url(${mainbg}) bottom right / 1000px 705px no-repeat`,
   },
   titleWrapper: {
     paddingTop: '80px',
@@ -94,20 +92,33 @@ const styles = {
       backgroundColor: '#15df89',
     },
   },
-
-  '@media screen and (max-width: 1000px)': {
+  '@media screen and (min-width: 1920px)': {
     homeIntro: {
-      backgroundSize: '767px 541px',
+      background: `url(${
+        staticAssets.images['main-bg-xl']
+      }) bottom right / calc(100vw - 450px) no-repeat`,
     },
   },
-  '@media screen and (max-width: 908px)': {
+  '@media screen and (min-width: 1280px) and (max-width: 1919px)': {
+    homeIntro: {
+      background: `url(${
+        staticAssets.images['main-bg-l']
+      }) bottom right / calc(100vw - 450px) no-repeat`,
+    },
+  },
+  '@media screen and (min-width: 800px) and (max-width: 1279px)': {
+    homeIntro: {
+      background: `url(${staticAssets.images['main-bg-l']}) no-repeat`,
+      backgroundPosition: 'bottom left 400px',
+      backgroundSize: 'auto 90%',
+    },
     widget: {
       width: '50%',
       margin: '15px 0',
     },
     widgetWrapper: { padding: '15px 0' },
   },
-  '@media screen and (max-width: 767px)': {
+  '@media screen and (max-width: 799px)': {
     homeIntro: {
       display: 'flex',
       flexDirection: 'column',
@@ -115,16 +126,23 @@ const styles = {
       margin: '0 auto',
       background: 'none',
     },
-    titleWrapper: { paddingTop: '25px', marginBottom: 'auto' },
+    whiteSection: {
+      padding: 0,
+    },
+    titleWrapper: {
+      paddingTop: '50px',
+      marginBottom: 'auto',
+    },
     introTitle: {
       padding: '0',
-      fontSize: '4em',
+      textAlign: 'center',
     },
     scrollBtn: { display: 'flex' },
-  },
-  '@media screen and (max-width: 600px)': {
-    widget: { width: '100%' },
-    widgetWrapper: { padding: '0' },
+    widget: {
+      width: '100%',
+      margin: '15px 0',
+    },
+    widgetWrapper: { padding: '15px 0' },
   },
 };
 
