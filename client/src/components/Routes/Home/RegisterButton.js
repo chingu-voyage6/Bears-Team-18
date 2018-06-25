@@ -5,25 +5,22 @@ import Button from '@material-ui/core/Button';
 
 const styles = {
   registerBtn: {
-    backgroundColor: '#15df89',
     color: 'white',
-    fontSize: '2em',
-    fontWeight: '500',
-    padding: '15px 50px',
-    margin: '15px 0 25px 0',
-
-    '&:hover': {
-      backgroundColor: '#68ffb9',
-    },
+    fontSize: '2rem',
   },
 };
 
 const RegisterButton = ({ classes }) => (
-  <Link to="/login" className="textDecorationNone">
-    <Button className={classes.registerBtn} variant="contained" size="large">
-      Register
-    </Button>
-  </Link>
+  <Button
+    component={Link}
+    to="/login"
+    className={classes.registerBtn}
+    variant="contained"
+    color="secondary"
+    size="large"
+  >
+    Register
+  </Button>
 );
 
 export default withStyles(styles)(RegisterButton);
