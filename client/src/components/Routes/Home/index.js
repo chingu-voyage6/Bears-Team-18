@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 import Icon from '../../Icon';
 import { ARROW_DOWN } from '../../IconList';
+import RegisterButton from './RegisterButton';
 
 import staticAssets from './static';
 
@@ -52,14 +52,21 @@ const styles = {
     height: 'calc(100vh - 64px)',
   },
   titleWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
     paddingTop: '80px',
+    paddingLeft: '100px',
+    height: '50vh',
   },
   introTitle: {
     margin: '0',
     fontWeight: '400',
     fontSize: '5em',
     textAlign: 'left',
-    paddingLeft: '100px',
+  },
+  last: {
+    marginBottom: 'auto',
   },
   scrollBtn: {
     display: 'none',
@@ -79,18 +86,6 @@ const styles = {
     width: '70%',
     margin: '0 auto',
     paddingBottom: '25px',
-  },
-  registerBtn: {
-    backgroundColor: '#15df89',
-    color: 'white',
-    fontSize: '2em',
-    fontWeight: '500',
-    padding: '15px 50px',
-    margin: '15px 0 25px 0',
-
-    '&:hover': {
-      backgroundColor: '#15df89',
-    },
   },
   '@media screen and (min-width: 1920px)': {
     homeIntro: {
@@ -139,9 +134,10 @@ const styles = {
     titleWrapper: {
       paddingTop: '50px',
       marginBottom: 'auto',
+      padding: '0',
+      alignItems: 'center',
     },
     introTitle: {
-      padding: '0',
       textAlign: 'center',
     },
     scrollBtn: { display: 'flex' },
@@ -185,7 +181,10 @@ const Home = props => {
         <div className={classes.titleWrapper}>
           <h2 className={classes.introTitle}>CODE MORE</h2>
           <h2 className={classes.introTitle}>LEARN MORE</h2>
-          <h2 className={classes.introTitle}>BUILD MORE</h2>
+          <h2 className={`${classes.introTitle} ${classes.last}`}>
+            BUILD MORE
+          </h2>
+          <RegisterButton />
         </div>
         <Button
           onClick={() => triggerComponentScroll('process')}
@@ -236,16 +235,7 @@ const Home = props => {
           We connect motivated learners with shared goals to learn, help and
           build together.
         </p>
-
-        <Link to="/login" className="textDecorationNone">
-          <Button
-            className={classes.registerBtn}
-            variant="contained"
-            size="large"
-          >
-            Register
-          </Button>
-        </Link>
+        <RegisterButton />
       </section>
     </div>
   );
