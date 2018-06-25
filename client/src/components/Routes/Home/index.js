@@ -63,10 +63,6 @@ const styles = {
   scrollBtn: {
     display: 'none',
     marginBottom: '25px',
-
-    '&:hover': {
-      backgroundColor: '#15df89',
-    },
   },
   bottomTitle: {
     fontSize: '5em',
@@ -175,7 +171,8 @@ const Home = props => {
         </div>
         <Button
           onClick={() => triggerComponentScroll('process')}
-          className={`${classes.scrollBtn} secondaryBackground`}
+          className={classes.scrollBtn}
+          color="secondary"
           variant="fab"
         >
           <Icon icon={ARROW_DOWN} />
