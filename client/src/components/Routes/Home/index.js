@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Icon from '../../Icon';
 import { ARROW_DOWN } from '../../IconList';
 import RegisterButton from './RegisterButton';
+import IntroTitle from './IntroTitle';
 
 import staticAssets from './static';
 
@@ -56,17 +57,8 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'flex-start',
     paddingTop: '80px',
-    paddingLeft: '100px',
+    paddingLeft: '96px',
     height: '50vh',
-  },
-  introTitle: {
-    margin: '0',
-    fontWeight: '400',
-    fontSize: '5em',
-    textAlign: 'left',
-  },
-  last: {
-    marginBottom: 'auto',
   },
   scrollBtn: {
     display: 'none',
@@ -132,13 +124,10 @@ const styles = {
       padding: 0,
     },
     titleWrapper: {
-      paddingTop: '50px',
+      marginTop: '48px',
       marginBottom: 'auto',
       padding: '0',
       alignItems: 'center',
-    },
-    introTitle: {
-      textAlign: 'center',
     },
     scrollBtn: { display: 'flex' },
     widget: {
@@ -179,11 +168,9 @@ const Home = props => {
     <div className={classes.homeContainer}>
       <section className={`${classes.homeIntro} primaryBackground`}>
         <div className={classes.titleWrapper}>
-          <h2 className={classes.introTitle}>CODE MORE</h2>
-          <h2 className={classes.introTitle}>LEARN MORE</h2>
-          <h2 className={`${classes.introTitle} ${classes.last}`}>
-            BUILD MORE
-          </h2>
+          <IntroTitle title="code more" />
+          <IntroTitle title="learn more" />
+          <IntroTitle title="build more" last />
           <RegisterButton />
         </div>
         <Button
