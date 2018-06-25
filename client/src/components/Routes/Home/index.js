@@ -99,11 +99,18 @@ const styles = {
       }) bottom right / auto 85% no-repeat`,
     },
   },
-  '@media screen and (min-width: 1280px) and (max-width: 1919px)': {
+  '@media screen and (min-width: 1280px) and (max-width: 1919px) and (max-height: 760px)': {
     homeIntro: {
       background: `url(${
         staticAssets.images['main-bg-l']
-      }) bottom right / calc(100vw - 450px) no-repeat`,
+      }) bottom right / auto 85% no-repeat`,
+    },
+  },
+  '@media screen and (min-width: 1280px) and (max-width: 1919px) and (min-height: 761px)': {
+    homeIntro: {
+      background: `url(${
+        staticAssets.images['main-bg-l']
+      }) bottom right / 66.666666vw no-repeat`,
     },
   },
   '@media screen and (min-width: 800px) and (max-width: 1279px)': {
