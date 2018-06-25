@@ -19,6 +19,7 @@ const styles = theme => ({
     textDecoration: 'none',
   },
   headerTitle: {
+    fontFamily: theme.typography.title.fontFamily,
     fontSize: '3.2em',
   },
   headerLink: {

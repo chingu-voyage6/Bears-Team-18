@@ -11,7 +11,7 @@ import IntroTitle from './IntroTitle';
 
 import staticAssets from './static';
 
-const styles = {
+const styles = theme => ({
   homeContainer: {
     textAlign: 'center',
   },
@@ -23,6 +23,7 @@ const styles = {
     color: 'white',
   },
   sectionTitle: {
+    fontFamily: theme.typography.title.fontFamily,
     fontSize: '2.6em',
     margin: '0',
     padding: '15px 0',
@@ -37,6 +38,7 @@ const styles = {
     padding: '40px 0',
   },
   widgetTitle: {
+    fontFamily: theme.typography.title.fontFamily,
     fontSize: '2.5em',
     fontWeight: '400',
     textTransform: 'uppercase',
@@ -65,6 +67,7 @@ const styles = {
     marginBottom: '25px',
   },
   bottomTitle: {
+    fontFamily: theme.typography.title.fontFamily,
     fontSize: '5em',
     margin: '0 0 25px 0',
   },
@@ -132,7 +135,7 @@ const styles = {
     },
     widgetWrapper: { padding: '15px 0' },
   },
-};
+});
 
 const Home = props => {
   function triggerComponentScroll(component) {
@@ -229,4 +232,4 @@ Home.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Home);
+export default withStyles(styles, { withTheme: true })(Home);

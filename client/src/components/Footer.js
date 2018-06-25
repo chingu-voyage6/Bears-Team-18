@@ -9,7 +9,7 @@ import Icon from './Icon';
 import { GITHUB, MEDIUM, TWITTER, YOUTUBE } from './IconList';
 import patreon from '../images/homepage/patreon.png';
 
-const styles = {
+const styles = theme => ({
   footerContainer: {
     display: 'flex',
     position: 'absolute',
@@ -25,6 +25,7 @@ const styles = {
     padding: '30px 0 25px 0',
   },
   footerTitle: {
+    fontFamily: theme.typography.title.fontFamily,
     fontSize: '1.8em',
     fontWeight: '400',
     margin: '0 0 25px 0',
@@ -68,7 +69,7 @@ const styles = {
       padding: '30px 0 0 0',
     },
   },
-};
+});
 
 const Footer = props => {
   const { classes } = props;
@@ -169,4 +170,4 @@ Footer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Footer);
+export default withStyles(styles, { withTheme: true })(Footer);

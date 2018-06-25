@@ -17,7 +17,7 @@ import UserDashboard from './Routes/UserDashboard/';
 import ErrorPage from './Routes/Error/';
 import ScrollToTop from './ScrollToTop';
 
-const styles = {
+const styles = theme => ({
   '@global': {
     html: {
       position: 'relative',
@@ -28,7 +28,7 @@ const styles = {
       padding: '0',
       lineHeight: '1.6',
       fontSize: '62.5%',
-      fontFamily: 'Raleway, Arial, sans-serif',
+      fontFamily: theme.typography.fontFamily,
 
       '& .primaryColor': { color: '#0f143a' },
       '& .primaryBackground': {
@@ -56,7 +56,7 @@ const styles = {
       body: { margin: '0 0 831px' },
     },
   },
-};
+});
 
 const App = props => {
   return (
@@ -91,4 +91,4 @@ App.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(App);
+export default withStyles(styles, { withTheme: true })(App);
