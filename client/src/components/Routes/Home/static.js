@@ -9,6 +9,8 @@ const images = {
   'project-01': require('../../../images/homepage/project-01.jpg'),
   'project-02': require('../../../images/homepage/project-02.jpg'),
   'project-03': require('../../../images/homepage/project-03.jpg'),
+  'main-bg-l': require('../../../images/homepage/main-bg-l.png'),
+  'main-bg-xl': require('../../../images/homepage/main-bg-xl.png'),
 };
 
 const process = [

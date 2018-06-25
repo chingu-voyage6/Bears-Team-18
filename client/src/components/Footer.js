@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 
 import Icon from './Icon';
-import { GITHUB, MEDIUM, TWITTER, YOUTUBE, PATREON } from './IconList';
+import { GITHUB, MEDIUM, TWITTER, YOUTUBE } from './IconList';
+import patreon from '../images/homepage/patreon.png';
 
 const styles = {
   footerContainer: {
@@ -44,17 +44,7 @@ const styles = {
     },
   },
   patreonBtn: {
-    backgroundColor: '#F96854',
-    color: 'white',
-    padding: '15px 16px',
-
-    '& #btnText': {
-      paddingLeft: '5px',
-      fontSize: '1.2em',
-    },
-    '&:hover': {
-      backgroundColor: '#F96854',
-    },
+    maxWidth: '200px',
   },
   linkContainer: {
     display: 'flex',
@@ -125,16 +115,17 @@ const Footer = props => {
             </IconButton>
           </div>
 
-          <Button
-            className={classes.patreonBtn}
-            variant="contained"
+          <a
             href="https://www.patreon.com/chingucollabs"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Icon icon={PATREON} color="#052D49" />
-            <span id="btnText">BECOME A PATREON</span>
-          </Button>
+            <img
+              src={patreon}
+              className={classes.patreonBtn}
+              alt="Patreon button"
+            />
+          </a>
         </div>
       </div>
 
