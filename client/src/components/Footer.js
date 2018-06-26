@@ -11,6 +11,8 @@ import patreon from '../images/homepage/patreon.png';
 
 const styles = theme => ({
   footerContainer: {
+    color: '#fff',
+    backgroundColor: theme.palette.primary.main,
     display: 'flex',
     position: 'absolute',
     left: '0',
@@ -52,8 +54,13 @@ const styles = theme => ({
     flexDirection: 'column',
   },
   footerLink: {
+    color: '#fff',
     margin: '10px 0 25px 0',
     fontSize: '1.6em',
+    textDecoration: 'none',
+    '&:hover': {
+      color: theme.palette.secondary.main,
+    },
   },
   lastLink: {
     padding: '0',
@@ -75,7 +82,7 @@ const Footer = props => {
   const { classes } = props;
 
   return (
-    <footer className={`${classes.footerContainer} primaryBackground`}>
+    <footer className={classes.footerContainer}>
       <div className={classes.footerSection}>
         <h3 className={classes.footerTitle}>MORE CHINGU</h3>
 
@@ -133,16 +140,13 @@ const Footer = props => {
       <div className={classes.footerSection}>
         <h3 className={classes.footerTitle}>COMPANY</h3>
         <div className={classes.linkContainer}>
-          <Link className={`${classes.footerLink} darkLink`} to="/">
+          <Link className={classes.footerLink} to="/">
             Our Team
           </Link>
-          <Link
-            className={`${classes.footerLink} darkLink`}
-            to="/privacy-policy"
-          >
+          <Link className={classes.footerLink} to="/privacy-policy">
             Privacy Policy
           </Link>
-          <Link className={`${classes.footerLink} darkLink`} to="/faq">
+          <Link className={classes.footerLink} to="/faq">
             FAQ
           </Link>
         </div>
@@ -151,13 +155,13 @@ const Footer = props => {
       <div className={classes.footerSection}>
         <h3 className={classes.footerTitle}>VOYAGES</h3>
         <div className={classes.linkContainer}>
-          <Link className={`${classes.footerLink} darkLink`} to="/">
+          <Link className={classes.footerLink} to="/">
             Past Projects
           </Link>
-          <Link className={`${classes.footerLink} darkLink`} to="/">
+          <Link className={classes.footerLink} to="/">
             Upcoming Voyages
           </Link>
-          <Link className={`${classes.footerLink} darkLink`} to="/">
+          <Link className={classes.footerLink} to="/">
             How to Join
           </Link>
         </div>

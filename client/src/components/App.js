@@ -30,7 +30,6 @@ const styles = theme => ({
       fontSize: '62.5%',
       fontFamily: theme.typography.fontFamily,
 
-      '& .primaryColor': { color: '#0f143a' },
       '& .primaryBackground': {
         color: 'white',
         backgroundColor: '#0f143a',
@@ -41,13 +40,6 @@ const styles = theme => ({
         color: 'white',
         backgroundColor: '#15df89',
       },
-
-      '& .darkLink': {
-        color: 'white',
-        textDecoration: 'none',
-        '&:hover': { color: '#15df89' },
-      },
-      '& .textDecorationNone': { textDecoration: 'none' },
     },
 
     img: { maxWidth: '100%' },
