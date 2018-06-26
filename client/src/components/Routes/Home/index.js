@@ -1,50 +1,96 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 import Icon from '../../Icon';
 import { ARROW_DOWN } from '../../IconList';
-import RegisterButton from './RegisterButton';
-import IntroTitle from './IntroTitle';
-import Section from './Section';
-import WidgetWrapper from './WidgetWrapper';
 
 import staticAssets from './static';
 
-const styles = theme => ({
+const styles = {
   homeContainer: {
     textAlign: 'center',
   },
+  whiteSection: {
+    padding: '32px 0',
+  },
+  darkSection: {
+    backgroundColor: '#707399',
+    color: 'white',
+  },
+  sectionTitle: {
+    fontSize: '2.6em',
+    margin: '0',
+    padding: '15px 0',
+  },
+  widget: {
+    width: '25%',
+  },
+  widgetWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    padding: '40px 0',
+  },
+  widgetTitle: {
+    fontSize: '2.5em',
+    fontWeight: '400',
+    textTransform: 'uppercase',
+    margin: '0 0 12px 0',
+  },
+  widgetDescription: {
+    fontSize: '1.6em',
+    width: '65%',
+    margin: '0 auto',
+  },
+  defaultImg: { width: '200px' },
+  lgImg: { width: '300px' },
   homeIntro: {
     height: 'calc(100vh - 64px)',
-    color: '#fff',
-    backgroundColor: `${theme.palette.primary.main} !important`,
   },
   titleWrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
     paddingTop: '80px',
-    paddingLeft: '96px',
-    height: '50vh',
+  },
+  introTitle: {
+    margin: '0',
+    fontWeight: '400',
+    fontSize: '5em',
+    textAlign: 'left',
+    paddingLeft: '100px',
   },
   scrollBtn: {
     display: 'none',
-    marginBottom: '24px',
+    marginBottom: '25px',
+
+    '&:hover': {
+      backgroundColor: '#15df89',
+    },
   },
   bottomTitle: {
-    fontFamily: theme.typography.title.fontFamily,
-    color: theme.palette.secondary.main,
     fontSize: '5em',
-    margin: '0 0 24px 0',
+    margin: '0 0 25px 0',
   },
   bottomText: {
     fontSize: '2em',
-    fontWeight: '500',
+    fontWeight: '700',
     width: '70%',
-    margin: '0 auto 24px',
+    margin: '0 auto',
+    paddingBottom: '25px',
+  },
+  registerBtn: {
+    backgroundColor: '#15df89',
+    color: 'white',
+    fontSize: '2em',
+    fontWeight: '500',
+    padding: '15px 50px',
+    margin: '15px 0 25px 0',
+
+    '&:hover': {
+      backgroundColor: '#15df89',
+    },
   },
   '@media screen and (min-width: 1920px)': {
     homeIntro: {
@@ -73,6 +119,11 @@ const styles = theme => ({
       backgroundPosition: 'bottom left 400px',
       backgroundSize: 'auto 90%',
     },
+    widget: {
+      width: '50%',
+      margin: '15px 0',
+    },
+    widgetWrapper: { padding: '15px 0' },
   },
   '@media screen and (max-width: 799px)': {
     homeIntro: {
@@ -82,18 +133,25 @@ const styles = theme => ({
       margin: '0 auto',
       background: 'none',
     },
+    whiteSection: {
+      padding: 0,
+    },
     titleWrapper: {
-      marginTop: '48px',
+      paddingTop: '50px',
       marginBottom: 'auto',
+    },
+    introTitle: {
       padding: '0',
-      alignItems: 'center',
+      textAlign: 'center',
     },
     scrollBtn: { display: 'flex' },
-    ctaSection: {
-      padding: '16px 0',
+    widget: {
+      width: '100%',
+      margin: '15px 0',
     },
+    widgetWrapper: { padding: '15px 0' },
   },
-});
+};
 
 const Home = props => {
   function triggerComponentScroll(component) {
@@ -103,59 +161,92 @@ const Home = props => {
     });
   }
 
+  function renderStatic(content, classes, imgSize) {
+    let imgClass;
+
+    imgClass = imgSize === 'default' ? classes.defaultImg : classes.lgImg;
+
+    return content.map(item => {
+      return (
+        <div key={item.title} className={classes.widget}>
+          <img className={imgClass} src={item.image} alt="" />
+          <h3 className={classes.widgetTitle}>{item.title}</h3>
+          <p className={classes.widgetDescription}>{item.description}</p>
+        </div>
+      );
+    });
+  }
+
   const { classes } = props;
 
   return (
     <div className={classes.homeContainer}>
-      {/* INTRO */}
-      <section className={classes.homeIntro}>
+      <section className={`${classes.homeIntro} primaryBackground`}>
         <div className={classes.titleWrapper}>
-          <IntroTitle title="code more" />
-          <IntroTitle title="learn more" />
-          <IntroTitle title="build more" last />
-          <RegisterButton title="Sign Up" />
+          <h2 className={classes.introTitle}>CODE MORE</h2>
+          <h2 className={classes.introTitle}>LEARN MORE</h2>
+          <h2 className={classes.introTitle}>BUILD MORE</h2>
         </div>
-        {/* SCROLL BUTTON */}
         <Button
           onClick={() => triggerComponentScroll('process')}
-          className={classes.scrollBtn}
-          color="secondary"
+          className={`${classes.scrollBtn} secondaryBackground`}
           variant="fab"
         >
           <Icon icon={ARROW_DOWN} />
         </Button>
       </section>
 
-      {/* PROCESS */}
-      <Section id="process" variant="white" title="chingu process">
-        <WidgetWrapper content={staticAssets.process} imgSize="default" />
-      </Section>
-
-      {/* CURRENT COHORTS */}
-      <Section variant="dark" title="current cohorts">
-        <WidgetWrapper content={staticAssets.cohorts} imgSize="default" />
-      </Section>
-
-      {/* TESTIMONIALS */}
-      <Section variant="white" title="what people say about chingu" />
-
-      {/* FEATURED PROJECTS */}
-      <Section variant="dark" title="featured projects">
-        <WidgetWrapper content={staticAssets.projects} imgSize="large" />
-      </Section>
-
-      {/* CALL TO ACTION */}
-      <Section variant="white">
-        <div className={classes.ctaSection}>
-          <h2 className={classes.bottomTitle}>Chingu</h2>
-          <p className={classes.bottomText}>
-            Chingu is a global collaboration platform and coding-cohort
-            generator. We connect motivated learners with shared goals to learn,
-            help and build together.
-          </p>
-          <RegisterButton title="Apply Now" />
+      <section id="process" className={classes.whiteSection}>
+        <h2 className={`${classes.sectionTitle} secondaryColor`}>
+          CHINGU PROCESS
+        </h2>
+        <div className={classes.widgetWrapper}>
+          {renderStatic(staticAssets.process, classes, 'default')}
         </div>
-      </Section>
+      </section>
+
+      <section className={classes.darkSection}>
+        <h2 className={`${classes.sectionTitle} primaryBackground`}>
+          CURRENT COHORTS
+        </h2>
+        <div className={classes.widgetWrapper}>
+          {renderStatic(staticAssets.cohorts, classes, 'default')}
+        </div>
+      </section>
+
+      <section className={classes.whiteSection}>
+        <h2 className={`${classes.sectionTitle} secondaryColor`}>
+          WHAT PEOPLE ARE SAYING ABOUT CHINGU
+        </h2>
+      </section>
+
+      <section className={classes.darkSection}>
+        <h2 className={`${classes.sectionTitle} primaryBackground`}>
+          FEATURED PROJECTS
+        </h2>
+        <div className={classes.widgetWrapper}>
+          {renderStatic(staticAssets.projects, classes, 'large')}
+        </div>
+      </section>
+
+      <section className={classes.whiteSection}>
+        <h2 className={`${classes.bottomTitle} secondaryColor`}>Chingu</h2>
+        <p className={classes.bottomText}>
+          Chingu is a global collaboration platform and coding-cohort generator.
+          We connect motivated learners with shared goals to learn, help and
+          build together.
+        </p>
+
+        <Link to="/login" className="textDecorationNone">
+          <Button
+            className={classes.registerBtn}
+            variant="contained"
+            size="large"
+          >
+            Register
+          </Button>
+        </Link>
+      </section>
     </div>
   );
 };
@@ -164,4 +255,4 @@ Home.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(Home);
+export default withStyles(styles)(Home);

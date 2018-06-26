@@ -1,66 +1,56 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
 
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
+const styles = {
   headerContainer: {
-    backgroundColor: theme.palette.primary.main,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     height: '64px',
-    padding: '0 24px',
+    padding: '0 25px',
   },
   titleLink: {
     color: 'white',
     textDecoration: 'none',
   },
   headerTitle: {
-    fontFamily: theme.typography.title.fontFamily,
     fontSize: '3.2em',
   },
   headerLink: {
-    margin: '0 16px',
-    color: '#fff',
-
-    '&:hover': {
-      color: theme.palette.secondary.main,
-    },
+    margin: '0 15px',
+    fontSize: '1.6em',
   },
-});
+
+  '@media screen and (max-width: 767px)': {
+    headerContainer: { padding: '0 15px' },
+    headerLink: { margin: '0 10px' },
+  },
+};
 
 const Header = props => {
   const { classes } = props;
 
   return (
-    <header className={classes.headerContainer}>
+    <header className={`${classes.headerContainer} primaryBackground`}>
       <Link className={classes.titleLink} to="/">
         <h1 className={classes.headerTitle}>CHINGU</h1>
       </Link>
 
       <div>
-        <Button
-          size="small"
-          disableRipple={true}
-          className={classes.headerLink}
+        <a
+          className={`${classes.headerLink} darkLink`}
           href="https://medium.com/chingu"
           target="_blank"
           rel="noopener noreferrer"
         >
           Blog
-        </Button>
-        <Button
-          size="small"
-          disableRipple={true}
-          component={Link}
-          to="/login"
-          className={classes.headerLink}
-        >
+        </a>
+        <Link className={`${classes.headerLink} darkLink`} to="/login">
           Log In
-        </Button>
+        </Link>
       </div>
     </header>
   );
@@ -70,4 +60,4 @@ Header.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(Header);
+export default withStyles(styles)(Header);
