@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
+import theme from './theme';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -16,7 +17,7 @@ import UserDashboard from './Routes/UserDashboard/';
 import ErrorPage from './Routes/Error/';
 import ScrollToTop from './ScrollToTop';
 
-const styles = {
+const styles = theme => ({
   '@global': {
     html: {
       position: 'relative',
@@ -27,26 +28,7 @@ const styles = {
       padding: '0',
       lineHeight: '1.6',
       fontSize: '62.5%',
-      fontFamily: 'Raleway, Arial, sans-serif',
-
-      '& .primaryColor': { color: '#0f143a' },
-      '& .primaryBackground': {
-        color: 'white',
-        backgroundColor: '#0f143a',
-      },
-
-      '& .secondaryColor': { color: '#15df89' },
-      '& .secondaryBackground': {
-        color: 'white',
-        backgroundColor: '#15df89',
-      },
-
-      '& .darkLink': {
-        color: 'white',
-        textDecoration: 'none',
-        '&:hover': { color: '#15df89' },
-      },
-      '& .textDecorationNone': { textDecoration: 'none' },
+      fontFamily: theme.typography.fontFamily,
     },
 
     img: { maxWidth: '100%' },
@@ -55,32 +37,34 @@ const styles = {
       body: { margin: '0 0 831px' },
     },
   },
-};
+});
 
 const App = props => {
   return (
-    <Router>
-      <ScrollToTop>
-        <Header />
+    <MuiThemeProvider theme={theme}>
+      <Router>
+        <ScrollToTop>
+          <Header />
 
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/login" component={Auth} />
-          <Route path="/faq" component={FAQ} />
-          <Route path="/privacy-policy" component={PrivacyPolicy} />
-          <Route path="/token" component={TokenConfig} />
-          <Route path="/user-dashboard" component={UserDashboard} />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/login" component={Auth} />
+            <Route path="/faq" component={FAQ} />
+            <Route path="/privacy-policy" component={PrivacyPolicy} />
+            <Route path="/token" component={TokenConfig} />
+            <Route path="/user-dashboard" component={UserDashboard} />
 
-          <Route
-            render={routeProps => (
-              <ErrorPage {...routeProps} title="404 Error - URL Not Found" />
-            )}
-          />
-        </Switch>
+            <Route
+              render={routeProps => (
+                <ErrorPage {...routeProps} title="404 Error - URL Not Found" />
+              )}
+            />
+          </Switch>
 
-        <Footer />
-      </ScrollToTop>
-    </Router>
+          <Footer />
+        </ScrollToTop>
+      </Router>
+    </MuiThemeProvider>
   );
 };
 
@@ -88,4 +72,4 @@ App.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(App);
+export default withStyles(styles, { withTheme: true })(App);
