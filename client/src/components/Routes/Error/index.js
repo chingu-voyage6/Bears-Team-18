@@ -12,11 +12,11 @@ const styles = {
     alignItems: 'center',
     textAlign: 'center',
     flexDirection: 'column',
-    margin: '25px 0',
-    padding: '0 15px 40px 0',
+    margin: '24px 0',
+    padding: '0 16px 40px 0',
   },
-  errorPageTitle: { fontSize: '3em', margin: '25px 0' },
-  errorPageText: { fontSize: '1.8em', margin: '10px 0' },
+  errorPageTitle: { fontSize: '3em', margin: '24px 0' },
+  errorPageText: { fontSize: '1.8em', margin: '8px 0' },
 };
 
 const ErrorPage = props => {

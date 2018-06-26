@@ -9,7 +9,7 @@ const styles = {
   privacyContainer: {
     maxWidth: '1100px',
     margin: '0 auto',
-    padding: '0 15px 40px 15px',
+    padding: '0 16px 40px 16px',
   },
   privacyTitle: {
     textAlign: 'center',
@@ -17,11 +17,11 @@ const styles = {
   },
   privacySubTitle: {
     fontSize: '1.8em',
-    margin: '15px 0',
+    margin: '16px 0',
   },
   privacyText: {
     fontSize: '1.6em',
-    marginBottom: '20px',
+    marginBottom: '24px',
   },
   privacyList: {
     fontSize: '1.6em',

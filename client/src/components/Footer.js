@@ -13,7 +13,6 @@ const styles = theme => ({
   footerContainer: {
     color: '#fff',
     backgroundColor: theme.palette.primary.main,
-    fontFamily: theme.typography.title.fontFamily,
     display: 'flex',
     position: 'absolute',
     left: '0',
@@ -25,22 +24,23 @@ const styles = theme => ({
   footerSection: {
     width: '33%',
     textAlign: 'center',
-    padding: '30px 0 25px 0',
+    padding: '32px 0 24px 0',
   },
   footerTitle: {
+    fontFamily: theme.typography.title.fontFamily,
     fontSize: '1.8em',
     fontWeight: '400',
-    margin: '0 0 25px 0',
+    margin: '0 0 24px 0',
   },
   sectionContent: {
     fontSize: '1.6em',
-    marginBottom: '25px',
+    marginBottom: '24px',
   },
   iconContainer: {
-    margin: '20px 0',
+    margin: '24px 0',
   },
   iconBtn: {
-    margin: '0 5px',
+    margin: '0 8px',
 
     '&:hover': {
       backgroundColor: '#15df89',
@@ -55,7 +55,7 @@ const styles = theme => ({
   },
   footerLink: {
     color: '#fff',
-    margin: '10px 0 25px 0',
+    margin: '8px 0 24px 0',
     fontSize: '1.6em',
     textDecoration: 'none',
     '&:hover': {
@@ -73,7 +73,7 @@ const styles = theme => ({
     },
     footerSection: {
       width: '100%',
-      padding: '30px 0 0 0',
+      padding: '32px 0 0 0',
     },
   },
 });

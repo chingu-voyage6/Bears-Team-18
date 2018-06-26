@@ -15,7 +15,7 @@ const styles = theme => ({
     padding: '0 24px',
 
     '@media screen and (max-width: 767px)': {
-      padding: '0 15px',
+      padding: '0 16px',
     },
   },
   titleLink: {
