@@ -11,7 +11,7 @@ const styles = {
   authContainer: {
     maxWidth: '600px',
     margin: '40px auto',
-    padding: '16px 0',
+    padding: '15px 0',
     border: '1px solid #ddd',
     backgroundColor: '#FAFAFA',
     boxShadow: '0 2px 10px rgba(0, 0, 0, .2)',
@@ -26,7 +26,7 @@ const styles = {
     color: 'white',
     display: 'flex',
     margin: '0 auto',
-    padding: '16px 24px',
+    padding: '15px 25px',
     fontSize: '1.6em',
 
     '&:hover': {
@@ -36,19 +36,19 @@ const styles = {
   btnText: { paddingLeft: '15px' },
   warnText: {
     maxWidth: '500px',
-    padding: '8px 16px',
+    padding: '5px 15px',
     margin: '25px auto',
     fontSize: '1.6em',
     textAlign: 'center',
     fontWeight: '500',
-    borderRadius: '8px',
+    borderRadius: '5px',
   },
   githubLink: {
     color: '#15df89',
     fontWeight: '700',
     textDecoration: 'none',
   },
-  divider: { padding: '16px 0' },
+  divider: { padding: '20px 0' },
 
   '@media screen and (max-width: 768px)': {
     authContainer: {

@@ -24,7 +24,7 @@ class TokenConfig extends Component {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          padding: '124px 0',
+          padding: '125px 0',
         }}
       >
         <CircularProgress />
