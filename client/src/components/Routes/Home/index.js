@@ -83,7 +83,7 @@ const styles = theme => ({
       background: 'none',
     },
     titleWrapper: {
-      marginTop: '48px',
+      marginTop: '15px',
       marginBottom: 'auto',
       padding: '0',
       alignItems: 'center',
@@ -92,6 +92,10 @@ const styles = theme => ({
     ctaSection: {
       padding: '16px 0',
     },
+  },
+  '@media screen and (max-width: 767px) and (orientation: landscape)': {
+    scrollBtn: { margin: '0 15px 15px auto' },
+    titleWrapper: { marginTop: '0' },
   },
 });
 
@@ -112,8 +116,8 @@ const Home = props => {
         <div className={classes.titleWrapper}>
           <IntroTitle title="code more" />
           <IntroTitle title="learn more" />
-          <IntroTitle title="build more" last />
-          <RegisterButton title="Sign Up" />
+          <IntroTitle title="build more" />
+          <RegisterButton title="Sign In" />
         </div>
         {/* SCROLL BUTTON */}
         <Button
@@ -153,7 +157,7 @@ const Home = props => {
             generator. We connect motivated learners with shared goals to learn,
             help and build together.
           </p>
-          <RegisterButton title="Apply Now" />
+          <RegisterButton title="Apply Now" bottom />
         </div>
       </Section>
     </div>
