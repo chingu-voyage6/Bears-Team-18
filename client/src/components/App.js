@@ -29,17 +29,6 @@ const styles = theme => ({
       lineHeight: '1.6',
       fontSize: '62.5%',
       fontFamily: theme.typography.fontFamily,
-
-      '& .primaryBackground': {
-        color: 'white',
-        backgroundColor: '#0f143a',
-      },
-
-      '& .secondaryColor': { color: '#15df89' },
-      '& .secondaryBackground': {
-        color: 'white',
-        backgroundColor: '#15df89',
-      },
     },
 
     img: { maxWidth: '100%' },

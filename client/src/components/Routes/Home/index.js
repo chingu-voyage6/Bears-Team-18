@@ -8,6 +8,7 @@ import Icon from '../../Icon';
 import { ARROW_DOWN } from '../../IconList';
 import RegisterButton from './RegisterButton';
 import IntroTitle from './IntroTitle';
+import Section from './Section';
 import WidgetWrapper from './WidgetWrapper';
 
 import staticAssets from './static';
@@ -16,21 +17,10 @@ const styles = theme => ({
   homeContainer: {
     textAlign: 'center',
   },
-  whiteSection: {
-    padding: '32px 0',
-  },
-  darkSection: {
-    backgroundColor: '#707399',
-    color: 'white',
-  },
-  sectionTitle: {
-    fontFamily: theme.typography.title.fontFamily,
-    fontSize: '2.6em',
-    margin: '0',
-    padding: '15px 0',
-  },
   homeIntro: {
     height: 'calc(100vh - 64px)',
+    color: '#fff',
+    backgroundColor: `${theme.palette.primary.main} !important`,
   },
   titleWrapper: {
     display: 'flex',
@@ -46,6 +36,7 @@ const styles = theme => ({
   },
   bottomTitle: {
     fontFamily: theme.typography.title.fontFamily,
+    color: theme.palette.secondary.main,
     fontSize: '5em',
     margin: '0 0 25px 0',
   },
@@ -92,9 +83,6 @@ const styles = theme => ({
       margin: '0 auto',
       background: 'none',
     },
-    whiteSection: {
-      padding: 0,
-    },
     titleWrapper: {
       marginTop: '48px',
       marginBottom: 'auto',
@@ -117,13 +105,15 @@ const Home = props => {
 
   return (
     <div className={classes.homeContainer}>
-      <section className={`${classes.homeIntro} primaryBackground`}>
+      {/* INTRO */}
+      <section className={classes.homeIntro}>
         <div className={classes.titleWrapper}>
           <IntroTitle title="code more" />
           <IntroTitle title="learn more" />
           <IntroTitle title="build more" last />
           <RegisterButton />
         </div>
+        {/* SCROLL BUTTON */}
         <Button
           onClick={() => triggerComponentScroll('process')}
           className={classes.scrollBtn}
@@ -134,42 +124,34 @@ const Home = props => {
         </Button>
       </section>
 
-      <section id="process" className={classes.whiteSection}>
-        <h2 className={`${classes.sectionTitle} secondaryColor`}>
-          CHINGU PROCESS
-        </h2>
+      {/* PROCESS */}
+      <Section variant="white" title="chingu process">
         <WidgetWrapper content={staticAssets.process} imgSize="default" />
-      </section>
+      </Section>
 
-      <section className={classes.darkSection}>
-        <h2 className={`${classes.sectionTitle} primaryBackground`}>
-          CURRENT COHORTS
-        </h2>
+      {/* CURRENT COHORTS */}
+      <Section variant="dark" title="current cohorts">
         <WidgetWrapper content={staticAssets.cohorts} imgSize="default" />
-      </section>
+      </Section>
 
-      <section className={classes.whiteSection}>
-        <h2 className={`${classes.sectionTitle} secondaryColor`}>
-          WHAT PEOPLE ARE SAYING ABOUT CHINGU
-        </h2>
-      </section>
+      {/* TESTIMONIALS */}
+      <Section variant="white" title="what people say about chingu" />
 
-      <section className={classes.darkSection}>
-        <h2 className={`${classes.sectionTitle} primaryBackground`}>
-          FEATURED PROJECTS
-        </h2>
+      {/* FEATURED PROJECTS */}
+      <Section variant="dark" title="featured projects">
         <WidgetWrapper content={staticAssets.projects} imgSize="large" />
-      </section>
+      </Section>
 
-      <section className={classes.whiteSection}>
-        <h2 className={`${classes.bottomTitle} secondaryColor`}>Chingu</h2>
+      {/* CALL TO ACTION */}
+      <Section variant="white">
+        <h2 className={classes.bottomTitle}>Chingu</h2>
         <p className={classes.bottomText}>
           Chingu is a global collaboration platform and coding-cohort generator.
           We connect motivated learners with shared goals to learn, help and
           build together.
         </p>
         <RegisterButton />
-      </section>
+      </Section>
     </div>
   );
 };
