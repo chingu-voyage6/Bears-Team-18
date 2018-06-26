@@ -10,7 +10,11 @@ const styles = {
   },
 };
 
-const RegisterButton = ({ classes }) => (
+/**
+ * Button linking to log in / sign up page
+ * @param {string} title String displayed on the button
+ */
+const RegisterButton = ({ title, classes }) => (
   <Button
     component={Link}
     to="/login"
@@ -19,7 +23,7 @@ const RegisterButton = ({ classes }) => (
     color="secondary"
     size="large"
   >
-    Register
+    {title}
   </Button>
 );
 

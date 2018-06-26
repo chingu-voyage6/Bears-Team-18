@@ -113,7 +113,7 @@ const Home = props => {
           <IntroTitle title="code more" />
           <IntroTitle title="learn more" />
           <IntroTitle title="build more" last />
-          <RegisterButton />
+          <RegisterButton title="Sign Up" />
         </div>
         {/* SCROLL BUTTON */}
         <Button
@@ -153,7 +153,7 @@ const Home = props => {
             generator. We connect motivated learners with shared goals to learn,
             help and build together.
           </p>
-          <RegisterButton />
+          <RegisterButton title="Apply Now" />
         </div>
       </Section>
     </div>
