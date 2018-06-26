@@ -38,6 +38,12 @@ const styles = theme => ({
   },
 });
 
+/**
+ * Component generating the widgets
+ * @param {Object} props Destructured props
+ * @param {Object[]} content Static assets to generate
+ * @param {string} imgSize ('default'|'large') Determines the images's width
+ */
 const WidgetWrapper = ({ content, classes, imgSize }) => {
   function renderStatic(content, imgSize) {
     let imgClass = imgSize === 'default' ? classes.defaultImg : classes.lgImg;

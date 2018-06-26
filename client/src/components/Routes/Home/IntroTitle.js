@@ -9,6 +9,12 @@ const styles = {
   },
 };
 
+/**
+ * Component wrapping each line of the heading
+ * @param {Object} props Destructured props
+ * @param {string} title The line's title
+ * @param {boolean} last Indicate if it's the last line
+ */
 const IntroTitle = ({ title, classes, last }) => (
   <Typography
     component="h1"
