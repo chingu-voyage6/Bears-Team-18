@@ -8,6 +8,7 @@ import Icon from '../../Icon';
 import { ARROW_DOWN } from '../../IconList';
 import RegisterButton from './RegisterButton';
 import IntroTitle from './IntroTitle';
+import WidgetWrapper from './WidgetWrapper';
 
 import staticAssets from './static';
 
@@ -28,29 +29,6 @@ const styles = theme => ({
     margin: '0',
     padding: '15px 0',
   },
-  widget: {
-    width: '25%',
-  },
-  widgetWrapper: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    padding: '40px 0',
-  },
-  widgetTitle: {
-    fontFamily: theme.typography.title.fontFamily,
-    fontSize: '2.5em',
-    fontWeight: '400',
-    textTransform: 'uppercase',
-    margin: '0 0 12px 0',
-  },
-  widgetDescription: {
-    fontSize: '1.6em',
-    width: '65%',
-    margin: '0 auto',
-  },
-  defaultImg: { width: '200px' },
-  lgImg: { width: '300px' },
   homeIntro: {
     height: 'calc(100vh - 64px)',
   },
@@ -105,11 +83,6 @@ const styles = theme => ({
       backgroundPosition: 'bottom left 400px',
       backgroundSize: 'auto 90%',
     },
-    widget: {
-      width: '50%',
-      margin: '15px 0',
-    },
-    widgetWrapper: { padding: '15px 0' },
   },
   '@media screen and (max-width: 799px)': {
     homeIntro: {
@@ -129,11 +102,6 @@ const styles = theme => ({
       alignItems: 'center',
     },
     scrollBtn: { display: 'flex' },
-    widget: {
-      width: '100%',
-      margin: '15px 0',
-    },
-    widgetWrapper: { padding: '15px 0' },
   },
 });
 
@@ -142,22 +110,6 @@ const Home = props => {
     document.getElementById(component).scrollIntoView({
       behavior: 'smooth',
       block: 'start',
-    });
-  }
-
-  function renderStatic(content, classes, imgSize) {
-    let imgClass;
-
-    imgClass = imgSize === 'default' ? classes.defaultImg : classes.lgImg;
-
-    return content.map(item => {
-      return (
-        <div key={item.title} className={classes.widget}>
-          <img className={imgClass} src={item.image} alt="" />
-          <h3 className={classes.widgetTitle}>{item.title}</h3>
-          <p className={classes.widgetDescription}>{item.description}</p>
-        </div>
-      );
     });
   }
 
@@ -186,18 +138,14 @@ const Home = props => {
         <h2 className={`${classes.sectionTitle} secondaryColor`}>
           CHINGU PROCESS
         </h2>
-        <div className={classes.widgetWrapper}>
-          {renderStatic(staticAssets.process, classes, 'default')}
-        </div>
+        <WidgetWrapper content={staticAssets.process} imgSize="default" />
       </section>
 
       <section className={classes.darkSection}>
         <h2 className={`${classes.sectionTitle} primaryBackground`}>
           CURRENT COHORTS
         </h2>
-        <div className={classes.widgetWrapper}>
-          {renderStatic(staticAssets.cohorts, classes, 'default')}
-        </div>
+        <WidgetWrapper content={staticAssets.cohorts} imgSize="default" />
       </section>
 
       <section className={classes.whiteSection}>
@@ -210,9 +158,7 @@ const Home = props => {
         <h2 className={`${classes.sectionTitle} primaryBackground`}>
           FEATURED PROJECTS
         </h2>
-        <div className={classes.widgetWrapper}>
-          {renderStatic(staticAssets.projects, classes, 'large')}
-        </div>
+        <WidgetWrapper content={staticAssets.projects} imgSize="large" />
       </section>
 
       <section className={classes.whiteSection}>
