@@ -32,20 +32,19 @@ const styles = theme => ({
   },
   scrollBtn: {
     display: 'none',
-    marginBottom: '25px',
+    marginBottom: '24px',
   },
   bottomTitle: {
     fontFamily: theme.typography.title.fontFamily,
     color: theme.palette.secondary.main,
     fontSize: '5em',
-    margin: '0 0 25px 0',
+    margin: '0 0 24px 0',
   },
   bottomText: {
     fontSize: '2em',
-    fontWeight: '700',
+    fontWeight: '500',
     width: '70%',
-    margin: '0 auto',
-    paddingBottom: '25px',
+    margin: '0 auto 24px',
   },
   '@media screen and (min-width: 1920px)': {
     homeIntro: {
@@ -90,6 +89,9 @@ const styles = theme => ({
       alignItems: 'center',
     },
     scrollBtn: { display: 'flex' },
+    ctaSection: {
+      padding: '16px 0',
+    },
   },
 });
 
@@ -125,7 +127,7 @@ const Home = props => {
       </section>
 
       {/* PROCESS */}
-      <Section variant="white" title="chingu process">
+      <Section id="process" variant="white" title="chingu process">
         <WidgetWrapper content={staticAssets.process} imgSize="default" />
       </Section>
 
@@ -144,13 +146,15 @@ const Home = props => {
 
       {/* CALL TO ACTION */}
       <Section variant="white">
-        <h2 className={classes.bottomTitle}>Chingu</h2>
-        <p className={classes.bottomText}>
-          Chingu is a global collaboration platform and coding-cohort generator.
-          We connect motivated learners with shared goals to learn, help and
-          build together.
-        </p>
-        <RegisterButton />
+        <div className={classes.ctaSection}>
+          <h2 className={classes.bottomTitle}>Chingu</h2>
+          <p className={classes.bottomText}>
+            Chingu is a global collaboration platform and coding-cohort
+            generator. We connect motivated learners with shared goals to learn,
+            help and build together.
+          </p>
+          <RegisterButton />
+        </div>
       </Section>
     </div>
   );

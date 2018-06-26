@@ -34,9 +34,13 @@ const styles = theme => ({
  * @param {Object} props
  * @param {string} variant Section colors ['dark'|'white']
  * @param {string} title Section title
+ * @param {string} id id to add to the section tag
  */
-const Section = ({ variant, title, classes, children }) => (
-  <section className={variant === 'dark' ? classes.dark : classes.white}>
+const Section = ({ variant, title, id, classes, children }) => (
+  <section
+    id={id}
+    className={variant === 'dark' ? classes.dark : classes.white}
+  >
     {title ? <h2 className={classes.title}>{title}</h2> : false}
     {children}
   </section>
