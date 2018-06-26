@@ -6,14 +6,7 @@ import Button from '@material-ui/core/Button';
 const styles = {
   registerBtn: {
     color: 'white',
-    fontSize: '2.6em',
-    margin: '15px 0',
-    padding: '15px 30px',
-
-    '@media screen and (max-width: 767px)': {
-      fontSize: '2.2em',
-      margin: '5px 0',
-    },
+    fontSize: '2rem',
   },
 };
 
@@ -21,7 +14,7 @@ const styles = {
  * Button linking to log in / sign up page
  * @param {string} title String displayed on the button
  */
-const RegisterButton = ({ title, classes, bottom }) => (
+const RegisterButton = ({ title, classes }) => (
   <Button
     component={Link}
     to="/login"
@@ -29,7 +22,6 @@ const RegisterButton = ({ title, classes, bottom }) => (
     variant="contained"
     color="secondary"
     size="large"
-    style={{ marginBottom: bottom ? '25px' : false }}
   >
     {title}
   </Button>

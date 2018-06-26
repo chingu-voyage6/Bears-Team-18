@@ -13,10 +13,6 @@ const styles = theme => ({
     justifyContent: 'space-between',
     height: '64px',
     padding: '0 24px',
-
-    '@media screen and (max-width: 767px)': {
-      padding: '0 15px',
-    },
   },
   titleLink: {
     color: 'white',
@@ -29,11 +25,6 @@ const styles = theme => ({
   headerLink: {
     margin: '0 16px',
     color: '#fff',
-    fontSize: '1.6em',
-
-    '@media screen and (max-width: 767px)': {
-      margin: '0',
-    },
 
     '&:hover': {
       color: theme.palette.secondary.main,

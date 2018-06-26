@@ -13,7 +13,6 @@ const styles = theme => ({
   footerContainer: {
     color: '#fff',
     backgroundColor: theme.palette.primary.main,
-    fontFamily: theme.typography.title.fontFamily,
     display: 'flex',
     position: 'absolute',
     left: '0',
@@ -28,6 +27,7 @@ const styles = theme => ({
     padding: '30px 0 25px 0',
   },
   footerTitle: {
+    fontFamily: theme.typography.title.fontFamily,
     fontSize: '1.8em',
     fontWeight: '400',
     margin: '0 0 25px 0',

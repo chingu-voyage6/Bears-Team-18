@@ -58,7 +58,7 @@ const styles = {
       boxShadow: 'none',
       margin: '0',
     },
-    divider: { padding: '0' },
+    divider: { padding: '10px 0' },
   },
 };
 

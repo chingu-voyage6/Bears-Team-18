@@ -6,10 +6,6 @@ const styles = {
   root: {
     color: '#fff',
     textTransform: 'uppercase',
-
-    '@media screen and (max-width: 767px)': {
-      fontSize: '4em',
-    },
   },
 };
 
@@ -19,12 +15,13 @@ const styles = {
  * @param {string} title The line's title
  * @param {boolean} last Indicate if it's the last line
  */
-const IntroTitle = ({ title, classes }) => (
+const IntroTitle = ({ title, classes, last }) => (
   <Typography
     component="h1"
     variant="display1"
     className={classes.root}
     paragraph={true}
+    style={{ marginBottom: last ? 'auto' : false }}
   >
     {title}
   </Typography>
