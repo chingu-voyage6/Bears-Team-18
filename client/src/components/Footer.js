@@ -9,10 +9,8 @@ import Icon from './Icon';
 import { GITHUB, MEDIUM, TWITTER, YOUTUBE } from './IconList';
 import patreon from '../images/homepage/patreon.png';
 
-const styles = theme => ({
+const styles = {
   footerContainer: {
-    color: '#fff',
-    backgroundColor: theme.palette.primary.main,
     display: 'flex',
     position: 'absolute',
     left: '0',
@@ -27,7 +25,6 @@ const styles = theme => ({
     padding: '30px 0 25px 0',
   },
   footerTitle: {
-    fontFamily: theme.typography.title.fontFamily,
     fontSize: '1.8em',
     fontWeight: '400',
     margin: '0 0 25px 0',
@@ -54,13 +51,8 @@ const styles = theme => ({
     flexDirection: 'column',
   },
   footerLink: {
-    color: '#fff',
     margin: '10px 0 25px 0',
     fontSize: '1.6em',
-    textDecoration: 'none',
-    '&:hover': {
-      color: theme.palette.secondary.main,
-    },
   },
   lastLink: {
     padding: '0',
@@ -76,13 +68,13 @@ const styles = theme => ({
       padding: '30px 0 0 0',
     },
   },
-});
+};
 
 const Footer = props => {
   const { classes } = props;
 
   return (
-    <footer className={classes.footerContainer}>
+    <footer className={`${classes.footerContainer} primaryBackground`}>
       <div className={classes.footerSection}>
         <h3 className={classes.footerTitle}>MORE CHINGU</h3>
 
@@ -140,13 +132,16 @@ const Footer = props => {
       <div className={classes.footerSection}>
         <h3 className={classes.footerTitle}>COMPANY</h3>
         <div className={classes.linkContainer}>
-          <Link className={classes.footerLink} to="/">
+          <Link className={`${classes.footerLink} darkLink`} to="/">
             Our Team
           </Link>
-          <Link className={classes.footerLink} to="/privacy-policy">
+          <Link
+            className={`${classes.footerLink} darkLink`}
+            to="/privacy-policy"
+          >
             Privacy Policy
           </Link>
-          <Link className={classes.footerLink} to="/faq">
+          <Link className={`${classes.footerLink} darkLink`} to="/faq">
             FAQ
           </Link>
         </div>
@@ -155,13 +150,13 @@ const Footer = props => {
       <div className={classes.footerSection}>
         <h3 className={classes.footerTitle}>VOYAGES</h3>
         <div className={classes.linkContainer}>
-          <Link className={classes.footerLink} to="/">
+          <Link className={`${classes.footerLink} darkLink`} to="/">
             Past Projects
           </Link>
-          <Link className={classes.footerLink} to="/">
+          <Link className={`${classes.footerLink} darkLink`} to="/">
             Upcoming Voyages
           </Link>
-          <Link className={classes.footerLink} to="/">
+          <Link className={`${classes.footerLink} darkLink`} to="/">
             How to Join
           </Link>
         </div>
@@ -174,4 +169,4 @@ Footer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(Footer);
+export default withStyles(styles)(Footer);
