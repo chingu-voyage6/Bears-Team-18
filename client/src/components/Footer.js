@@ -17,7 +17,6 @@ const styles = theme => ({
     position: 'absolute',
     left: '0',
     bottom: '0',
-    height: '300px',
     width: '100%',
     overflow: 'hidden',
   },
@@ -64,7 +63,6 @@ const styles = theme => ({
   '@media screen and (max-width: 768px)': {
     footerContainer: {
       flexDirection: 'column',
-      height: '831px',
     },
     footerSection: {
       width: '100%',
