@@ -19,6 +19,7 @@ const styles = theme => ({
   },
   homeIntro: {
     height: 'calc(100vh - 64px)',
+    [theme.breakpoints.down('xs')]: { height: 'calc(100vh - 96px)' },
     color: '#fff',
     backgroundColor: `${theme.palette.primary.main} !important`,
   },
@@ -28,7 +29,7 @@ const styles = theme => ({
     alignItems: 'flex-start',
     paddingTop: '80px',
     paddingLeft: '96px',
-    height: '50vh',
+    height: 'calc(100vh - 96px)',
   },
   scrollBtn: {
     display: 'none',
@@ -112,18 +113,20 @@ const Home = props => {
         <div className={classes.titleWrapper}>
           <IntroTitle title="code more" />
           <IntroTitle title="learn more" />
-          <IntroTitle title="build more" last />
-          <RegisterButton title="Sign Up" />
+          <IntroTitle title="build more" />
+          <div style={{ margin: 'auto 0' }}>
+            <RegisterButton title="Sign Up" />
+          </div>
+          {/* SCROLL BUTTON */}
+          <Button
+            onClick={() => triggerComponentScroll('process')}
+            className={classes.scrollBtn}
+            color="secondary"
+            variant="fab"
+          >
+            <Icon icon={ARROW_DOWN} />
+          </Button>
         </div>
-        {/* SCROLL BUTTON */}
-        <Button
-          onClick={() => triggerComponentScroll('process')}
-          className={classes.scrollBtn}
-          color="secondary"
-          variant="fab"
-        >
-          <Icon icon={ARROW_DOWN} />
-        </Button>
       </section>
 
       {/* PROCESS */}
