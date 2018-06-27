@@ -5,9 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-
-import Icon from '../../Icon';
-import { ARROW_DOWN } from '../../IconList';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import staticAssets from './static';
 
@@ -39,9 +37,7 @@ const FAQ = props => {
     return content.map(item => {
       return (
         <ExpansionPanel key={item.key}>
-          <ExpansionPanelSummary
-            expandIcon={<Icon icon={ARROW_DOWN} color="000" />}
-          >
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <h3 className={classes.questionTitle}>{item.question}</h3>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>

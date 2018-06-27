@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
-import Icon from '../../Icon';
 import { ARROW_DOWN } from '../../IconList';
 import RegisterButton from './RegisterButton';
 import IntroTitle from './IntroTitle';
@@ -110,7 +110,7 @@ const Home = props => {
             color="secondary"
             variant="fab"
           >
-            <Icon icon={ARROW_DOWN} />
+            <SvgIcon nativeColor="#fff">{ARROW_DOWN}</SvgIcon>
           </Button>
         </div>
       </section>

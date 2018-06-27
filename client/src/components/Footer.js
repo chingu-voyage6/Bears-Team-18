@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
-import Icon from './Icon';
 import { GITHUB, MEDIUM, TWITTER, YOUTUBE } from './IconList';
 import patreon from '../images/homepage/patreon.png';
 
@@ -25,7 +24,7 @@ const styles = theme => ({
   footerSection: {
     width: '33%',
     textAlign: 'center',
-    padding: '30px 0 25px 0',
+    padding: '32px 0 24px 0',
   },
   footerTitle: {
     textTransform: 'uppercase',
@@ -36,11 +35,14 @@ const styles = theme => ({
   iconContainer: {
     margin: '0 0 16px',
   },
-  iconBtn: {
-    margin: '0 5px',
-
+  iconLink: {
+    color: '#fff',
+    margin: '0 8px',
+  },
+  icon: {
+    fontSize: 32,
     '&:hover': {
-      backgroundColor: '#15df89',
+      color: theme.palette.secondary.main,
     },
   },
   patreonBtn: {
@@ -99,39 +101,41 @@ const Footer = props => {
               admin@chingu.io
             </Typography>
           </a>
+
+          {/* ICONS */}
           <div className={classes.iconContainer}>
-            <IconButton
-              className={classes.iconBtn}
+            <a
+              className={classes.iconLink}
               href="https://medium.com/chingu"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Icon icon={MEDIUM} />
-            </IconButton>
-            <IconButton
-              className={classes.iconBtn}
+              <SvgIcon className={classes.icon}>{MEDIUM}</SvgIcon>
+            </a>
+            <a
+              className={classes.iconLink}
               href="https://www.youtube.com/channel/UCS7zmJXbe7FgTC3sHlUf4jw"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Icon icon={YOUTUBE} size="32" />
-            </IconButton>
-            <IconButton
-              className={classes.iconBtn}
+              <SvgIcon className={classes.icon}>{YOUTUBE}</SvgIcon>
+            </a>
+            <a
+              className={classes.iconLink}
               href="https://github.com/Chingu-cohorts"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Icon icon={GITHUB} size="32" />
-            </IconButton>
-            <IconButton
-              className={classes.iconBtn}
+              <SvgIcon className={classes.icon}>{GITHUB}</SvgIcon>
+            </a>
+            <a
+              className={classes.iconLink}
               href="https://twitter.com/ChinguCollabs"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Icon icon={TWITTER} size="32" />
-            </IconButton>
+              <SvgIcon className={classes.icon}>{TWITTER}</SvgIcon>
+            </a>
           </div>
 
           <a

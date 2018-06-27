@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
-import Icon from '../../Icon';
 import { GITHUB } from '../../IconList';
 
 const styles = {
@@ -70,7 +70,7 @@ const Auth = props => {
         <h2 className={classes.authTitle}>Log In with Github</h2>
 
         <Button className={classes.githubBtn} variant="raised" size="large">
-          <Icon icon={GITHUB} size="28" />
+          <SvgIcon style={{ fontSize: 28 }}>{GITHUB}</SvgIcon>
           <span className={classes.btnText}>Log In / Register</span>
         </Button>
 
