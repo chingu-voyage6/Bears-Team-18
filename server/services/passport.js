@@ -16,9 +16,10 @@ passport.use(
         } else {
           new User({
             displayName: profile._json.name,
-            email: profile._json.email,
+            email: profile._json.email || null,
             githubId: profile._json.id,
             photoURL: profile._json.avatar_url,
+            permission: 'user',
             signUpComplete: false,
           })
             .save()

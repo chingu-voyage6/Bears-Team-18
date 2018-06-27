@@ -9,7 +9,7 @@ const schema = gql`
   }
 
   type Mutation {
-    updateUser(githubId: String!, input: UpdatedUser!): User!
+    updateUser(githubId: String!, input: UpdatedUserInput!): User!
   }
 
   schema {

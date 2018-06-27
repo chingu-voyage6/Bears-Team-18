@@ -1,10 +1,11 @@
 module.exports = `
   type User {
     displayName: String!
-    email: String!
     githubId: String!
     signUpComplete: Boolean!
-
+    permission: String!
+    
+    email: String
     photoURL: String
     chinguDetails: ChinguDetails
   }
@@ -16,7 +17,7 @@ module.exports = `
     fullTime: Boolean!
   } 
 
-  input UpdatedUser {
+  input UpdatedUserInput {
     displayName: String
     email: String
     signUpComplete: Boolean
