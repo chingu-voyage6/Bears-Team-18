@@ -28,6 +28,9 @@ app.use('/api/auth', authRouter);
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: ({ req }) => ({
+    user: req.user,
+  }),
 });
 
 server.applyMiddleware({ app });

@@ -1,9 +1,7 @@
 const UserModel = require('../../mongoose/user');
 
 module.exports = {
-  getUser: async (_, { githubId }) => {
-    const user = await UserModel.findOne({ githubId });
-
+  getUser: async (_, { githubId }, { user }) => {
     if (!user) {
       throw new Error('You are not signed in or your session has expired');
     }
@@ -11,9 +9,11 @@ module.exports = {
     return user;
   },
 
-  updateUser: (_, { input, githubId }) => {
-    const { ...update } = input;
+  updateUser: (_, { input }, { user }) => {
+    if (!user) {
+      throw new Error('You are not signed in or your session has expired');
+    }
 
-    return UserModel.findOneAndUpdate({ githubId }, update, { new: true });
+    return UserModel.findOneAndUpdate(user.githubId, input, { new: true });
   },
 };
