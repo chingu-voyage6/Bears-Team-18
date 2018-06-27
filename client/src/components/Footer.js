@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 
 import Icon from './Icon';
@@ -27,17 +28,13 @@ const styles = theme => ({
     padding: '30px 0 25px 0',
   },
   footerTitle: {
-    fontFamily: theme.typography.title.fontFamily,
-    fontSize: '1.8em',
-    fontWeight: '400',
-    margin: '0 0 25px 0',
-  },
-  sectionContent: {
-    fontSize: '1.6em',
-    marginBottom: '25px',
+    textTransform: 'uppercase',
+    letterSpacing: '1px',
+    fontWeight: 700,
+    marginBottom: '24px',
   },
   iconContainer: {
-    margin: '20px 0',
+    margin: '0 0 16px',
   },
   iconBtn: {
     margin: '0 5px',
@@ -55,15 +52,11 @@ const styles = theme => ({
   },
   footerLink: {
     color: '#fff',
-    margin: '10px 0 25px 0',
-    fontSize: '1.6em',
+    margin: '12px 0 24px 0',
     textDecoration: 'none',
     '&:hover': {
       color: theme.palette.secondary.main,
     },
-  },
-  lastLink: {
-    padding: '0',
   },
 
   '@media screen and (max-width: 768px)': {
@@ -81,13 +74,31 @@ const styles = theme => ({
 const Footer = props => {
   const { classes } = props;
 
+  const renderLink = (title, link) => (
+    <Link className={classes.footerLink} to={link}>
+      <Typography variant="button" color="inherit">
+        {title}
+      </Typography>
+    </Link>
+  );
+
   return (
     <footer className={classes.footerContainer}>
       <div className={classes.footerSection}>
-        <h3 className={classes.footerTitle}>MORE CHINGU</h3>
+        <Typography
+          className={classes.footerTitle}
+          variant="title"
+          color="inherit"
+        >
+          More Chingu
+        </Typography>
 
-        <div className={classes.sectionContent}>
-          <div>admin@chingu.io</div>
+        <div className={classes.linkContainer}>
+          <a className={classes.footerLink} href="mailto:admin@chingu.io">
+            <Typography variant="button" color="inherit">
+              admin@chingu.io
+            </Typography>
+          </a>
           <div className={classes.iconContainer}>
             <IconButton
               className={classes.iconBtn}
@@ -138,32 +149,32 @@ const Footer = props => {
       </div>
 
       <div className={classes.footerSection}>
-        <h3 className={classes.footerTitle}>COMPANY</h3>
+        <Typography
+          className={classes.footerTitle}
+          variant="title"
+          color="inherit"
+        >
+          Company
+        </Typography>
         <div className={classes.linkContainer}>
-          <Link className={classes.footerLink} to="/">
-            Our Team
-          </Link>
-          <Link className={classes.footerLink} to="/privacy-policy">
-            Privacy Policy
-          </Link>
-          <Link className={classes.footerLink} to="/faq">
-            FAQ
-          </Link>
+          {renderLink('Our Team', '/')}
+          {renderLink('Privacy Policy', '/privacy-policy')}
+          {renderLink('FAQ', '/faq')}
         </div>
       </div>
 
       <div className={classes.footerSection}>
-        <h3 className={classes.footerTitle}>VOYAGES</h3>
+        <Typography
+          className={classes.footerTitle}
+          variant="title"
+          color="inherit"
+        >
+          Voyages
+        </Typography>
         <div className={classes.linkContainer}>
-          <Link className={classes.footerLink} to="/">
-            Past Projects
-          </Link>
-          <Link className={classes.footerLink} to="/">
-            Upcoming Voyages
-          </Link>
-          <Link className={classes.footerLink} to="/">
-            How to Join
-          </Link>
+          {renderLink('Past Projects', '/')}
+          {renderLink('Upcoming Voyages', '/')}
+          {renderLink('How to Join', '/')}
         </div>
       </div>
     </footer>
