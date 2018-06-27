@@ -13,7 +13,7 @@ const styles = theme => ({
     },
   },
   defaultImg: { width: '200px' },
-  lgImg: { width: '300px' },
+  lgImg: { width: '300px', marginBottom: 8 },
   widget: {
     width: '25%',
     '@media screen and (min-width: 800px) and (max-width: 1279px)': {
@@ -24,10 +24,6 @@ const styles = theme => ({
       width: '100%',
       margin: '16px 0',
     },
-  },
-  widgetTitle: {
-    fontWeight: 400,
-    textTransform: 'uppercase',
   },
   widgetDescription: {
     fontSize: '1rem',
@@ -50,13 +46,7 @@ const WidgetWrapper = ({ content, classes, imgSize }) => {
       return (
         <div key={item.title} className={classes.widget}>
           <img className={imgClass} src={item.image} alt={item.title} />
-          <Typography
-            component="h3"
-            variant="headline"
-            color="inherit"
-            paragraph
-            className={classes.widgetTitle}
-          >
+          <Typography component="h3" variant="title" color="inherit" paragraph>
             {item.title}
           </Typography>
           <Typography
