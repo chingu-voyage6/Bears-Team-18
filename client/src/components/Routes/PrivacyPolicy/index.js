@@ -12,11 +12,6 @@ const styles = {
     margin: '0 auto',
     padding: '40px 16px',
   },
-  title: {
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
-    letterSpacing: 1,
-  },
   privacyText: {
     marginBottom: '20px',
   },
@@ -27,12 +22,7 @@ const PrivacyPolicy = props => {
     return content.map(item => {
       return (
         <section key={item.key}>
-          <Typography
-            gutterBottom
-            color="inherit"
-            variant="title"
-            style={{ fontWeight: 'bold' }}
-          >
+          <Typography gutterBottom color="inherit" variant="title">
             {item.title}
           </Typography>
           {item.content.map((par, index) => {
@@ -69,7 +59,7 @@ const PrivacyPolicy = props => {
         align="center"
         variant="display1"
         color="inherit"
-        className={classes.title}
+        gutterBottom
       >
         Privacy Policy
       </Typography>

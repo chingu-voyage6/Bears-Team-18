@@ -26,9 +26,6 @@ const styles = theme => ({
     padding: '32px 0 24px 0',
   },
   footerTitle: {
-    textTransform: 'uppercase',
-    letterSpacing: '1px',
-    fontWeight: 700,
     marginBottom: '24px',
   },
   iconContainer: {

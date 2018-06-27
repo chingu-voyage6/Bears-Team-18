@@ -19,11 +19,6 @@ const styles = {
     margin: '0 auto',
     marginBottom: '40px',
   },
-  title: {
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
-    letterSpacing: 1,
-  },
 };
 
 const FAQ = props => {
@@ -32,7 +27,11 @@ const FAQ = props => {
       return (
         <ExpansionPanel key={item.key}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography color="inherit" variant="title">
+            <Typography
+              color="inherit"
+              variant="headline"
+              style={{ fontSize: '1rem', fontWeight: 500 }}
+            >
               {item.question}
             </Typography>
           </ExpansionPanelSummary>
@@ -61,24 +60,14 @@ const FAQ = props => {
   return (
     <div className={classes.faqContainer}>
       <div className={classes.faqSection}>
-        <Typography
-          variant="display1"
-          color="inherit"
-          className={classes.title}
-          gutterBottom
-        >
+        <Typography variant="title" color="inherit" gutterBottom>
           Company FAQs
         </Typography>
         {renderFAQContent(staticAssets.companyFAQ, classes)}
       </div>
 
       <div className={classes.faqSection}>
-        <Typography
-          variant="display1"
-          color="inherit"
-          className={classes.title}
-          gutterBottom
-        >
+        <Typography variant="title" color="inherit" gutterBottom>
           Program FAQs
         </Typography>
         {renderFAQContent(staticAssets.programFAQ, classes)}

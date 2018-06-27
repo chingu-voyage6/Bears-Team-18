@@ -19,11 +19,6 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
-  title: {
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
-    letterSpacing: 1,
-  },
   githubBtn: {
     backgroundColor: 'black',
     color: 'white',
@@ -67,13 +62,7 @@ const Auth = props => {
 
   return (
     <Paper className={classes.authContainer}>
-      <Typography
-        component="h1"
-        align="center"
-        variant="title"
-        gutterBottom
-        className={classes.title}
-      >
+      <Typography component="h1" align="center" variant="title" gutterBottom>
         Log in with GitHub
       </Typography>
 

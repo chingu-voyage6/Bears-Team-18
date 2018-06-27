@@ -29,6 +29,9 @@ export default createMuiTheme({
     },
     title: {
       fontFamily: '"Raleway", sans-serif',
+      textTransform: 'uppercase',
+      fontWeight: 700,
+      letterSpacing: 1,
     },
   },
 });
