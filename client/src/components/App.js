@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from './theme';
 
 import Header from './Header';
@@ -26,8 +27,6 @@ const styles = theme => ({
     body: {
       margin: '0 0 300px',
       padding: '0',
-      lineHeight: '1.6',
-      fontSize: '62.5%',
       fontFamily: theme.typography.fontFamily,
     },
 
@@ -41,30 +40,35 @@ const styles = theme => ({
 
 const App = props => {
   return (
-    <MuiThemeProvider theme={theme}>
-      <Router>
-        <ScrollToTop>
-          <Header />
+    <CssBaseline>
+      <MuiThemeProvider theme={theme}>
+        <Router>
+          <ScrollToTop>
+            <Header />
 
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/login" component={Auth} />
-            <Route path="/faq" component={FAQ} />
-            <Route path="/privacy-policy" component={PrivacyPolicy} />
-            <Route path="/token" component={TokenConfig} />
-            <Route path="/user-dashboard" component={UserDashboard} />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/login" component={Auth} />
+              <Route path="/faq" component={FAQ} />
+              <Route path="/privacy-policy" component={PrivacyPolicy} />
+              <Route path="/token" component={TokenConfig} />
+              <Route path="/user-dashboard" component={UserDashboard} />
 
-            <Route
-              render={routeProps => (
-                <ErrorPage {...routeProps} title="404 Error - URL Not Found" />
-              )}
-            />
-          </Switch>
+              <Route
+                render={routeProps => (
+                  <ErrorPage
+                    {...routeProps}
+                    title="404 Error - URL Not Found"
+                  />
+                )}
+              />
+            </Switch>
 
-          <Footer />
-        </ScrollToTop>
-      </Router>
-    </MuiThemeProvider>
+            <Footer />
+          </ScrollToTop>
+        </Router>
+      </MuiThemeProvider>
+    </CssBaseline>
   );
 };
 
