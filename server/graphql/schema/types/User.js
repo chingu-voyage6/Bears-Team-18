@@ -1,6 +1,4 @@
-const { gql } = require('apollo-server');
-
-module.exports = gql`
+module.exports = `
   type User {
     displayName: String!
     email: String!
@@ -8,9 +6,21 @@ module.exports = gql`
     signUpComplete: Boolean!
 
     photoURL: String
+    chinguDetails: ChinguDetails
   }
 
-  type Query {
-    user(githubId: String!): User
+  type ChinguDetails {
+    timezone: String!
+    role: String!
+    skillLevel: String!
+    fullTime: Boolean!
+  } 
+
+  input UpdatedUser {
+    displayName: String
+    email: String
+    signUpComplete: Boolean
+
+    photoURL: String
   }
 `;

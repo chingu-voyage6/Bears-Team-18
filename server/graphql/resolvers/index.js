@@ -1,7 +1,11 @@
-const queries = require('./queries');
+const UserResolver = require('./user-resolver');
 
 module.exports = {
   Query: {
-    ...queries,
+    getUser: UserResolver.getUser,
+  },
+
+  Mutation: {
+    updateUser: UserResolver.updateUser,
   },
 };
