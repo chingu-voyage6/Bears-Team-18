@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -11,24 +12,17 @@ import staticAssets from './static';
 
 const styles = {
   faqContainer: {
-    paddingBottom: '25px',
+    padding: '24px 0',
   },
   faqSection: {
     maxWidth: '750px',
     margin: '0 auto',
     marginBottom: '40px',
   },
-  faqTitle: {
-    fontSize: '2.8em',
-  },
-
-  questionTitle: {
-    fontSize: '2em',
-    fontWeight: '500',
-  },
-  answerText: {
-    fontSize: '1.6em',
-    fontWeight: '500',
+  title: {
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+    letterSpacing: 1,
   },
 };
 
@@ -38,24 +32,22 @@ const FAQ = props => {
       return (
         <ExpansionPanel key={item.key}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <h3 className={classes.questionTitle}>{item.question}</h3>
+            <Typography color="inherit" variant="title">
+              {item.question}
+            </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <div>
               {item.answer.map((par, index) => {
                 if (typeof par === 'object') {
                   return (
-                    <p key={index} className={classes.answerText}>
+                    <p key={index}>
                       <strong>{par[0]}</strong>
                     </p>
                   );
                 }
 
-                return (
-                  <p key={index} className={classes.answerText}>
-                    {par}
-                  </p>
-                );
+                return <p key={index}>{par}</p>;
               })}
             </div>
           </ExpansionPanelDetails>
@@ -69,12 +61,26 @@ const FAQ = props => {
   return (
     <div className={classes.faqContainer}>
       <div className={classes.faqSection}>
-        <h2 className={classes.faqTitle}>Company FAQs</h2>
+        <Typography
+          variant="display1"
+          color="inherit"
+          className={classes.title}
+          gutterBottom
+        >
+          Company FAQs
+        </Typography>
         {renderFAQContent(staticAssets.companyFAQ, classes)}
       </div>
 
       <div className={classes.faqSection}>
-        <h2 className={classes.faqTitle}>Program FAQs</h2>
+        <Typography
+          variant="display1"
+          color="inherit"
+          className={classes.title}
+          gutterBottom
+        >
+          Program FAQs
+        </Typography>
         {renderFAQContent(staticAssets.programFAQ, classes)}
       </div>
     </div>
