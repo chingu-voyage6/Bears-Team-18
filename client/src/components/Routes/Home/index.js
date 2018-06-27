@@ -10,6 +10,7 @@ import RegisterButton from './RegisterButton';
 import IntroTitle from './IntroTitle';
 import Section from './Section';
 import WidgetWrapper from './WidgetWrapper';
+import CtaSection from './CtaSection';
 
 import staticAssets from './static';
 
@@ -34,18 +35,6 @@ const styles = theme => ({
   scrollBtn: {
     display: 'none',
     marginBottom: '24px',
-  },
-  bottomTitle: {
-    fontFamily: theme.typography.title.fontFamily,
-    color: theme.palette.secondary.main,
-    fontSize: '5em',
-    margin: '0 0 24px 0',
-  },
-  bottomText: {
-    fontSize: '2em',
-    fontWeight: '500',
-    width: '70%',
-    margin: '0 auto 24px',
   },
   '@media screen and (min-width: 1920px)': {
     homeIntro: {
@@ -90,9 +79,6 @@ const styles = theme => ({
       alignItems: 'center',
     },
     scrollBtn: { display: 'flex' },
-    ctaSection: {
-      padding: '16px 0',
-    },
   },
 });
 
@@ -148,17 +134,7 @@ const Home = props => {
       </Section>
 
       {/* CALL TO ACTION */}
-      <Section variant="white">
-        <div className={classes.ctaSection}>
-          <h2 className={classes.bottomTitle}>Chingu</h2>
-          <p className={classes.bottomText}>
-            Chingu is a global collaboration platform and coding-cohort
-            generator. We connect motivated learners with shared goals to learn,
-            help and build together.
-          </p>
-          <RegisterButton title="Apply Now" />
-        </div>
-      </Section>
+      <CtaSection />
     </div>
   );
 };
