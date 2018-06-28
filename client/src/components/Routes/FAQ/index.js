@@ -59,16 +59,34 @@ const FAQ = props => {
 
   return (
     <div className={classes.faqContainer}>
+      <Typography
+        align="center"
+        variant="display1"
+        color="inherit"
+        style={{ marginBottom: 40 }}
+      >
+        Frequently Asked Questions
+      </Typography>
       <div className={classes.faqSection}>
-        <Typography variant="title" color="inherit" gutterBottom>
-          Company FAQs
+        <Typography
+          variant="title"
+          color="inherit"
+          style={{ marginLeft: 8 }}
+          gutterBottom
+        >
+          Company
         </Typography>
         {renderFAQContent(staticAssets.companyFAQ, classes)}
       </div>
 
       <div className={classes.faqSection}>
-        <Typography variant="title" color="inherit" gutterBottom>
-          Program FAQs
+        <Typography
+          variant="title"
+          color="inherit"
+          style={{ marginLeft: 8 }}
+          gutterBottom
+        >
+          Program
         </Typography>
         {renderFAQContent(staticAssets.programFAQ, classes)}
       </div>

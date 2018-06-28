@@ -74,8 +74,7 @@ const projects = [
   {
     title: 'Code Stories',
     image: images['project-03'],
-    description:
-      'Remix of Humans of New York for the Free Code Camp community.',
+    description: 'Remix of Humans of New York for the freeCodeCamp community.',
   },
 ];
 
