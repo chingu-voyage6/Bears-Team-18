@@ -25,7 +25,7 @@ const styles = theme => ({
       minHeight: '100%',
     },
     body: {
-      margin: '0 0 300px',
+      margin: '0 0 262px',
       padding: '0',
       fontFamily: theme.typography.fontFamily,
     },
@@ -33,7 +33,7 @@ const styles = theme => ({
     img: { maxWidth: '100%' },
 
     '@media screen and (max-width: 768px)': {
-      body: { margin: '0 0 831px' },
+      body: { margin: '0 0 706px' },
     },
   },
 });

@@ -12,7 +12,7 @@ const styles = ({ breakpoints, typography, palette }) => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-around',
-    minHeight: '800px',
+    minHeight: '880px',
     margin: '0 auto',
     '& img': {
       width: '156px',
@@ -35,7 +35,7 @@ const styles = ({ breakpoints, typography, palette }) => ({
   [breakpoints.up('sm')]: {
     ctaSection: {
       flexDirection: 'row',
-      minHeight: '450px',
+      minHeight: '440px',
       marginLeft: '64px',
     },
     [breakpoints.up(800)]: {
@@ -55,6 +55,10 @@ const styles = ({ breakpoints, typography, palette }) => ({
     },
     title: {
       alignSelf: 'flex-start',
+      fontSize: '4rem',
+      [breakpoints.up(800)]: {
+        fontSize: '5rem',
+      },
     },
     paragraph: {
       maxWidth: '100%',
