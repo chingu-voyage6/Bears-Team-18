@@ -59,7 +59,7 @@ const PrivacyPolicy = props => {
         align="center"
         variant="display1"
         color="inherit"
-        gutterBottom
+        style={{ marginBottom: '40px' }}
       >
         Privacy Policy
       </Typography>

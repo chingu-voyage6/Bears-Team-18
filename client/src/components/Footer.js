@@ -19,6 +19,7 @@ const styles = theme => ({
     bottom: '0',
     width: '100%',
     overflow: 'hidden',
+    padding: '0 8px',
   },
   footerSection: {
     width: '33%',
@@ -57,7 +58,7 @@ const styles = theme => ({
     },
   },
 
-  '@media screen and (max-width: 768px)': {
+  [theme.breakpoints.down('xs')]: {
     footerContainer: {
       flexDirection: 'column',
     },

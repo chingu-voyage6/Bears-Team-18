@@ -12,7 +12,7 @@ import { GITHUB } from '../../IconList';
 const styles = {
   authContainer: {
     minHeight: 320,
-    maxWidth: '640px',
+    maxWidth: '600px',
     margin: '40px auto',
     padding: '24px 0',
     display: 'flex',
@@ -43,7 +43,7 @@ const styles = {
     textDecoration: 'none',
   },
 
-  '@media screen and (max-width: 768px)': {
+  '@media screen and (max-width: 600px)': {
     authContainer: {
       backgroundColor: 'white',
       maxWidth: '100%',

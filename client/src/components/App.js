@@ -28,11 +28,12 @@ const styles = theme => ({
       margin: '0 0 262px',
       padding: '0',
       fontFamily: theme.typography.fontFamily,
+      backgroundColor: '#fff',
     },
 
     img: { maxWidth: '100%' },
 
-    '@media screen and (max-width: 768px)': {
+    [theme.breakpoints.down('xs')]: {
       body: { margin: '0 0 706px' },
     },
   },
