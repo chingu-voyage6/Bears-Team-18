@@ -14,81 +14,14 @@ import CtaSection from './CtaSection';
 
 import staticAssets from './static';
 
-const styles = theme => ({
-  homeContainer: {
-    textAlign: 'center',
-  },
-  homeIntro: {
-    height: 'calc(100vh - 64px)',
-    [theme.breakpoints.down('xs')]: { height: 'calc(100vh - 96px)' },
-    color: '#fff',
-    backgroundColor: `${theme.palette.primary.main} !important`,
-  },
-  titleWrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    paddingTop: '80px',
-    paddingLeft: '96px',
-    height: 'calc(100vh - 96px)',
-  },
-  scrollBtn: {
-    display: 'none',
-    marginBottom: '24px',
-  },
-  '@media screen and (min-width: 1920px)': {
-    homeIntro: {
-      background: `url(${
-        staticAssets.images['main-bg-xl']
-      }) bottom right / auto 85% no-repeat`,
-    },
-  },
-  '@media screen and (min-width: 1280px) and (max-width: 1919px) and (max-height: 760px)': {
-    homeIntro: {
-      background: `url(${
-        staticAssets.images['main-bg-l']
-      }) bottom right / auto 85% no-repeat`,
-    },
-  },
-  '@media screen and (min-width: 1280px) and (max-width: 1919px) and (min-height: 761px)': {
-    homeIntro: {
-      background: `url(${
-        staticAssets.images['main-bg-l']
-      }) bottom right / 66.666666vw no-repeat`,
-    },
-  },
-  '@media screen and (min-width: 800px) and (max-width: 1279px)': {
-    homeIntro: {
-      background: `url(${staticAssets.images['main-bg-l']}) no-repeat`,
-      backgroundPosition: 'bottom left 400px',
-      backgroundSize: 'auto 90%',
-    },
-  },
-  '@media screen and (max-width: 799px)': {
-    homeIntro: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      margin: '0 auto',
-      background: 'none',
-    },
-    titleWrapper: {
-      marginTop: '48px',
-      marginBottom: 'auto',
-      padding: '0',
-      alignItems: 'center',
-    },
-    scrollBtn: { display: 'flex' },
-  },
-});
-
-const restyled = ({ breakpoints, palette, spacing }) => ({
+const styles = ({ breakpoints, palette, spacing }) => ({
   homeContainer: {
     textAlign: 'center',
   },
   homeIntro: {
     height: 'calc(100vh - 96px)',
-    minHeight: '450px',
+    [breakpoints.up('sm')]: { height: 'calc(100vh - 64px)' },
+    minHeight: '384px', // total minHeight including header is 480px
     color: '#fff',
     backgroundColor: palette.primary.main,
   },
@@ -106,6 +39,33 @@ const restyled = ({ breakpoints, palette, spacing }) => ({
   },
   '@media screen and (max-height: 550px)': {
     scrollBtn: { display: 'none' },
+  },
+  [`${breakpoints.up(800)} and (orientation: landscape)`]: {
+    scrollBtn: { display: 'none' },
+    homeIntro: {
+      display: 'flex',
+    },
+    titleWrapper: {
+      width: '432px',
+      maxHeight: '600px',
+      textAlign: 'right',
+    },
+    buttonWrapper: {
+      width: '83%', // align with right-aligned text
+    },
+    bgContainer: {
+      display: 'initial',
+      height: '95%',
+      width: 'calc(100vw - 432px)',
+      alignSelf: 'flex-end',
+      background: `url(${staticAssets.images['main-bg-l']}) no-repeat`,
+      // top left cover: will clip bottom or right depending on aspect ratio
+      backgroundPosition: 'top left',
+      backgroundSize: 'cover',
+      [breakpoints.up('lg')]: {
+        backgroundImage: `url(${staticAssets.images['main-bg-xl']})`,
+      },
+    },
   },
 });
 
@@ -130,7 +90,9 @@ const Home = props => {
             <IntroTitle title="build more" />
           </div>
 
-          <RegisterButton title="Sign Up" />
+          <div className={classes.buttonWrapper}>
+            <RegisterButton title="Sign Up" />
+          </div>
 
           {/* SCROLL BUTTON */}
           <Button
@@ -173,4 +135,4 @@ Home.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(restyled, { withTheme: true })(Home);
+export default withStyles(styles, { withTheme: true })(Home);
