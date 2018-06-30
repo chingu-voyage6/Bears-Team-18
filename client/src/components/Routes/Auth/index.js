@@ -5,9 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import SvgIcon from '@material-ui/core/SvgIcon';
-
-import { GITHUB } from '../../IconList';
+import GithubCircle from 'mdi-material-ui/GithubCircle';
 
 const styles = {
   authContainer: {
@@ -67,7 +65,7 @@ const Auth = props => {
       </Typography>
 
       <Button className={classes.githubBtn} variant="raised" size="large">
-        <SvgIcon style={{ fontSize: 32, marginRight: 16 }}>{GITHUB}</SvgIcon>
+        <GithubCircle style={{ fontSize: 32, marginRight: 16 }} />
         Log In / Register
       </Button>
 

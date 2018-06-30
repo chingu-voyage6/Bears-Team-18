@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ChevronDown from 'mdi-material-ui/ChevronDown';
 
 import staticAssets from './static';
 
@@ -26,7 +26,7 @@ const FAQ = props => {
     return content.map(item => {
       return (
         <ExpansionPanel key={item.key}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <ExpansionPanelSummary expandIcon={<ChevronDown />}>
             <Typography
               color="inherit"
               variant="headline"

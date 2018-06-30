@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^1.2.1",
-    "@material-ui/icons": "^1.1.0",
+    "mdi-material-ui": "^5.1.1",
     "prop-types": "^15.6.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",

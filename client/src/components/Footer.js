@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import SvgIcon from '@material-ui/core/SvgIcon';
 
-import { GITHUB, MEDIUM, TWITTER, YOUTUBE } from './IconList';
+import GithubCircle from 'mdi-material-ui/GithubCircle';
+import Youtube from 'mdi-material-ui/Youtube';
+import Medium from 'mdi-material-ui/Medium';
+import Twitter from 'mdi-material-ui/Twitter';
 import patreon from '../images/homepage/patreon.png';
 
 const styles = theme => ({
@@ -106,7 +108,7 @@ const Footer = props => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <SvgIcon className={classes.icon}>{MEDIUM}</SvgIcon>
+              <Medium className={classes.icon} />
             </a>
             <a
               className={classes.iconLink}
@@ -114,7 +116,7 @@ const Footer = props => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <SvgIcon className={classes.icon}>{YOUTUBE}</SvgIcon>
+              <Youtube className={classes.icon} />
             </a>
             <a
               className={classes.iconLink}
@@ -122,7 +124,7 @@ const Footer = props => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <SvgIcon className={classes.icon}>{GITHUB}</SvgIcon>
+              <GithubCircle className={classes.icon} />
             </a>
             <a
               className={classes.iconLink}
@@ -130,7 +132,7 @@ const Footer = props => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <SvgIcon className={classes.icon}>{TWITTER}</SvgIcon>
+              <Twitter className={classes.icon} />
             </a>
           </div>
 

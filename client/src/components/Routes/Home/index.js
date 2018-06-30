@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import ChevronDown from 'mdi-material-ui/ChevronDown';
 
-import { ARROW_DOWN } from '../../IconList';
 import RegisterButton from './RegisterButton';
 import IntroTitle from './IntroTitle';
 import Section from './Section';
@@ -101,7 +100,7 @@ const Home = props => {
             color="secondary"
             variant="fab"
           >
-            <SvgIcon nativeColor="#fff">{ARROW_DOWN}</SvgIcon>
+            <ChevronDown nativeColor="#fff" />
           </Button>
         </div>
         <div className={classes.bgContainer} />
