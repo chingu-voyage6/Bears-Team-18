@@ -82,6 +82,33 @@ const styles = theme => ({
   },
 });
 
+const restyled = ({ breakpoints, palette, spacing }) => ({
+  homeContainer: {
+    textAlign: 'center',
+  },
+  homeIntro: {
+    height: 'calc(100vh - 96px)',
+    minHeight: '450px',
+    color: '#fff',
+    backgroundColor: palette.primary.main,
+  },
+  bgContainer: {
+    display: 'none',
+  },
+  titleWrapper: {
+    height: 'inherit',
+    minHeight: 'inherit',
+    padding: `${spacing[3]} ${spacing[2]}`,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  '@media screen and (max-height: 550px)': {
+    scrollBtn: { display: 'none' },
+  },
+});
+
 const Home = props => {
   function triggerComponentScroll(component) {
     document.getElementById(component).scrollIntoView({
@@ -97,12 +124,14 @@ const Home = props => {
       {/* INTRO */}
       <section className={classes.homeIntro}>
         <div className={classes.titleWrapper}>
-          <IntroTitle title="code more" />
-          <IntroTitle title="learn more" />
-          <IntroTitle title="build more" />
-          <div style={{ margin: 'auto 0' }}>
-            <RegisterButton title="Sign Up" />
+          <div>
+            <IntroTitle title="code more" />
+            <IntroTitle title="learn more" />
+            <IntroTitle title="build more" />
           </div>
+
+          <RegisterButton title="Sign Up" />
+
           {/* SCROLL BUTTON */}
           <Button
             onClick={() => triggerComponentScroll('process')}
@@ -113,6 +142,7 @@ const Home = props => {
             <SvgIcon nativeColor="#fff">{ARROW_DOWN}</SvgIcon>
           </Button>
         </div>
+        <div className={classes.bgContainer} />
       </section>
 
       {/* PROCESS */}
@@ -143,4 +173,4 @@ Home.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(Home);
+export default withStyles(restyled, { withTheme: true })(Home);
