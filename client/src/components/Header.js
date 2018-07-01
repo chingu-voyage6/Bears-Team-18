@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-
 import { withStyles } from '@material-ui/core/styles';
+
+import logo from '../images/chingu/chingu.png';
 
 const styles = ({ palette, breakpoints, typography }) => ({
   headerContainer: {
@@ -21,6 +22,8 @@ const styles = ({ palette, breakpoints, typography }) => ({
     },
   },
   titleLink: {
+    display: 'flex',
+    alignItems: 'center',
     color: 'white',
     textDecoration: 'none',
     textTransform: 'uppercase',
@@ -47,6 +50,12 @@ const Header = props => {
   return (
     <header className={classes.headerContainer}>
       <Link className={classes.titleLink} to="/">
+        <img
+          src={logo}
+          alt="Chingu logo"
+          width={48}
+          style={{ marginRight: 8 }}
+        />
         CHINGU
       </Link>
 
