@@ -13,7 +13,8 @@ const styles = ({ palette }) => ({
     textAlign: 'center',
     flexDirection: 'column',
     justifyContent: 'space-around',
-    padding: '24px 0',
+    padding: '24px',
+    margin: 'auto',
   },
   link: {
     color: palette.secondary.main,

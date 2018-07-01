@@ -12,7 +12,7 @@ import staticAssets from './static';
 
 const styles = {
   faqContainer: {
-    padding: '24px 0',
+    padding: '40px 16px 0',
   },
   faqSection: {
     maxWidth: '750px',

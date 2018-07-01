@@ -11,7 +11,7 @@ const styles = {
   authContainer: {
     minHeight: 320,
     maxWidth: '600px',
-    margin: '40px auto',
+    margin: 'auto',
     padding: '24px 0',
     display: 'flex',
     flexDirection: 'column',

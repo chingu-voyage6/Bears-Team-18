@@ -12,9 +12,6 @@ const styles = {
     margin: '0 auto',
     padding: '40px 16px',
   },
-  privacyText: {
-    marginBottom: '20px',
-  },
 };
 
 const PrivacyPolicy = props => {
@@ -40,11 +37,7 @@ const PrivacyPolicy = props => {
               );
             }
 
-            return (
-              <p key={index} className={classes.privacyText}>
-                {par}
-              </p>
-            );
+            return <p key={index}>{par}</p>;
           })}
         </section>
       );

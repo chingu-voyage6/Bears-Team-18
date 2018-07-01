@@ -21,20 +21,19 @@ import ScrollToTop from './ScrollToTop';
 const styles = theme => ({
   '@global': {
     html: {
-      position: 'relative',
       minHeight: '100%',
     },
     body: {
-      margin: '0 0 262px',
-      padding: '0',
+      padding: 0,
       fontFamily: theme.typography.fontFamily,
       backgroundColor: '#fff',
     },
-
     img: { maxWidth: '100%' },
-
-    [theme.breakpoints.down('xs')]: {
-      body: { margin: '0 0 706px' },
+    // main section min-height is 100vh - header - footer
+    main: {
+      minHeight: 'calc(100vh - 326px)',
+      display: 'flex',
+      flexDirection: 'column',
     },
   },
 });
@@ -47,23 +46,25 @@ const App = props => {
           <ScrollToTop>
             <Header />
 
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/login" component={Auth} />
-              <Route path="/faq" component={FAQ} />
-              <Route path="/privacy-policy" component={PrivacyPolicy} />
-              <Route path="/token" component={TokenConfig} />
-              <Route path="/user-dashboard" component={UserDashboard} />
+            <main>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/login" component={Auth} />
+                <Route path="/faq" component={FAQ} />
+                <Route path="/privacy-policy" component={PrivacyPolicy} />
+                <Route path="/token" component={TokenConfig} />
+                <Route path="/user-dashboard" component={UserDashboard} />
 
-              <Route
-                render={routeProps => (
-                  <ErrorPage
-                    {...routeProps}
-                    title="404 Error - URL Not Found"
-                  />
-                )}
-              />
-            </Switch>
+                <Route
+                  render={routeProps => (
+                    <ErrorPage
+                      {...routeProps}
+                      title="404 Error - URL Not Found"
+                    />
+                  )}
+                />
+              </Switch>
+            </main>
 
             <Footer />
           </ScrollToTop>
