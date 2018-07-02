@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -8,23 +8,44 @@ import logo from '../images/chingu/chingu.png';
 
 const styles = ({ palette, breakpoints, typography }) => ({
   headerContainer: {
-    backgroundColor: palette.primary.main,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    minHeight: '64px',
+    height: '64px',
     padding: '0 32px',
     [breakpoints.down('xs')]: {
       flexDirection: 'column',
       justifyContent: 'space-around',
-      minHeight: '96px',
+      minHeight: '128px',
       paddingTop: '8px',
     },
   },
+
+  dark: {
+    backgroundColor: palette.primary.main,
+    '& a': {
+      color: '#fff',
+    },
+  },
+
+  white: {
+    backgroundColor: '#fff',
+    // title
+    '& > a': {
+      color: palette.secondary.main,
+    },
+    // links
+    '& > div': {
+      '& a:hover, & a:focus, & a:active': {
+        backgroundColor: palette.primary.main,
+        color: '#fff',
+      },
+    },
+  },
+
   titleLink: {
     display: 'flex',
     alignItems: 'center',
-    color: 'white',
     textDecoration: 'none',
     textTransform: 'uppercase',
     fontFamily: typography.title.fontFamily,
@@ -37,25 +58,30 @@ const styles = ({ palette, breakpoints, typography }) => ({
 
   linkContainer: {
     display: 'flex',
+    alignItems: 'center',
+    height: 'inherit',
   },
 
   headerLink: {
-    color: '#fff',
+    height: '100%',
+    lineHeight: '64px',
     fontSize: '1.25rem',
     textAlign: 'center',
     textDecoration: 'none',
-    margin: '0 16px',
+    padding: '0 16px',
     '&:hover': {
       color: palette.secondary.main,
     },
   },
 });
 
-const Header = props => {
-  const { classes } = props;
-
+const Header = ({ classes, location }) => {
   return (
-    <header className={classes.headerContainer}>
+    <header
+      className={`${classes.headerContainer} ${
+        location.pathname === '/' ? classes.dark : classes.white
+      }`}
+    >
       <Link className={classes.titleLink} to="/">
         <img
           src={logo}
@@ -95,4 +121,4 @@ Header.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(Header);
+export default withRouter(withStyles(styles, { withTheme: true })(Header));
