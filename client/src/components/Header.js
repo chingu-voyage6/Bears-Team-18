@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
 import logo from '../images/chingu/chingu.png';
@@ -35,9 +35,16 @@ const styles = ({ palette, breakpoints, typography }) => ({
     },
   },
 
+  linkContainer: {
+    display: 'flex',
+  },
+
   headerLink: {
     color: '#fff',
     fontSize: '1.25rem',
+    textAlign: 'center',
+    textDecoration: 'none',
+    margin: '0 16px',
     '&:hover': {
       color: palette.secondary.main,
     },
@@ -59,25 +66,26 @@ const Header = props => {
         CHINGU
       </Link>
 
-      <div>
-        <Button
+      <div className={classes.linkContainer}>
+        <Typography
           className={classes.headerLink}
+          component="a"
           href="https://medium.com/chingu"
           target="_blank"
           rel="noopener noreferrer"
-          disableRipple
+          variant="button"
         >
           Blog
-        </Button>
+        </Typography>
 
-        <Button
+        <Typography
           component={Link}
           to="/login"
           className={classes.headerLink}
-          disableRipple
+          variant="button"
         >
           Log In
-        </Button>
+        </Typography>
       </div>
     </header>
   );
