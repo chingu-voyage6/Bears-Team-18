@@ -4,20 +4,18 @@ import { Link, withRouter } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
+import HeaderMenu from './HeaderMenu';
+
 import logo from '../images/chingu/chingu.png';
 
 const styles = ({ palette, breakpoints, typography }) => ({
   headerContainer: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
     height: '64px',
     padding: '0 32px',
     [breakpoints.down('xs')]: {
-      flexDirection: 'column',
-      justifyContent: 'space-around',
-      minHeight: '128px',
-      paddingTop: '8px',
+      padding: '0 16px',
     },
   },
 
@@ -51,15 +49,17 @@ const styles = ({ palette, breakpoints, typography }) => ({
     fontFamily: typography.title.fontFamily,
     fontSize: '2rem',
     fontWeight: 700,
-    [breakpoints.up('sm')]: {
-      marginLeft: '16px',
-    },
+    marginLeft: '16px',
   },
 
   linkContainer: {
+    marginLeft: 'auto',
     display: 'flex',
     alignItems: 'center',
     height: 'inherit',
+    [breakpoints.down('xs')]: {
+      display: 'none',
+    },
   },
 
   headerLink: {
@@ -76,10 +76,11 @@ const styles = ({ palette, breakpoints, typography }) => ({
 });
 
 const Header = ({ classes, location }) => {
+  const variant = location.pathname === '/' ? 'dark' : 'white';
   return (
     <header
       className={`${classes.headerContainer} ${
-        location.pathname === '/' ? classes.dark : classes.white
+        variant === 'dark' ? classes.dark : classes.white
       }`}
     >
       <Link className={classes.titleLink} to="/">
@@ -113,6 +114,7 @@ const Header = ({ classes, location }) => {
           Log In
         </Typography>
       </div>
+      <HeaderMenu variant={variant} />
     </header>
   );
 };
