@@ -1,3 +1,4 @@
 const User = require('./User');
-
-module.exports = [User];
+const VoyageApplicants = require('./VoyageApplicants');
+const Operation = require('./Operation');
+module.exports = [User, Operation, VoyageApplicants];
