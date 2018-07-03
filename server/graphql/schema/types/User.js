@@ -1,6 +1,7 @@
 module.exports = `
   type User {
     displayName: String!
+    # Should this not be removed in order to prevent it being sent across the wire?
     githubId: String!
     signUpComplete: Boolean!
     permission: String!
@@ -20,8 +21,6 @@ module.exports = `
   input UpdatedUserInput {
     displayName: String
     email: String
-    signUpComplete: Boolean
-
     photoURL: String
   }
 `;
