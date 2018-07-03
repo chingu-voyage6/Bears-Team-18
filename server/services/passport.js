@@ -9,14 +9,13 @@ passport.use(
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
       callbackURL: process.env.GITHUB_CALLBACK_URL,
     },
-    function(accessToken, refreshToken, profile, cb) {
+    function(accessToken, refreshToken, profile, done) {
       User.findOne({ githubId: profile.id }).then(user => {
         if (user) {
-          cb(null, user);
+          return done(null, user);
         } else {
           new User({
             displayName: profile._json.name,
-            email: profile._json.email || null,
             githubId: profile._json.id,
             photoURL: profile._json.avatar_url,
             permission: 'user',
@@ -24,7 +23,7 @@ passport.use(
           })
             .save()
             .then(user => {
-              cb(null, user);
+              return done(null, user);
             });
         }
       });
