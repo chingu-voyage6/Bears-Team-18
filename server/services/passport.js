@@ -1,7 +1,15 @@
 const passport = require('passport');
 const githubStrategy = require('passport-github2').Strategy;
 const User = require('../mongoose/user');
+passport.serializeUser((user, done) => {
+  done(null, user.githubId);
+});
 
+passport.deserializeUser((githubId, done) => {
+  User.findOne({ githubId }).then(user => {
+    done(null, user);
+  });
+});
 passport.use(
   new githubStrategy(
     {
