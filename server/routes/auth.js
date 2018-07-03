@@ -45,10 +45,9 @@ router.get(
 
 router.get(
   '/github/callback',
-  passport.authenticate('github', { session: false }),
+  passport.authenticate('github'),
   async (req, res) => {
-    const token = await signUserToken(req.user.id);
-    res.redirect(`http://localhost:3000/token?${token}`);
+    res.redirect(`http://localhost:3000/`);
   }
 );
 
