@@ -6,8 +6,8 @@ const { typeDefs, resolvers } = require('./graphql/schema');
 const morgan = require('morgan');
 const logger = require('./services/logger');
 const passport = require('passport');
-const authMiddleware = require('./services/auth-middleware');
 const authRouter = require('./routes/auth');
+const cookieSession = require('cookie-session');
 require('./services/passport');
 require('./services/db-service');
 
@@ -20,9 +20,17 @@ process.env.NODE_ENV === 'production'
   : app.use(morgan('dev'));
 
 app.use(bodyParser.json());
-app.use(passport.initialize());
 
-app.use(authMiddleware);
+app.use(
+  cookieSession({
+    name: 'session',
+    maxAge: 1000 * 60 * 60 * 12,
+    keys: [process.env.COOKIE_KEY],
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/api/auth', authRouter);
 
 const server = new ApolloServer({
