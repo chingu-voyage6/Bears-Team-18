@@ -5,7 +5,7 @@ const resolvers = require('../resolvers');
 
 const schema = gql`
   type Query {
-    getUser(githubId: String!): User!
+    getUser: User!
     getApplicants(numberPerPage: Int!, pageRequested: Int!): [User]
     sortApplicants(
       sortMethod: String!
