@@ -45,10 +45,10 @@ router.get(
 
 router.get(
   '/github/callback',
-  passport.authenticate('github'),
-  async (req, res) => {
-    res.redirect(`http://localhost:3000/`);
-  }
+  passport.authenticate('github', {
+    successRedirect: `${process.env.REACT_ROUTE}/user-dashboard`,
+    failureRedirect: `${process.env.REACT_ROUTE}/invalid-url`,
+  })
 );
 
 module.exports = router;
