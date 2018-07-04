@@ -46,9 +46,15 @@ router.get(
 router.get(
   '/github/callback',
   passport.authenticate('github', {
-    successRedirect: `${process.env.REACT_ROUTE}/user-dashboard`,
-    failureRedirect: `${process.env.REACT_ROUTE}/invalid-url`,
-  })
+    failureRedirect: `${process.env.REACT_ROUTE}/invalid-path`,
+  }),
+  (req, res) => {
+    if (req.user && req.user.authComplete) {
+      res.redirect(`${process.env.REACT_ROUTE}/user-dashboard`);
+    } else {
+      res.redirect(`${process.env.REACT_ROUTE}/register`);
+    }
+  }
 );
 
 module.exports = router;
