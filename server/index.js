@@ -1,3 +1,5 @@
+process.env.REACT_ROUTE =
+  process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000';
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
