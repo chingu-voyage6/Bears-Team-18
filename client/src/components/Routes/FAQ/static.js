@@ -31,7 +31,7 @@ const companyFAQ = [
   },
   {
     key: 'company-question-5',
-    question: 'How can I contribute to Chingus valuable work?',
+    question: "How can I contribute to Chingu's valuable work?",
     answer: [
       'The best way to contribute to Chingu is by joining a project and building something! After that, there are various other ways to get involved in shaping Chingu, including the Medium publication, learning adventures, and other larger projects in the ecosystem.',
       'We also appreciate your monetary support. Your contributions help us to support the learning programs we provide to our members by funding educational resources as well as application hosting, security, and content delivery services, to name a few. If you wish to help in this area we appreciate your recurring contributions made through Patreon or a one time contribution through Paypal.',

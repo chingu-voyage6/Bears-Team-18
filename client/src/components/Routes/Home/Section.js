@@ -22,8 +22,8 @@ const styles = theme => ({
   },
   title: {
     textTransform: 'uppercase',
-    fontFamily: theme.typography.title.fontFamily,
-    fontSize: '2.6em',
+    ...theme.typography.display1,
+    fontWeight: 700,
     margin: '0',
     padding: '16px 0',
   },

@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
 
-import Icon from './Icon';
-import { GITHUB, MEDIUM, TWITTER, YOUTUBE } from './IconList';
+import GithubCircle from 'mdi-material-ui/GithubCircle';
+import Youtube from 'mdi-material-ui/Youtube';
+import Medium from 'mdi-material-ui/Medium';
+import Twitter from 'mdi-material-ui/Twitter';
 import patreon from '../images/homepage/patreon.png';
 
 const styles = theme => ({
@@ -14,36 +16,29 @@ const styles = theme => ({
     color: '#fff',
     backgroundColor: theme.palette.primary.main,
     display: 'flex',
-    position: 'absolute',
-    left: '0',
-    bottom: '0',
-    height: '300px',
     width: '100%',
     overflow: 'hidden',
+    padding: '0 8px',
   },
   footerSection: {
     width: '33%',
     textAlign: 'center',
-    padding: '30px 0 25px 0',
+    padding: '32px 0 24px 0',
   },
   footerTitle: {
-    fontFamily: theme.typography.title.fontFamily,
-    fontSize: '1.8em',
-    fontWeight: '400',
-    margin: '0 0 25px 0',
-  },
-  sectionContent: {
-    fontSize: '1.6em',
-    marginBottom: '25px',
+    marginBottom: '24px',
   },
   iconContainer: {
-    margin: '20px 0',
+    margin: '0 0 16px',
   },
-  iconBtn: {
-    margin: '0 5px',
-
+  iconLink: {
+    color: '#fff',
+    margin: '0 8px',
+  },
+  icon: {
+    fontSize: 32,
     '&:hover': {
-      backgroundColor: '#15df89',
+      color: theme.palette.secondary.main,
     },
   },
   patreonBtn: {
@@ -55,21 +50,16 @@ const styles = theme => ({
   },
   footerLink: {
     color: '#fff',
-    margin: '10px 0 25px 0',
-    fontSize: '1.6em',
+    margin: '12px 0 24px 0',
     textDecoration: 'none',
     '&:hover': {
       color: theme.palette.secondary.main,
     },
   },
-  lastLink: {
-    padding: '0',
-  },
 
-  '@media screen and (max-width: 768px)': {
+  [theme.breakpoints.down('xs')]: {
     footerContainer: {
       flexDirection: 'column',
-      height: '831px',
     },
     footerSection: {
       width: '100%',
@@ -81,46 +71,66 @@ const styles = theme => ({
 const Footer = props => {
   const { classes } = props;
 
+  const renderLink = (title, link) => (
+    <Link className={classes.footerLink} to={link}>
+      <Typography variant="button" color="inherit">
+        {title}
+      </Typography>
+    </Link>
+  );
+
   return (
     <footer className={classes.footerContainer}>
       <div className={classes.footerSection}>
-        <h3 className={classes.footerTitle}>MORE CHINGU</h3>
+        <Typography
+          className={classes.footerTitle}
+          variant="title"
+          color="inherit"
+        >
+          More Chingu
+        </Typography>
 
-        <div className={classes.sectionContent}>
-          <div>admin@chingu.io</div>
+        <div className={classes.linkContainer}>
+          <a className={classes.footerLink} href="mailto:admin@chingu.io">
+            <Typography variant="button" color="inherit">
+              admin@chingu.io
+            </Typography>
+          </a>
+
+          {/* ICONS */}
           <div className={classes.iconContainer}>
-            <IconButton
-              className={classes.iconBtn}
+            <a
+              className={classes.iconLink}
               href="https://medium.com/chingu"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Icon icon={MEDIUM} />
-            </IconButton>
-            <IconButton
-              className={classes.iconBtn}
+              <Medium className={classes.icon} />
+            </a>
+            <a
+              className={classes.iconLink}
               href="https://www.youtube.com/channel/UCS7zmJXbe7FgTC3sHlUf4jw"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Icon icon={YOUTUBE} size="32" />
-            </IconButton>
-            <IconButton
-              className={classes.iconBtn}
+              <Youtube className={classes.icon} />
+            </a>
+            <a
+              className={classes.iconLink}
               href="https://github.com/Chingu-cohorts"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Icon icon={GITHUB} size="32" />
-            </IconButton>
-            <IconButton
-              className={classes.iconBtn}
+              <GithubCircle className={classes.icon} />
+            </a>
+            <a
+              className={classes.iconLink}
               href="https://twitter.com/ChinguCollabs"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Icon icon={TWITTER} size="32" />
-            </IconButton>
+              <Twitter className={classes.icon} />
+            </a>
           </div>
 
           <a
@@ -138,32 +148,32 @@ const Footer = props => {
       </div>
 
       <div className={classes.footerSection}>
-        <h3 className={classes.footerTitle}>COMPANY</h3>
+        <Typography
+          className={classes.footerTitle}
+          variant="title"
+          color="inherit"
+        >
+          Company
+        </Typography>
         <div className={classes.linkContainer}>
-          <Link className={classes.footerLink} to="/">
-            Our Team
-          </Link>
-          <Link className={classes.footerLink} to="/privacy-policy">
-            Privacy Policy
-          </Link>
-          <Link className={classes.footerLink} to="/faq">
-            FAQ
-          </Link>
+          {renderLink('Our Team', '/')}
+          {renderLink('Privacy Policy', '/privacy-policy')}
+          {renderLink('FAQ', '/faq')}
         </div>
       </div>
 
       <div className={classes.footerSection}>
-        <h3 className={classes.footerTitle}>VOYAGES</h3>
+        <Typography
+          className={classes.footerTitle}
+          variant="title"
+          color="inherit"
+        >
+          Voyages
+        </Typography>
         <div className={classes.linkContainer}>
-          <Link className={classes.footerLink} to="/">
-            Past Projects
-          </Link>
-          <Link className={classes.footerLink} to="/">
-            Upcoming Voyages
-          </Link>
-          <Link className={classes.footerLink} to="/">
-            How to Join
-          </Link>
+          {renderLink('Past Projects', '/')}
+          {renderLink('Upcoming Voyages', '/')}
+          {renderLink('How to Join', '/')}
         </div>
       </div>
     </footer>

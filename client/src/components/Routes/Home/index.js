@@ -3,94 +3,67 @@ import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import ChevronDown from 'mdi-material-ui/ChevronDown';
 
-import Icon from '../../Icon';
-import { ARROW_DOWN } from '../../IconList';
 import RegisterButton from './RegisterButton';
 import IntroTitle from './IntroTitle';
 import Section from './Section';
 import WidgetWrapper from './WidgetWrapper';
+import CtaSection from './CtaSection';
 
 import staticAssets from './static';
 
-const styles = theme => ({
+const styles = ({ breakpoints, palette, spacing }) => ({
   homeContainer: {
     textAlign: 'center',
   },
   homeIntro: {
-    height: 'calc(100vh - 64px)',
+    height: 'calc(100vh - 96px)',
+    [breakpoints.up('sm')]: { height: 'calc(100vh - 64px)' },
+    minHeight: '384px', // total minHeight including header is 480px
     color: '#fff',
-    backgroundColor: `${theme.palette.primary.main} !important`,
+    backgroundColor: palette.primary.main,
+  },
+  bgContainer: {
+    display: 'none',
   },
   titleWrapper: {
+    height: 'inherit',
+    minHeight: 'inherit',
+    padding: `${spacing[3]} ${spacing[2]}`,
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'flex-start',
-    paddingTop: '80px',
-    paddingLeft: '96px',
-    height: '50vh',
+    alignItems: 'center',
+    justifyContent: 'space-around',
   },
-  scrollBtn: {
-    display: 'none',
-    marginBottom: '24px',
+  '@media screen and (max-height: 550px)': {
+    scrollBtn: { display: 'none' },
   },
-  bottomTitle: {
-    fontFamily: theme.typography.title.fontFamily,
-    color: theme.palette.secondary.main,
-    fontSize: '5em',
-    margin: '0 0 24px 0',
-  },
-  bottomText: {
-    fontSize: '2em',
-    fontWeight: '500',
-    width: '70%',
-    margin: '0 auto 24px',
-  },
-  '@media screen and (min-width: 1920px)': {
-    homeIntro: {
-      background: `url(${
-        staticAssets.images['main-bg-xl']
-      }) bottom right / auto 85% no-repeat`,
-    },
-  },
-  '@media screen and (min-width: 1280px) and (max-width: 1919px) and (max-height: 760px)': {
-    homeIntro: {
-      background: `url(${
-        staticAssets.images['main-bg-l']
-      }) bottom right / auto 85% no-repeat`,
-    },
-  },
-  '@media screen and (min-width: 1280px) and (max-width: 1919px) and (min-height: 761px)': {
-    homeIntro: {
-      background: `url(${
-        staticAssets.images['main-bg-l']
-      }) bottom right / 66.666666vw no-repeat`,
-    },
-  },
-  '@media screen and (min-width: 800px) and (max-width: 1279px)': {
-    homeIntro: {
-      background: `url(${staticAssets.images['main-bg-l']}) no-repeat`,
-      backgroundPosition: 'bottom left 400px',
-      backgroundSize: 'auto 90%',
-    },
-  },
-  '@media screen and (max-width: 799px)': {
+  [`${breakpoints.up(800)} and (orientation: landscape)`]: {
+    scrollBtn: { display: 'none' },
     homeIntro: {
       display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      margin: '0 auto',
-      background: 'none',
     },
     titleWrapper: {
-      marginTop: '48px',
-      marginBottom: 'auto',
-      padding: '0',
-      alignItems: 'center',
+      width: '432px',
+      maxHeight: '600px',
+      textAlign: 'right',
     },
-    scrollBtn: { display: 'flex' },
-    ctaSection: {
-      padding: '16px 0',
+    buttonWrapper: {
+      width: '83%', // align with right-aligned text
+    },
+    bgContainer: {
+      display: 'initial',
+      height: '95%',
+      width: 'calc(100vw - 432px)',
+      alignSelf: 'flex-end',
+      background: `url(${staticAssets.images['main-bg-l']}) no-repeat`,
+      // top left cover: will clip bottom or right depending on aspect ratio
+      backgroundPosition: 'top left',
+      backgroundSize: 'cover',
+      [breakpoints.up('lg')]: {
+        backgroundImage: `url(${staticAssets.images['main-bg-xl']})`,
+      },
     },
   },
 });
@@ -110,20 +83,27 @@ const Home = props => {
       {/* INTRO */}
       <section className={classes.homeIntro}>
         <div className={classes.titleWrapper}>
-          <IntroTitle title="code more" />
-          <IntroTitle title="learn more" />
-          <IntroTitle title="build more" last />
-          <RegisterButton title="Sign Up" />
+          <div>
+            <IntroTitle title="code more" />
+            <IntroTitle title="learn more" />
+            <IntroTitle title="build more" />
+          </div>
+
+          <div className={classes.buttonWrapper}>
+            <RegisterButton title="Sign Up" />
+          </div>
+
+          {/* SCROLL BUTTON */}
+          <Button
+            onClick={() => triggerComponentScroll('process')}
+            className={classes.scrollBtn}
+            color="secondary"
+            variant="fab"
+          >
+            <ChevronDown nativeColor="#fff" />
+          </Button>
         </div>
-        {/* SCROLL BUTTON */}
-        <Button
-          onClick={() => triggerComponentScroll('process')}
-          className={classes.scrollBtn}
-          color="secondary"
-          variant="fab"
-        >
-          <Icon icon={ARROW_DOWN} />
-        </Button>
+        <div className={classes.bgContainer} />
       </section>
 
       {/* PROCESS */}
@@ -145,17 +125,7 @@ const Home = props => {
       </Section>
 
       {/* CALL TO ACTION */}
-      <Section variant="white">
-        <div className={classes.ctaSection}>
-          <h2 className={classes.bottomTitle}>Chingu</h2>
-          <p className={classes.bottomText}>
-            Chingu is a global collaboration platform and coding-cohort
-            generator. We connect motivated learners with shared goals to learn,
-            help and build together.
-          </p>
-          <RegisterButton title="Apply Now" />
-        </div>
-      </Section>
+      <CtaSection />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from './theme';
 
 import Header from './Header';
@@ -20,51 +21,56 @@ import ScrollToTop from './ScrollToTop';
 const styles = theme => ({
   '@global': {
     html: {
-      position: 'relative',
       minHeight: '100%',
     },
     body: {
-      margin: '0 0 300px',
-      padding: '0',
-      lineHeight: '1.6',
-      fontSize: '62.5%',
+      padding: 0,
       fontFamily: theme.typography.fontFamily,
+      backgroundColor: '#fff',
     },
-
     img: { maxWidth: '100%' },
-
-    '@media screen and (max-width: 768px)': {
-      body: { margin: '0 0 831px' },
+    // main section min-height is 100vh - header - footer
+    main: {
+      minHeight: 'calc(100vh - 326px)',
+      display: 'flex',
+      flexDirection: 'column',
     },
   },
 });
 
 const App = props => {
   return (
-    <MuiThemeProvider theme={theme}>
-      <Router>
-        <ScrollToTop>
-          <Header />
+    <CssBaseline>
+      <MuiThemeProvider theme={theme}>
+        <Router>
+          <ScrollToTop>
+            <Header />
 
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/login" component={Auth} />
-            <Route path="/faq" component={FAQ} />
-            <Route path="/privacy-policy" component={PrivacyPolicy} />
-            <Route path="/token" component={TokenConfig} />
-            <Route path="/user-dashboard" component={UserDashboard} />
+            <main>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/login" component={Auth} />
+                <Route path="/faq" component={FAQ} />
+                <Route path="/privacy-policy" component={PrivacyPolicy} />
+                <Route path="/token" component={TokenConfig} />
+                <Route path="/user-dashboard" component={UserDashboard} />
 
-            <Route
-              render={routeProps => (
-                <ErrorPage {...routeProps} title="404 Error - URL Not Found" />
-              )}
-            />
-          </Switch>
+                <Route
+                  render={routeProps => (
+                    <ErrorPage
+                      {...routeProps}
+                      title="404 Error - URL Not Found"
+                    />
+                  )}
+                />
+              </Switch>
+            </main>
 
-          <Footer />
-        </ScrollToTop>
-      </Router>
-    </MuiThemeProvider>
+            <Footer />
+          </ScrollToTop>
+        </Router>
+      </MuiThemeProvider>
+    </CssBaseline>
   );
 };
 

@@ -6,18 +6,27 @@ import { withStyles } from '@material-ui/core/styles';
 
 import chinguLogo from '../../../images/chingu/chingu.png';
 
-const styles = {
+const styles = ({ palette }) => ({
   errorPageContainer: {
     display: 'flex',
     alignItems: 'center',
     textAlign: 'center',
     flexDirection: 'column',
-    margin: '25px 0',
-    padding: '0 15px 40px 0',
+    justifyContent: 'space-around',
+    padding: '24px',
+    margin: 'auto',
   },
-  errorPageTitle: { fontSize: '3em', margin: '25px 0' },
-  errorPageText: { fontSize: '1.8em', margin: '10px 0' },
-};
+  link: {
+    color: palette.secondary.main,
+    textDecoration: 'none',
+    fontWeight: 500,
+    '&:hover': {
+      color: palette.secondary.dark,
+    },
+  },
+  errorPageTitle: { margin: '24px 0' },
+  errorPageText: { margin: '8px 0' },
+});
 
 const ErrorPage = props => {
   const { classes } = props;
@@ -33,20 +42,16 @@ const ErrorPage = props => {
       </p>
 
       <p className={classes.errorPageText}>
-        Please reach out to us via email - admin@chingu.io - for further
-        assistance.
+        Please reach out to us via{' '}
+        <a className={classes.link} href="mailto:admin@chingu.io">
+          email
+        </a>{' '}
+        for further assistance.
       </p>
 
       <p className={classes.errorPageText}>
         Navigate back to{' '}
-        <Link
-          style={{
-            color: '#15df89',
-            textDecoration: 'none',
-            fontWeight: '700',
-          }}
-          to="/"
-        >
+        <Link to="/" className={classes.link}>
           Homepage
         </Link>
       </p>
@@ -59,4 +64,4 @@ ErrorPage.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(ErrorPage);
+export default withStyles(styles, { withTheme: true })(ErrorPage);
