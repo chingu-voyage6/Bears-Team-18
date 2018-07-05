@@ -10,6 +10,7 @@ const logger = require('./services/logger');
 const passport = require('passport');
 const authRouter = require('./routes/auth');
 const cookieSession = require('cookie-session');
+const User = require('./mongoose/user');
 require('./services/passport');
 require('./services/db-service');
 
@@ -27,6 +28,7 @@ app.use(
   cookieSession({
     name: 'session',
     maxAge: 1000 * 60 * 60 * 12,
+    sameSite: true,
     keys: [process.env.COOKIE_KEY],
   })
 );
@@ -40,6 +42,9 @@ const server = new ApolloServer({
   resolvers,
   context: ({ req }) => ({
     user: req.user,
+    models: {
+      user: User,
+    },
   }),
 });
 
