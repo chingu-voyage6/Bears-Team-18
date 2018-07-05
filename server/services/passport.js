@@ -23,11 +23,12 @@ passport.use(
           return done(null, user);
         } else {
           new User({
-            displayName: profile._json.name,
+            username: profile._json.login,
             githubId: profile._json.id,
             photoURL: profile._json.avatar_url,
             permission: 'user',
-            signUpComplete: false,
+            status: 'sign up not complete',
+            timeZone: 'default',
           })
             .save()
             .then(user => {
