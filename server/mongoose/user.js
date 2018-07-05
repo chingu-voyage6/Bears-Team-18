@@ -1,18 +1,22 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  displayName: {
+  username: {
     type: String,
-    required: [true, 'displayName is a required key in the user model'],
+    required: [true, 'userName is a required key in the user model'],
   },
   githubId: {
     type: String,
     required: [true, 'githubId is an *unique* required key in the user model'],
     unique: true,
   },
-  signUpComplete: {
-    type: Boolean,
+  status: {
+    type: String,
     required: [true, 'signUpComplete is a required key in the user model'],
+  },
+  timeZone: {
+    type: String,
+    required: [true, 'timezone is a required key in the user model'],
   },
   permission: {
     type: String,
