@@ -11,6 +11,7 @@ import Footer from './Footer';
 
 import Home from './Routes/Home/';
 import Auth from './Routes/Auth/';
+import Register from './Routes/Register/';
 import FAQ from './Routes/FAQ/';
 import PrivacyPolicy from './Routes/PrivacyPolicy/';
 import TokenConfig from './Routes/TokenConfig/';
@@ -54,6 +55,7 @@ const App = props => {
                 <Route path="/privacy-policy" component={PrivacyPolicy} />
                 <Route path="/token" component={TokenConfig} />
                 <Route path="/user-dashboard" component={UserDashboard} />
+                <Route path="/register" component={Register} />
 
                 <Route
                   render={routeProps => (
