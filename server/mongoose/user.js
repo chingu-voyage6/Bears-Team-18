@@ -15,8 +15,8 @@ const userSchema = new mongoose.Schema({
     required: [true, 'signUpComplete is a required key in the user model'],
   },
   timeZone: {
-    type: String,
-    required: [true, 'timezone is a required key in the user model'],
+    type: Object,
+    required: [true, 'timeZone is a required key in user model'],
   },
   permission: {
     type: String,
