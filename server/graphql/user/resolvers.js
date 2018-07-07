@@ -8,4 +8,27 @@ module.exports = {
       throw new Error('You are not signed in');
     }
   },
+  completeSignup: (
+    _,
+    {
+      input: {
+        email,
+        timeZone: { value, label, daylight },
+      },
+    },
+    { user, lib: { validator } }
+  ) => {
+    if (user) {
+      if (validator.email(email) && validator.timeZone(value, daylight)) {
+        user.email = email;
+        user.timeZone = { value, label, daylight };
+        user.status = 'profile set up';
+        return user.save();
+      } else {
+        throw new Error('Invalid email or time zone');
+      }
+    } else {
+      throw new Error('User not signed in');
+    }
+  },
 };
