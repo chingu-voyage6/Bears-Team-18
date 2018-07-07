@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import NativeSelect from '@material-ui/core/NativeSelect';
 import Button from '@material-ui/core/Button';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import {
+  ValidatorForm,
+  TextValidator,
+  SelectValidator,
+} from 'react-material-ui-form-validator';
 
 import timezones from '../../timezones';
 
@@ -65,7 +66,6 @@ class Register extends React.Component {
   state = {
     username: '',
     email: '',
-    // validate this on submit
     timezone: {
       label: '',
       useDaylightTime: false,
@@ -125,6 +125,9 @@ class Register extends React.Component {
               className={classes.formItem}
               id="read-only-input"
               label="Username"
+              InputLabelProps={{
+                htmlFor: 'username',
+              }}
               name="username"
               value={this.state.username}
               helperText="Your GitHub username"
@@ -142,6 +145,9 @@ class Register extends React.Component {
               className={classes.formItem}
               required
               label="Email"
+              InputLabelProps={{
+                htmlFor: 'email',
+              }}
               onChange={this.handleChange('email')}
               name="email"
               value={this.state.email}
@@ -150,18 +156,23 @@ class Register extends React.Component {
             />
 
             {/* TIMEZONE */}
-            <FormControl required className={classes.formItem}>
-              <InputLabel shrink htmlFor="timezone">
-                Timezone
-              </InputLabel>
-              <NativeSelect
-                value={this.state.timezone.label}
-                onChange={this.handleTimezoneChange}
-                inputProps={{ name: 'timezone' }}
-              >
-                {timezones}
-              </NativeSelect>
-            </FormControl>
+            <SelectValidator
+              className={classes.formItem}
+              required
+              label="Timezone"
+              InputLabelProps={{
+                shrink: true,
+                htmlFor: 'timezone',
+              }}
+              name="timezone"
+              value={this.state.timezone.label}
+              onChange={this.handleTimezoneChange}
+              SelectProps={{ native: true }}
+              validators={['required']}
+              errorMessages={['this field is required']}
+            >
+              {timezones}
+            </SelectValidator>
 
             {/* SUBMIT */}
             <Button
