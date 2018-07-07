@@ -2,5 +2,22 @@ type User {
   username: String!
   email: String
   status: String!
-  timeZone: String!
+  timeZone: TimeZone!
+}
+
+type TimeZone {
+  daylight: Boolean!
+  value: Int!
+  label: String!
+}
+
+input TimeZoneInput {
+  daylight: Boolean!
+  value: Int!
+  label: String!
+}
+
+input UserInput {
+  email: String!
+  timeZone: TimeZoneInput!
 }
