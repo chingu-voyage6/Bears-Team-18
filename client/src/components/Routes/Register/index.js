@@ -63,15 +63,13 @@ const styles = ({ palette, breakpoints }) => ({
 class Register extends React.Component {
   // fill state with data from query
   state = {
-    username: 'myUsername',
-    email: 'email@example.com',
+    username: '',
+    email: '',
     // validate this on submit
     timezone: {
       label: '',
-      timeZoneId: '',
-      gmtAdjustment: '',
-      useDaylightTime: '',
-      value: '',
+      useDaylightTime: false,
+      value: 0,
     },
   };
 
@@ -87,16 +85,12 @@ class Register extends React.Component {
 
   handleTimezoneChange = event => {
     // get the dataset on the selected option
-    const { id, gmt, daylight, value } = event.target.querySelector(
-      ':checked'
-    ).dataset;
+    const { daylight, value } = event.target.querySelector(':checked').dataset;
     this.setState({
       timezone: {
         label: event.target.value,
-        id,
-        gmt,
-        daylight,
-        value,
+        daylight: Boolean(Number(daylight)),
+        value: Number(value),
       },
     });
   };
@@ -122,7 +116,7 @@ class Register extends React.Component {
 
           {/* FORM */}
           <ValidatorForm
-            debounceTime={500}
+            debounceTime={300}
             className={classes.form}
             onSubmit={this.handleSubmit}
           >
