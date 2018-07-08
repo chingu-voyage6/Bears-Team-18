@@ -19,6 +19,7 @@ const styles = {
   },
   githubBtn: {
     backgroundColor: 'black',
+    width: '250px',
     color: 'white',
     display: 'flex',
     margin: '0 auto',
