@@ -53,7 +53,13 @@ const Auth = ({ classes }) => {
         Authenticate with GitHub
       </Typography>
 
-      <Button className={classes.githubBtn} variant="raised" size="large">
+      <Button
+        component="a"
+        href="/api/auth/github"
+        className={classes.githubBtn}
+        variant="raised"
+        size="large"
+      >
         <GithubCircle style={{ fontSize: 32, marginRight: 16 }} />
         Log In / Register
       </Button>
