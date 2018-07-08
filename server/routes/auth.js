@@ -3,7 +3,6 @@ const logger = require('../services/logger');
 const User = require('../mongoose/user');
 const { signUserToken } = require('../services/crypt');
 const passport = require('passport');
-const queryString = require('querystring');
 const {
   checkUser,
   checkForUsernameAndPassword,
@@ -46,14 +45,15 @@ router.get(
 
 router.get(
   '/github/callback',
-  passport.authenticate('github', { session: false }),
-  async (req, res) => {
-    const token = await signUserToken(req.user.id);
-    const query = queryString.stringify({
-      token,
-      signUpComplete: req.user.signUpComplete,
-    });
-    res.redirect(`http://localhost:3000/token?${query}`);
+  passport.authenticate('github', {
+    failureRedirect: `${process.env.REACT_ROUTE}/invalid-path`,
+  }),
+  (req, res) => {
+    if (req.user && req.user.authComplete) {
+      res.redirect(`${process.env.REACT_ROUTE}/user-dashboard`);
+    } else {
+      res.redirect(`${process.env.REACT_ROUTE}/register`);
+    }
   }
 );
 

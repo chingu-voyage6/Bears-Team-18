@@ -1,0 +1,9 @@
+# import User from "./user/user.graphql"
+# import UserInput from "./user/user.graphql"
+type Query {
+  getUser(githubId: String): User!
+}
+
+type Mutation {
+  completeSignup(input: UserInput!): User!
+}

@@ -1,31 +1,38 @@
 const passport = require('passport');
-const githubStrategy = require('passport-github').Strategy;
+const githubStrategy = require('passport-github2').Strategy;
 const User = require('../mongoose/user');
+passport.serializeUser((user, done) => {
+  done(null, user.githubId);
+});
 
+passport.deserializeUser((githubId, done) => {
+  User.findOne({ githubId }).then(user => {
+    done(null, user);
+  });
+});
 passport.use(
   new githubStrategy(
     {
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL: 'http://localhost:5000/api/auth/github/callback',
+      callbackURL: process.env.GITHUB_CALLBACK_URL,
     },
-    function(accessToken, refreshToken, profile, cb) {
+    function(accessToken, refreshToken, profile, done) {
       User.findOne({ githubId: profile.id }).then(user => {
         if (user) {
-          cb(null, user);
+          return done(null, user);
         } else {
           new User({
-            githubId: profile.id,
-            permission: 'standard',
-            signUpComplete: false,
-            displayName: profile.username,
-            profileIconUrl: profile.avatar_url,
-            email: profile.email,
-            location: profile.location,
+            username: profile._json.login,
+            githubId: profile._json.id,
+            photoURL: profile._json.avatar_url,
+            permission: 'user',
+            status: 'profile not complete',
+            timeZone: 'default',
           })
             .save()
             .then(user => {
-              cb(null, user);
+              return done(null, user);
             });
         }
       });

@@ -1,15 +1,17 @@
+process.env.REACT_ROUTE =
+  process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000';
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
-const { makeExecutableSchema } = require('graphql-tools');
-const resolvers = require('./graphql/resolvers');
+const { ApolloServer } = require('apollo-server');
+const { typeDefs, resolvers } = require('./graphql/schema');
 const morgan = require('morgan');
 const logger = require('./services/logger');
-const typeDefs = require('./graphql/schema');
 const passport = require('passport');
-const authMiddleware = require('./services/auth-middleware');
 const authRouter = require('./routes/auth');
+const cookieSession = require('cookie-session');
+const User = require('./mongoose/user');
+const validator = require('./lib/validator');
 require('./services/passport');
 require('./services/db-service');
 
@@ -21,25 +23,36 @@ process.env.NODE_ENV === 'production'
   ? app.use(morgan('combined'))
   : app.use(morgan('dev'));
 
-const schema = makeExecutableSchema({ typeDefs, resolvers });
-
 app.use(bodyParser.json());
 
+app.use(
+  cookieSession({
+    name: 'session',
+    maxAge: 1000 * 60 * 12,
+    sameSite: true,
+    keys: [process.env.COOKIE_KEY],
+  })
+);
 app.use(passport.initialize());
-
-app.use(authMiddleware);
+app.use(passport.session());
 
 app.use('/api/auth', authRouter);
 
-app.use(
-  '/api/graphql',
-  bodyParser.json(),
-  graphqlExpress(req => {
-    return { schema, context: { user: req.user } };
-  })
-);
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ req }) => ({
+    user: req.user,
+    models: {
+      user: User,
+    },
+    lib: {
+      validator,
+    },
+  }),
+});
 
-app.use('/api/graphiql', graphiqlExpress({ endpointURL: '/api/graphql' }));
+server.applyMiddleware({ app });
 
 app.use('/api/test', (req, res, next) => {
   console.log(req.user);
@@ -48,5 +61,5 @@ app.use('/api/test', (req, res, next) => {
 });
 
 app.listen(port, () => {
-  logger.silly('Express Server Listening on Port 5000!');
+  logger.silly(`Express Server Listening on Port 5000!${server.graphqlPath}`);
 });
