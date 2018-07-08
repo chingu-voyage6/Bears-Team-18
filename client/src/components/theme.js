@@ -14,7 +14,6 @@ export default createMuiTheme({
     },
   },
   typography: {
-    htmlFontSize: 10,
     display4: {
       fontFamily: '"Raleway", sans-serif',
       fontWeight: 400,
@@ -30,6 +29,19 @@ export default createMuiTheme({
     },
     title: {
       fontFamily: '"Raleway", sans-serif',
+      textTransform: 'uppercase',
+      fontWeight: 700,
+      letterSpacing: 1,
     },
+  },
+  spacing: {
+    0: 0,
+    1: '4px',
+    2: '8px',
+    3: '16px',
+    4: '32px',
+    5: '64px',
+    6: '128px',
+    7: '256px',
   },
 });

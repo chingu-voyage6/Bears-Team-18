@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
 import staticAssets from './static';
 
@@ -9,22 +10,7 @@ const styles = {
   privacyContainer: {
     maxWidth: '1100px',
     margin: '0 auto',
-    padding: '0 15px 40px 15px',
-  },
-  privacyTitle: {
-    textAlign: 'center',
-    fontSize: '3.2em',
-  },
-  privacySubTitle: {
-    fontSize: '1.8em',
-    margin: '15px 0',
-  },
-  privacyText: {
-    fontSize: '1.6em',
-    marginBottom: '20px',
-  },
-  privacyList: {
-    fontSize: '1.6em',
+    padding: '40px 16px',
   },
 };
 
@@ -33,23 +19,25 @@ const PrivacyPolicy = props => {
     return content.map(item => {
       return (
         <section key={item.key}>
-          <h3 className={classes.privacySubTitle}>{item.title}</h3>
+          <Typography gutterBottom color="inherit" variant="title">
+            {item.title}
+          </Typography>
           {item.content.map((par, index) => {
             if (typeof par === 'object') {
               return (
-                <ul key={index} className={classes.privacyList}>
+                <ul key={index}>
                   {par.map((li, index) => {
-                    return <li key={index}>{li}</li>;
+                    return (
+                      <li style={{ marginBottom: 8 }} key={index}>
+                        {li}
+                      </li>
+                    );
                   })}
                 </ul>
               );
             }
 
-            return (
-              <p key={index} className={classes.privacyText}>
-                {par}
-              </p>
-            );
+            return <p key={index}>{par}</p>;
           })}
         </section>
       );
@@ -60,8 +48,14 @@ const PrivacyPolicy = props => {
 
   return (
     <div className={classes.privacyContainer}>
-      <h2 className={classes.privacyTitle}>Privacy Policy</h2>
-
+      <Typography
+        align="center"
+        variant="display1"
+        color="inherit"
+        style={{ marginBottom: '40px' }}
+      >
+        Privacy Policy
+      </Typography>
       {renderPrivacyPolicy(staticAssets.privacyPolicy, classes)}
     </div>
   );

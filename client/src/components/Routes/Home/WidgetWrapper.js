@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   widgetWrapper: {
@@ -12,7 +13,7 @@ const styles = theme => ({
     },
   },
   defaultImg: { width: '200px' },
-  lgImg: { width: '300px' },
+  lgImg: { width: '300px', marginBottom: 8 },
   widget: {
     width: '25%',
     '@media screen and (min-width: 800px) and (max-width: 1279px)': {
@@ -24,15 +25,8 @@ const styles = theme => ({
       margin: '16px 0',
     },
   },
-  widgetTitle: {
-    fontFamily: theme.typography.title.fontFamily,
-    fontSize: '2.5em',
-    fontWeight: '400',
-    textTransform: 'uppercase',
-    margin: '0 0 12px 0',
-  },
   widgetDescription: {
-    fontSize: '1.6em',
+    fontSize: '1rem',
     width: '65%',
     margin: '0 auto',
   },
@@ -51,9 +45,17 @@ const WidgetWrapper = ({ content, classes, imgSize }) => {
     return content.map(item => {
       return (
         <div key={item.title} className={classes.widget}>
-          <img className={imgClass} src={item.image} alt="" />
-          <h3 className={classes.widgetTitle}>{item.title}</h3>
-          <p className={classes.widgetDescription}>{item.description}</p>
+          <img className={imgClass} src={item.image} alt={item.title} />
+          <Typography component="h3" variant="title" color="inherit" paragraph>
+            {item.title}
+          </Typography>
+          <Typography
+            variant="body1"
+            color="inherit"
+            className={classes.widgetDescription}
+          >
+            {item.description}
+          </Typography>
         </div>
       );
     });

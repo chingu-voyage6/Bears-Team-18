@@ -33,7 +33,7 @@ const process = [
   {
     title: 'Succeed',
     image: images['process-04'],
-    description: 'Get a job, keep building--or do both.',
+    description: 'Get a job, keep building–or do both.',
   },
 ];
 
@@ -42,19 +42,19 @@ const cohorts = [
     title: 'Voyages',
     image: images['cohort-01'],
     description:
-      'Voyages are a team of developers creating a project to build, learn and grow together as developers.',
+      'Voyages are cohorts of small teams of developers creating a project to build, learn and grow together.',
   },
   {
     title: 'Data Science',
     image: images['cohort-02'],
     description:
-      'Data Science Cohorts are in development. Register to stay posted on all upcoming features and programs.',
+      'Data Science cohorts are in development. Register to stay posted on all upcoming features and programs.',
   },
   {
     title: 'Roaming Designer',
     image: images['cohort-03'],
     description:
-      'Become a Roaming Designer to put your skills to use in both Voyages and the Data Science Cohorts.',
+      'Become a Roaming Designer and put your skills to use in both Voyages and Data Science cohorts.',
   },
 ];
 
@@ -63,7 +63,7 @@ const projects = [
     title: 'MDNBot',
     image: images['project-01'],
     description:
-      'A Slack bot can search and reference Mozilla Developers Network for you.',
+      'A Slack bot that can search and reference the MDN Web Docs for you.',
   },
   {
     title: 'ChinguSort',
@@ -74,8 +74,7 @@ const projects = [
   {
     title: 'Code Stories',
     image: images['project-03'],
-    description:
-      'Remix of Humans of New York for the Free Code Camp community.',
+    description: 'Remix of Humans of New York for the freeCodeCamp community.',
   },
 ];
 

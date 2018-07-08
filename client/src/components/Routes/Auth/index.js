@@ -2,23 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-
-import Icon from '../../Icon';
-import { GITHUB } from '../../IconList';
+import GithubCircle from 'mdi-material-ui/GithubCircle';
 
 const styles = {
   authContainer: {
+    minHeight: 320,
     maxWidth: '600px',
-    margin: '40px auto',
-    padding: '15px 0',
-    border: '1px solid #ddd',
-    backgroundColor: '#FAFAFA',
-    boxShadow: '0 2px 10px rgba(0, 0, 0, .2)',
-  },
-  authTitle: {
-    fontSize: '2.5em',
-    textAlign: 'center',
+    margin: 'auto',
+    padding: '24px 0',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
   githubBtn: {
     backgroundColor: 'black',
@@ -26,31 +23,26 @@ const styles = {
     color: 'white',
     display: 'flex',
     margin: '0 auto',
-    padding: '15px 25px',
-    fontSize: '1.6em',
+    fontSize: '1rem',
 
     '&:hover': {
       backgroundColor: 'black',
     },
   },
-  btnText: { paddingLeft: '15px' },
   warnText: {
-    maxWidth: '500px',
-    padding: '5px 15px',
-    margin: '25px auto',
-    fontSize: '1.6em',
+    maxWidth: '66.666666%',
+    padding: '4px 16px',
+    margin: '8px auto',
     textAlign: 'center',
     fontWeight: '500',
-    borderRadius: '5px',
   },
   githubLink: {
     color: '#15df89',
     fontWeight: '700',
     textDecoration: 'none',
   },
-  divider: { padding: '20px 0' },
 
-  '@media screen and (max-width: 768px)': {
+  '@media screen and (max-width: 600px)': {
     authContainer: {
       backgroundColor: 'white',
       maxWidth: '100%',
@@ -58,7 +50,9 @@ const styles = {
       boxShadow: 'none',
       margin: '0',
     },
-    divider: { padding: '10px 0' },
+    warnText: {
+      maxWidth: '90%',
+    },
   },
 };
 
@@ -66,41 +60,32 @@ const Auth = props => {
   const { classes } = props;
 
   return (
-    <div>
-      <div className={classes.authContainer}>
-        <h2 className={classes.authTitle}>Log In with Github</h2>
+    <Paper className={classes.authContainer}>
+      <Typography component="h1" align="center" variant="title" gutterBottom>
+        Log in with GitHub
+      </Typography>
 
-        <Button
-          href="/api/auth/github"
-          className={classes.githubBtn}
-          variant="raised"
-          size="large"
-        >
-          <Icon icon={GITHUB} size="28" />
-          <span className={classes.btnText}>Log In / Register</span>
-        </Button>
+      <Button className={classes.githubBtn} variant="raised" size="large">
+        <GithubCircle style={{ fontSize: 32, marginRight: 16 }} />
+        Log In / Register
+      </Button>
 
-        <div className={classes.warnText}>
-          <strong>Not registered with Github?</strong>
-          <p>
-            Chingu requires all members to have a Github account to collaborate
-            with others to build amazing projects. If not already registered,
-            please visit{' '}
-            <a
-              className={classes.githubLink}
-              href="https://github.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Github
-            </a>{' '}
-            to register an account to become eligible to start your coding
-            journey.
-          </p>
-        </div>
+      <div className={classes.warnText}>
+        <strong>Don't have a GitHub account?</strong>
+        <p>
+          Chingu requires all members to have a Github account.{' '}
+          <a
+            className={classes.githubLink}
+            href="https://github.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Register now
+          </a>{' '}
+          to start your coding journey with Chingu!
+        </p>
       </div>
-      <div className={classes.divider} />
-    </div>
+    </Paper>
   );
 };
 
