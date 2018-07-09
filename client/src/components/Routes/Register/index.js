@@ -1,17 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import {
-  ValidatorForm,
-  TextValidator,
-  SelectValidator,
-} from 'react-material-ui-form-validator';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import ChinguBox from '../../ChinguBox';
-import timezones from '../../timezones';
+import Form from './Form';
 
 const styles = ({ palette }) => ({
   subtitle: {
@@ -22,143 +19,42 @@ const styles = ({ palette }) => ({
     fontWeight: '500',
     borderBottom: `3px solid ${palette.secondary.main}`,
   },
-
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    padding: '8px 16px 16px',
-    minHeight: 400,
-  },
-
-  formItem: {
-    width: '240px',
-  },
 });
 
-class Register extends React.Component {
-  // fill state with data from query
-  state = {
-    username: '',
-    email: '',
-    timezone: {
-      label: '',
-      useDaylightTime: false,
-      value: 0,
-    },
-  };
+const Register = ({ classes }) => (
+  <ChinguBox>
+    <Typography component="h1" align="center" variant="title">
+      Register
+    </Typography>
 
-  handleSubmit = () => {
-    console.log(this.state);
-  };
+    <p className={classes.subtitle}>
+      Please complete your registration by validating the form below.
+    </p>
 
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value,
-    });
-  };
-
-  handleTimezoneChange = event => {
-    // get the dataset on the selected option
-    const { daylight, value } = event.target.querySelector(':checked').dataset;
-    this.setState({
-      timezone: {
-        label: event.target.value,
-        daylight: Boolean(Number(daylight)),
-        value: Number(value),
-      },
-    });
-  };
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <ChinguBox>
-        <Typography component="h1" align="center" variant="title">
-          Register
-        </Typography>
-
-        <p className={classes.subtitle}>
-          Please complete your registration by validating the form below.
-        </p>
-
-        {/* FORM */}
-        <ValidatorForm
-          debounceTime={300}
-          className={classes.form}
-          onSubmit={this.handleSubmit}
-        >
-          {/* USERNAME */}
-          <TextValidator
-            className={classes.formItem}
-            id="read-only-input"
-            label="Username"
-            InputLabelProps={{
-              htmlFor: 'username',
-            }}
-            name="username"
-            value={this.state.username}
-            helperText="Your GitHub username"
-            InputProps={{
-              readOnly: true,
-            }}
-            disabled
-            required
-            validators={['required']}
-            errorMessages={['this field is required']}
+    <Query
+      query={gql`
+        {
+          getUser {
+            username
+            email
+            status
+          }
+        }
+      `}
+    >
+      {({ loading, error, data }) => {
+        if (loading) return <CircularProgress size={50} color="secondary" />;
+        if (error) return <p>{error.message}</p>;
+        return (
+          <Form
+            username={data.getUser.username}
+            email={data.getUser.email || ''}
           />
-
-          {/* EMAIL */}
-          <TextValidator
-            className={classes.formItem}
-            required
-            label="Email"
-            InputLabelProps={{
-              htmlFor: 'email',
-            }}
-            onChange={this.handleChange('email')}
-            name="email"
-            value={this.state.email}
-            validators={['required', 'isEmail']}
-            errorMessages={['this field is required', 'email is not valid']}
-          />
-
-          {/* TIMEZONE */}
-          <SelectValidator
-            className={classes.formItem}
-            required
-            label="Timezone"
-            InputLabelProps={{
-              shrink: true,
-              htmlFor: 'timezone',
-            }}
-            name="timezone"
-            value={this.state.timezone.label}
-            onChange={this.handleTimezoneChange}
-            SelectProps={{ native: true }}
-            validators={['required']}
-            errorMessages={['this field is required']}
-          >
-            {timezones}
-          </SelectValidator>
-
-          {/* SUBMIT */}
-          <Button
-            color="secondary"
-            variant="contained"
-            size="large"
-            type="submit"
-            style={{ color: '#fff' }}
-          >
-            Submit
-          </Button>
-        </ValidatorForm>
-      </ChinguBox>
-    );
-  }
-}
+        );
+      }}
+    </Query>
+  </ChinguBox>
+);
 
 Register.propTypes = {
   classes: PropTypes.object.isRequired,
