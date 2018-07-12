@@ -22,7 +22,7 @@ module.exports = {
       if (validator.email(email) && validator.timeZone(value, daylight)) {
         user.email = email;
         user.timeZone = { value, label, daylight };
-        user.status = 'profile set up';
+        user.status = 'PROFILE_INCOMPLETE';
         return user.save();
       } else {
         throw new Error('Invalid email or time zone');

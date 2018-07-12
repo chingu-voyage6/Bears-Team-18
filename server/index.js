@@ -52,7 +52,7 @@ const server = new ApolloServer({
   }),
 });
 
-server.applyMiddleware({ app });
+server.applyMiddleware({ app, path: '/api/graphql' });
 
 app.use('/api/test', (req, res, next) => {
   console.log(req.user);

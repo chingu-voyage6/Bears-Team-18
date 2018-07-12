@@ -49,7 +49,7 @@ router.get(
     failureRedirect: `${process.env.REACT_ROUTE}/invalid-path`,
   }),
   (req, res) => {
-    if (req.user && req.user.authComplete) {
+    if (req.user && req.user.status === 'REGISTRATION_INCOMPLETE') {
       res.redirect(`${process.env.REACT_ROUTE}/user-dashboard`);
     } else {
       res.redirect(`${process.env.REACT_ROUTE}/register`);

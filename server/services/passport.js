@@ -27,7 +27,7 @@ passport.use(
             githubId: profile._json.id,
             photoURL: profile._json.avatar_url,
             permission: 'user',
-            status: 'profile not complete',
+            status: 'REGISTRATION_INCOMPLETE',
             timeZone: 'default',
           })
             .save()

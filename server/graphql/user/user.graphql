@@ -1,7 +1,7 @@
 type User {
   username: String!
   email: String
-  status: String!
+  status: Status
   timeZone: TimeZone!
 }
 
@@ -20,4 +20,10 @@ input TimeZoneInput {
 input UserInput {
   email: String!
   timeZone: TimeZoneInput!
+}
+
+enum Status {
+  RESGISTRATION_INCOMPLETE
+  PROFILE_INCOMPLETE
+  PROFILE_COMPLETE
 }
