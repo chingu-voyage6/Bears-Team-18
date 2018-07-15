@@ -1,20 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ApolloClient from 'apollo-client';
-import { HttpLink, InMemoryCache } from 'apollo-boost';
+import ApolloClient, { HttpLink, InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
 import App from './components/App';
 
-const link = new HttpLink({
-  uri: '/api/graphql',
-  credentials: 'same-origin',
+export const client = new ApolloClient({
+  // TODO: process.env.CHINGU_API_URI
+  uri: 'https://2c01cb39.ngrok.io/graphql',
+  request:  req =>
+    req.setContext({
+      headers: { authorization: `Bearer ${window.localStorage.getItem('github_token')}` },
+    }),
 });
 
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link,
-});
 // import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(

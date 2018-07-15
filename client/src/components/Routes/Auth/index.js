@@ -6,6 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import GithubCircle from 'mdi-material-ui/GithubCircle';
 
+import firebase from 'firebase/app';
+import { provider } from '../../../firebase/firebase';
+
 import ChinguBox from '../../ChinguBox';
 
 const styles = ({ palette, breakpoints }) => ({
@@ -46,42 +49,66 @@ const styles = ({ palette, breakpoints }) => ({
   },
 });
 
-const Auth = ({ classes }) => {
-  return (
-    <ChinguBox className={classes.authContainer}>
-      <Typography component="h1" align="center" variant="title">
-        Authenticate with GitHub
-      </Typography>
+class Auth extends React.Component {
+  componentDidMount() {
+    const token = window.localStorage.getItem('github_token');
+    if (token) this.props.history.push('/user-dashboard');
+    else {
+      firebase
+        .auth()
+        .getRedirectResult()
+        .then(({ credential }) =>
+          window.localStorage.setItem('github_token', credential.accessToken)
+        )
+        .catch(console.error);
+    }
+  }
 
-      <Button
-        component="a"
-        href="/api/auth/github"
-        className={classes.githubBtn}
-        variant="raised"
-        size="large"
-      >
-        <GithubCircle style={{ fontSize: 32, marginRight: 16 }} />
-        Log In / Register
-      </Button>
+  handleClick = () => {
+    firebase
+      .auth()
+      .signInWithRedirect(provider)
+      .catch(console.error);
+  };
 
-      <div className={classes.warnText}>
-        <strong>Don't have a GitHub account?</strong>
-        <p>
-          Chingu requires all members to have a Github account.{' '}
-          <a
-            className={classes.githubLink}
-            href="https://github.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Register now
-          </a>{' '}
-          to start your coding journey with Chingu!
-        </p>
-      </div>
-    </ChinguBox>
-  );
-};
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <ChinguBox className={classes.authContainer}>
+        <Typography component="h1" align="center" variant="title">
+          Authenticate with GitHub
+        </Typography>
+
+        <Button
+          onClick={this.handleClick}
+          className={classes.githubBtn}
+          variant="raised"
+          size="large"
+        >
+          <GithubCircle style={{ fontSize: 32, marginRight: 16 }} />
+          Log In / Register
+        </Button>
+
+        <div className={classes.warnText}>
+          <strong>Don't have a GitHub account?</strong>
+          <p>
+            Chingu requires all members to have a Github account.{' '}
+            <a
+              className={classes.githubLink}
+              href="https://github.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Register now
+            </a>{' '}
+            to start your coding journey with Chingu!
+          </p>
+        </div>
+      </ChinguBox>
+    );
+  }
+}
 
 Auth.propTypes = {
   classes: PropTypes.object.isRequired,
