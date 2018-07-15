@@ -50,7 +50,7 @@ router.get(
   }),
   (req, res) => {
     if (req.user && req.user.authComplete) {
-      res.redirect(`${process.env.REACT_ROUTE}/user-dashboard`);
+      res.redirect(`${process.env.REACT_ROUTE}/dashboard`);
     } else {
       res.redirect(`${process.env.REACT_ROUTE}/register`);
     }

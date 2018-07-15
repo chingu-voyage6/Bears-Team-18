@@ -14,8 +14,7 @@ import Auth from './Routes/Auth/';
 import Register from './Routes/Register/';
 import FAQ from './Routes/FAQ/';
 import PrivacyPolicy from './Routes/PrivacyPolicy/';
-import TokenConfig from './Routes/TokenConfig/';
-import UserDashboard from './Routes/UserDashboard/';
+import Dashboard from './Routes/Dashboard/';
 import ErrorPage from './Routes/Error/';
 import ScrollToTop from './ScrollToTop';
 
@@ -53,8 +52,7 @@ const App = props => {
                 <Route path="/login" component={Auth} />
                 <Route path="/faq" component={FAQ} />
                 <Route path="/privacy-policy" component={PrivacyPolicy} />
-                <Route path="/token" component={TokenConfig} />
-                <Route path="/user-dashboard" component={UserDashboard} />
+                <Route path="/dashboard" component={Dashboard} />
                 <Route path="/register" component={Register} />
 
                 <Route

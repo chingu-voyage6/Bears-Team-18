@@ -52,7 +52,7 @@ const styles = ({ palette, breakpoints }) => ({
 class Auth extends React.Component {
   componentDidMount() {
     const token = window.localStorage.getItem('github_token');
-    if (token) this.props.history.push('/user-dashboard');
+    if (token) this.props.history.push('/dashboard');
     else {
       firebase
         .auth()
