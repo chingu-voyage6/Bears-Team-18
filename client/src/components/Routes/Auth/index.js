@@ -8,6 +8,7 @@ import GithubCircle from 'mdi-material-ui/GithubCircle';
 
 import firebase from 'firebase/app';
 import { provider } from '../../../firebase/firebase';
+import { isAuthenticated } from '../../../utils';
 
 import ChinguBox from '../../ChinguBox';
 
@@ -51,15 +52,20 @@ const styles = ({ palette, breakpoints }) => ({
 
 class Auth extends React.Component {
   componentDidMount() {
-    const token = window.localStorage.getItem('github_token');
-    if (token) this.props.history.push('/dashboard');
-    else {
+    if (isAuthenticated()) {
+      this.props.history.push('/dashboard');
+    } else {
       firebase
         .auth()
         .getRedirectResult()
-        .then(({ credential }) =>
-          window.localStorage.setItem('github_token', credential.accessToken)
-        )
+        .then(({ credential }) => {
+          // check if truthy to avoid an error when mounting the component
+          // before clicking the sign in button
+          if (credential) {
+            window.localStorage.setItem('github_token', credential.accessToken);
+            this.props.history.push('/dashboard');
+          }
+        })
         .catch(console.error);
     }
   }

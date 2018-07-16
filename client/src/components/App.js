@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import firebase from 'firebase/app';
 
 import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -38,41 +39,52 @@ const styles = theme => ({
   },
 });
 
-const App = props => {
-  return (
-    <CssBaseline>
-      <MuiThemeProvider theme={theme}>
-        <Router>
-          <ScrollToTop>
-            <Header />
+class App extends React.Component {
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      // get info from user to store in apollo cache here if needed
+      this.props.client.writeData({
+        data: { authenticated: user ? true : false },
+      });
+    });
+  }
 
-            <main>
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/login" component={Auth} />
-                <Route path="/faq" component={FAQ} />
-                <Route path="/privacy-policy" component={PrivacyPolicy} />
-                <Route path="/dashboard" component={Dashboard} />
-                <Route path="/register" component={Register} />
+  render() {
+    return (
+      <CssBaseline>
+        <MuiThemeProvider theme={theme}>
+          <Router>
+            <ScrollToTop>
+              <Header />
 
-                <Route
-                  render={routeProps => (
-                    <ErrorPage
-                      {...routeProps}
-                      title="404 Error - URL Not Found"
-                    />
-                  )}
-                />
-              </Switch>
-            </main>
+              <main>
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route path="/login" component={Auth} />
+                  <Route path="/faq" component={FAQ} />
+                  <Route path="/privacy-policy" component={PrivacyPolicy} />
+                  <Route path="/dashboard" component={Dashboard} />
+                  <Route path="/register" component={Register} />
 
-            <Footer />
-          </ScrollToTop>
-        </Router>
-      </MuiThemeProvider>
-    </CssBaseline>
-  );
-};
+                  <Route
+                    render={routeProps => (
+                      <ErrorPage
+                        {...routeProps}
+                        title="404 Error - URL Not Found"
+                      />
+                    )}
+                  />
+                </Switch>
+              </main>
+
+              <Footer />
+            </ScrollToTop>
+          </Router>
+        </MuiThemeProvider>
+      </CssBaseline>
+    );
+  }
+}
 
 App.propTypes = {
   classes: PropTypes.object.isRequired,

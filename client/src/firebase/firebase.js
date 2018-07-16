@@ -7,7 +7,9 @@ if (!firebase.apps.length) {
   firebase.initializeApp(config);
 }
 
-export const provider = new firebase.auth.GithubAuthProvider();
+const provider = new firebase.auth.GithubAuthProvider();
 
-provider.addScope('email');
+provider.addScope('read:user');
 provider.setCustomParameters({ allow_signup: 'false' });
+
+export { provider };
